@@ -53,6 +53,9 @@ $columnsUpperCategory = ['upper_category_id', 'upper_category_name', 'upper_cate
 $tableNameLowerCategory = "lower_category";
 $columnsLowerCategory = ['lower_category_id', 'lower_category_name', 'lower_category_publicy', 'upper_category_id'];
 
+$tableNameProduct = "product";
+$columnsProduct = ['product_id', 'upper_category_id', 'lower_category_id', 'brand_id', 'product_name', 'product_code', 'product_manufacturer_code', 'product_photo', 'product_publicy', 'product_stock_status', 'product_slider_photos', 'product_slider_status', 'product_featured_status', 'product_currentDateTime'];
+
 $fetchDataBrand = fetch_data_brand($db, $tableNameBrand, $columnsBrand);
 function fetch_data_brand($db, $tableName, $columns)
 {
@@ -269,6 +272,208 @@ function fetch_data_lower_category($db, $tableName, $columns, $categoryId)
 
     return $msg;
 }
+
+
+
+function fetch_data_product_with_categories($db, $tableName, $columns, $categoryId)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } elseif (empty($categoryId)) {
+        $msg = "Category ID is required";
+    } else {
+        $columnName = implode(", ", $columns);
+
+        $query = "SELECT " . $columnName . " FROM " . $tableName;
+        $query .= " WHERE lower_category_id = ?"; 
+        $query .= " ORDER BY product_id";
+
+        $stmt = $db->prepare($query);
+        $stmt->bind_param("i", $categoryId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "";
+            }
+        } else {
+            $msg = "Query error: " . $stmt->error;
+        }
+
+        $stmt->close();
+    }
+
+    return $msg;
+}
+
+function fetch_data_product($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " ORDER BY product_id";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Urun Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+function fetch_data_upper_category_for_product($db, $tableName, $columns, $id)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE upper_category_id = '$id'";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $msg = $row;
+            } else {
+                $msg = "No data found";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+function fetch_data_lower_category_for_product($db, $tableName, $columns, $id)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE lower_category_id = '$id'";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $msg = $row;
+            } else {
+                $msg = "No data found";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+function fetch_data_brand_for_product($db, $tableName, $columns, $id)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE brand_id = '$id'";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $msg = $row;
+            } else {
+                $msg = "No data found";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+if (isset($_SERVER['REQUEST_URI'])) {
+    $url_segments = explode('/', $_SERVER['REQUEST_URI']);
+    $product_id = end($url_segments);
+    $id = validate($product_id);
+    $fetchDataProductDetails = fetch_data_product_detail($db, $tableNameProduct, $columnsProduct, $id);
+}
+function fetch_data_product_detail($db, $tableName, $columns, $id)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE product_id = '$id'";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $msg = $row;
+            } else {
+                $msg = "No data found";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+
+
+
 
 
 
