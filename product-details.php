@@ -35,7 +35,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
 
     <!-- Document Title
     ============================================= -->
-    <title>Kategoriler | Özkader Otomotiv</title>
+    <title>Ürün Detay | Özkader Otomotiv</title>
 </head>
 
 <body>
@@ -908,171 +908,382 @@ include_once "ozkaderautomotivepanel/php/main.php";
             </nav>
         </header>
 
-        <!-- categorey #10
+        <!-- product gallery #2
 ============================================= -->
-        <section id="categorey10" class="category category-3 category-6 category-8 pt-70 pb-80">
+        <section id="product-gallery2" class="product-gallery-2 text-center mtop-100">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <div class="sidebar cat-sidebar">
-
-                            <!-- Categories
-    ============================= -->
-                            <div class="widget widget-categories2">
-                                <div class="widget--title">
-                                    <h3>Kategoriler</h3>
-                                </div>
-                                <div class="widget--content">
-                                    <ul class="main--list list-unstyled mb-0">
-
-                                        <?php
-                                        if (is_array($fetchDataUpperCategory)) {
-                                            foreach ($fetchDataUpperCategory as $data) {
-                                                $upper_category_name_url = $data['upper_category_name'];
-                                                $upper_category_id_url = $data['upper_category_id'];
-
-                                                $fetchDataLowerCategory = fetch_data_lower_category($db, $tableNameLowerCategory, $columnsLowerCategory, $upper_category_id_url);
-                                                $lower_category_count = is_array($fetchDataLowerCategory) ? count($fetchDataLowerCategory) : 0;
-
-                                                $seo_name = cleanTurkishCharacters($upper_category_name_url);
-                                                $url = "/$seo_name" . "/$upper_category_id_url";
-                                        ?>
-                                                <li>
-                                                    <a href="#"><?php echo $data['upper_category_name'] ?>
-                                                        <span>(<?php echo $lower_category_count ?>)</span></a>
-                                                    <ul class="inner--list list-unstyled mb-0">
-                                                        <?php
-                                                        if (is_array($fetchDataLowerCategory)) {
-                                                            foreach ($fetchDataLowerCategory as $lowerCategory) {
-                                                                $lower_category_name = $lowerCategory['lower_category_name']; // Alt kategori adı
-                                                                $lower_category_id = $lowerCategory['lower_category_id'];   // Alt kategori ID'si
-
-                                                                $lower_category_seo_name = cleanTurkishCharacters($lower_category_name);
-                                                                $lower_category_url = "/$seo_name/$lower_category_seo_name/$lower_category_id";
-                                                        ?>
-                                                                <li><a
-                                                                        href="categories.php?<?php echo $lower_category_url ?>"><?php echo $lowerCategory['lower_category_name'] ?><span>34</span></a>
-                                                                </li>
-                                                        <?php
-                                                            }
-                                                        } else {
-                                                            // Alt kategori bulunamadığında
-                                                            echo "<li>Alt Kategoriler Bulunamadı!</li>";
-                                                        }
-                                                        ?>
-                                                    </ul>
-                                                </li>
-
-                                        <?php
-                                            }
-                                        } else {
-                                            echo $fetchDataUpperCategory;
-                                        }
-                                        ?>
-
-                                    </ul>
-                                </div>
-                            </div> <!-- .widget-categories end -->
-                        </div>
-                    </div>
-                    <!-- .col-lg-3 end -->
-                    <div class="col-sm-12 col-md-12 col-lg-9">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-12 category-options">
-                                <div class="category-num pull-left pull-none-xs">
-                                    <h2><span>260</span>Ürün </h2>
-                                </div>
-                                <!-- .category-num end -->
-                                <div class="category-select pull-right text-right text-left-sm pull-none-xs">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="option sort--options">
-                                            <span class="option--title">Markalar:</span>
-                                            <div class="select-form">
-                                                <i class="fa fa-caret-down"></i>
-                                                <select>
-                                                    <option selected="">Seçiniz</option>
-                                                    <?php
-                                                    if (is_array($fetchDataBrand)) {
-                                                        $sn = 1;
-                                                        foreach ($fetchDataBrand as $data) {
-                                                    ?>
-                                                            <option ><?php echo $data['brand_name'] ?></option>
-                                                    <?php
-                                                            $sn++;
-                                                        }
-                                                    } else {
-                                                        echo $fetchDataBrand;
-                                                    } ?>
-                                                </select>
-                                            </div>
-                                        </li>
-                                    </ul>
+                    <div class="col-sm-12 col-md-12 col-lg-8 offset-lg-2 page-title">
+                        <div class="title title-1 mb-70">
+                            <div class="title--content">
+                                <div class="title--heading">
+                                    <h1>24V H1 70W P14,5S - FRT40.34155</h1>
                                 </div>
                             </div>
-                            <!-- .category-options end -->
+                            <div class="clearfix"></div>
+                            <ol class="breadcrumb">
+                                <li><a href="index.php">Anasayfa</a></li>
+                                <li><a href="index-2.html">Ampuller</a></li>
+                                <li class="active">H Serisi Civalı Ampuller Ampul</li>
+                            </ol>
                         </div>
-                        <!-- .row end -->
-
-                        <div class="row mb-60">
-
-                            <!-- category item #1 -->
-                            <div class="col-sm-6 col-md-6 col-lg-4">
-                                <div class="category-item">
-                                    <div class="category--img">
-                                        <img src="assets/images/products/gallery/test.png" alt="category" />
-                                        <span class="featured-item featured-item2">new</span>
-                                    </div>
-                                    <!-- .category-img end -->
-                                    <div class="category--content">
-                                        <div class="category--title">
-                                            <h3><a href="#">Hebes Great Chair</a></h3>
-                                        </div>
-                                        <!-- .category-title end -->
-                                        <div class="category--price">
-                                            <span>$ 42.00</span>
-                                        </div>
-                                        <!-- .category-price end -->
-                                    </div>
-                                    <!-- .category-content end -->
-                                    <div class="category--hover">
-                                        <div class="category--action">
-                                            <a href="product-details.php" class="btn btn--primary btn--rounded"><i
-                                                    class="icon-bag"></i>Incele</a>
-                                            <div class="category--action-content">
-
-                                                <!-- .category-action-icons end -->
-                                                <div class="category--hover-info">
-                                                    <div class="category--title">
-                                                        <h3><a href="#">Hebes Great Chair</a></h3>
-                                                    </div>
-                                                    <!-- .category-title end -->
-                                                    <div class="category--price">
-                                                        <span>$ 42.00</span>
-                                                    </div>
-                                                    <!-- .category-price end -->
-                                                </div>
-                                                <!-- .category-hover-info end -->
-                                            </div>
-                                            <!-- .category-action-content end -->
-                                        </div>
-                                        <!-- .category-action end -->
-                                    </div>
-                                    <!-- .category-hover end -->
+                        <!-- .title end -->
+                        <div class="products-gallery-carousel">
+                            <div class="owl-carousel products-slider">
+                                <div class="product-img">
+                                    <img src="assets/images/products/gallery/test.png" alt="product">
                                 </div>
                             </div>
-                            <!-- .category-item end -->
-
-
                         </div>
-                        <!-- .row end -->
+                        <!-- .products-gallery-carousel end -->
                     </div>
-                    <!-- .col-lg-9 end -->
+                    <!-- .col-lg-8 end -->
                 </div>
                 <!-- .row end -->
             </div>
             <!-- .container end -->
         </section>
-        <!-- #categorey end -->
+        <!-- # product gallery  end -->
+
+        <!-- product detalis #5
+============================================= -->
+        <section id="product-detalis5" class="product-detalis product-detalis-5 mtop-150 product-detalis-7 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3">
+                        <div class="product--title">
+                            <h3>24V H1 70W P14,5S - FRT40.34155</h3>
+                        </div>
+                        <!-- .product-title end -->
+                        <div class="product--rating">
+                            <i class="fa fa-star active"></i>
+                            <i class="fa fa-star active"></i>
+                            <i class="fa fa-star active"></i>
+                            <i class="fa fa-star active"></i>
+                            <i class="fa fa-star active"></i>
+                        </div>
+                        <div class="product--review">Üretici Kodu: 34155</div>
+                        <!--- .product-review end -->
+                        <div class="product--price">FRT LIGHT </div>
+                        <!-- .product-price end -->
+                        <div class="product--meta">
+                            <!-- .product-desc-tabs end -->
+                            <ul class="product--meta-info list-unstyled">
+                                <li>Stok Durumu:<span>Stokta</span></li>
+                                <li>Ürün Kodu:<span>FRT40.34155</span></li>
+                            </ul>
+                            <div class="product--meta-action clearfix mb-0">
+                                <a href="#" class="btn btn--primary btn--rounded btn--block mb-40">Bize Ulaşın!</a>
+                                <div class="inline-block product--share">
+                                    <a class="phone" href="tel:05387027010">
+                                        <i class="fa fa-phone"></i>
+                                    </a>
+                                    <a class="envelope" href="mailto:ozkaderoto42@hotmail.com">
+                                        <i class="fa fa-envelope"></i>
+                                    </a>
+                                    <a class="whatsapp" href="https://wa.me/05387027010" rel="nofollow" target="_blank">
+                                        <i class="fa fa-whatsapp"></i>
+                                    </a>
+                                    <a class="instagram" href="https://www.instagram.com/ozkaderotomotiv42_/">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </div>
+                                <!-- .product-share end -->
+                            </div>
+                            <!-- .product-meta-action end -->
+                        </div>
+                        <!-- .product-meta end -->
+                    </div>
+                    <!-- .col-lg-6 end -->
+                </div>
+                <!-- .row end -->
+            </div>
+            <!-- .container end -->
+        </section>
+        <!-- .product detalis end -->
+
+
+        <!-- related products
+============================================= -->
+        <section id="related-products" class="related-products pt-0 pb-80">
+            <div class="container-fluid pr-40 pl-40">
+                <hr>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="heading text-center mb-50">
+                            <h2 class="heading--title">Son Ürünler</h2>
+                        </div>
+                    </div>
+                    <!-- .col-lg-12 end -->
+                </div>
+                <!-- .row end -->
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="carousel owl-carousel carousel-dots" data-slide="4" data-slide-rs="2"
+                            data-autoplay="true" data-nav="false" data-dots="true" data-space="15" data-loop="true"
+                            data-speed="800">
+                            <!-- Product item #1 -->
+                            <div class="product-item">
+                                <div class="product--img">
+                                    <img src="assets/images/products/related/1.jpg" alt="product" />
+                                </div>
+                                <!-- .product-img end -->
+                                <div class="product--content">
+                                    <div class="product--title">
+                                        <h3><a href="#">Hebes Great Chair</a></h3>
+                                    </div>
+                                    <!-- .product-title end -->
+                                    <div class="product--price">
+                                        <span>$ 42.00</span>
+                                    </div>
+                                    <!-- .product-price end -->
+                                    <div class="product--hover">
+                                        <div class="product--action">
+                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
+                                                    class="icon-bag"></i>ADD TO CART</a>
+                                            <a data-toggle="modal" data-target="#product-popup"><i
+                                                    class="ti-search"></i></a>
+                                            <a href="#"><i class="ti-heart"></i></a>
+                                            <a href="#" class="compare" data-toggle="modal"
+                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- .product-hover end -->
+                                </div>
+                                <!-- .product-content end -->
+                            </div>
+                            <!-- .product-item end -->
+                            <!-- product item #2 -->
+                            <div class="product-item">
+                                <div class="product--img">
+                                    <img src="assets/images/products/related/2.jpg" alt="product" />
+                                </div>
+                                <!-- .carousel end -->
+                                <div class="product--content">
+                                    <div class="product--title">
+                                        <h3><a href="#">Hebes Great Chair</a></h3>
+                                    </div>
+                                    <!-- .product-title end -->
+                                    <div class="product--price">
+                                        <span>$ 42.00</span>
+                                    </div>
+                                    <!-- .product-price end -->
+                                    <div class="product--hover">
+                                        <div class="product--action">
+                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
+                                                    class="icon-bag"></i>ADD TO CART</a>
+                                            <a data-toggle="modal" data-target="#product-popup"><i
+                                                    class="ti-search"></i></a>
+                                            <a href="#"><i class="ti-heart"></i></a>
+                                            <a href="#" class="compare" data-toggle="modal"
+                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- .product-hover end -->
+                                </div>
+                                <!-- .product-content end -->
+                            </div>
+                            <!-- .product-item end -->
+                            <!-- Product item #3 -->
+                            <div class="product-item">
+                                <div class="product--img">
+                                    <img src="assets/images/products/related/3.jpg" alt="product" />
+                                </div>
+                                <!-- .product-img end -->
+                                <div class="product--content">
+                                    <div class="product--title">
+                                        <h3><a href="#">Hebes Amazing Chair</a></h3>
+                                    </div>
+                                    <!-- .product-title end -->
+                                    <div class="product--price">
+                                        <span>$ 42.00</span>
+                                    </div>
+                                    <!-- .product-price end -->
+                                    <div class="product--hover">
+                                        <div class="product--action">
+                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
+                                                    class="icon-bag"></i>ADD TO CART</a>
+                                            <a data-toggle="modal" data-target="#product-popup"><i
+                                                    class="ti-search"></i></a>
+                                            <a href="#"><i class="ti-heart"></i></a>
+                                            <a href="#" class="compare" data-toggle="modal"
+                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- .product-hover end -->
+                                </div>
+                                <!-- .product-content end -->
+                            </div>
+                            <!-- .product-item end -->
+                            <!-- Product item #4 -->
+                            <div class="product-item">
+                                <div class="product--img">
+                                    <img src="assets/images/products/related/4.jpg" alt="product" />
+                                    <span class="featured-item">hot</span>
+                                </div>
+                                <!-- .product-img end -->
+                                <div class="product--content">
+                                    <div class="product--title">
+                                        <h3><a href="#">Hebes Black wood Chair</a></h3>
+                                    </div>
+                                    <!-- .product-title end -->
+                                    <div class="product--price">
+                                        <span>$ 42.00</span>
+                                    </div>
+                                    <!-- .product-price end -->
+                                    <div class="product--hover">
+                                        <div class="product--action">
+                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
+                                                    class="icon-bag"></i>ADD TO CART</a>
+                                            <a data-toggle="modal" data-target="#product-popup"><i
+                                                    class="ti-search"></i></a>
+                                            <a href="#"><i class="ti-heart"></i></a>
+                                            <a href="#" class="compare" data-toggle="modal"
+                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- .product-hover end -->
+                                </div>
+                                <!-- .product-content end -->
+                            </div>
+                            <!-- .product-item end -->
+                            <!-- Product item #5 -->
+                            <div class="product-item">
+                                <div class="product--img">
+                                    <img src="assets/images/products/related/5.jpg" alt="product" />
+                                    <span class="featured-item featured-item2">hot</span>
+                                </div>
+                                <!-- .product-img end -->
+                                <div class="product--content">
+                                    <div class="product--title">
+                                        <h3><a href="#">Hebes Great Chair</a></h3>
+                                    </div>
+                                    <!-- .product-title end -->
+                                    <div class="product--price">
+                                        <span>$ 42.00</span>
+                                    </div>
+                                    <!-- .product-price end -->
+                                    <div class="product--hover">
+                                        <div class="product--action">
+                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
+                                                    class="icon-bag"></i>ADD TO CART</a>
+                                            <a data-toggle="modal" data-target="#product-popup"><i
+                                                    class="ti-search"></i></a>
+                                            <a href="#"><i class="ti-heart"></i></a>
+                                            <a href="#" class="compare" data-toggle="modal"
+                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- .product-hover end -->
+                                </div>
+                                <!-- .product-content end -->
+                            </div>
+                            <!-- .product-item end -->
+                            <!-- Product item #6 -->
+                            <div class="product-item">
+                                <div class="product--img">
+                                    <img src="assets/images/products/related/3.jpg" alt="product" />
+                                </div>
+                                <!-- .product-img end -->
+                                <div class="product--content">
+                                    <div class="product--title">
+                                        <h3><a href="#">Hebes Amazing Chair</a></h3>
+                                    </div>
+                                    <!-- .product-title end -->
+                                    <div class="product--price">
+                                        <span>$ 42.00</span>
+                                    </div>
+                                    <!-- .product-price end -->
+                                    <div class="product--hover">
+                                        <div class="product--action">
+                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
+                                                    class="icon-bag"></i>ADD TO CART</a>
+                                            <a data-toggle="modal" data-target="#product-popup"><i
+                                                    class="ti-search"></i></a>
+                                            <a href="#"><i class="ti-heart"></i></a>
+                                            <a href="#" class="compare" data-toggle="modal"
+                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- .product-hover end -->
+                                </div>
+                                <!-- .product-content end -->
+                            </div>
+                            <!-- .product-item end -->
+                            <!-- Product item #7 -->
+                            <div class="product-item">
+                                <div class="product--img">
+                                    <img src="assets/images/products/related/4.jpg" alt="product" />
+                                    <span class="featured-item">hot</span>
+                                </div>
+                                <!-- .product-img end -->
+                                <div class="product--content">
+                                    <div class="product--title">
+                                        <h3><a href="#">Hebes Black wood Chair</a></h3>
+                                    </div>
+                                    <!-- .product-title end -->
+                                    <div class="product--price">
+                                        <span>$ 42.00</span>
+                                    </div>
+                                    <!-- .product-price end -->
+                                    <div class="product--hover">
+                                        <div class="product--action">
+                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
+                                                    class="icon-bag"></i>ADD TO CART</a>
+                                            <a data-toggle="modal" data-target="#product-popup"><i
+                                                    class="ti-search"></i></a>
+                                            <a href="#"><i class="ti-heart"></i></a>
+                                            <a href="#" class="compare" data-toggle="modal"
+                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- .product-hover end -->
+                                </div>
+                                <!-- .product-content end -->
+                            </div>
+                            <!-- .product-item end -->
+                            <!-- Product item #8 -->
+                            <div class="product-item">
+                                <div class="product--img">
+                                    <img src="assets/images/products/related/5.jpg" alt="product" />
+                                    <span class="featured-item featured-item2">hot</span>
+                                </div>
+                                <!-- .product-img end -->
+                                <div class="product--content">
+                                    <div class="product--title">
+                                        <h3><a href="#">Hebes Great Chair</a></h3>
+                                    </div>
+                                    <!-- .product-title end -->
+                                    <div class="product--price">
+                                        <span>$ 42.00</span>
+                                    </div>
+                                    <!-- .product-price end -->
+                                    <div class="product--hover">
+                                        <div class="product--action">
+                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
+                                                    class="icon-bag"></i>ADD TO CART</a>
+                                            <a data-toggle="modal" data-target="#product-popup"><i
+                                                    class="ti-search"></i></a>
+                                            <a href="#"><i class="ti-heart"></i></a>
+                                            <a href="#" class="compare" data-toggle="modal"
+                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- .product-hover end -->
+                                </div>
+                                <!-- .product-content end -->
+                            </div>
+                            <!-- .product-item end -->
+                        </div>
+                        <!-- .carousel end -->
+
+                    </div>
+                    <!-- .row end -->
+                </div>
+            </div>
+            <!-- .container end -->
+        </section>
+        <!-- .related products end -->
 
         <!-- Footer #2
 ============================================= -->
@@ -1155,7 +1366,6 @@ include_once "ozkaderautomotivepanel/php/main.php";
             </div>
             <!-- .footer-widget end -->
         </footer>
-
 
     </div><!-- #wrapper end -->
 
