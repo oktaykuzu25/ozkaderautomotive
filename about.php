@@ -74,7 +74,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
                     </div>
                     <!-- /.navbar-collapse -->
 
-                    <a class="navbar-brand" href="index-2.html">
+                    <a class="navbar-brand" href="index-2.php">
                         <img class="logo" src="assets/images/logo/logo-dark.png" alt="logo">
                     </a>
 
@@ -94,16 +94,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         <h5>Furniture</h5>
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.html">chair</a>
+                                                                <a href="shop-layout-fullwidth.php">chair</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-layout-sidebar-left.html">sofa</a>
+                                                                <a href="shop-layout-sidebar-left.php">sofa</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-4columns.html">table</a>
+                                                                <a href="shop-4columns.php">table</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-3columns.html">bed</a>
+                                                                <a href="shop-3columns.php">bed</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -120,16 +120,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         <h5>Lighting</h5>
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.html">Wall Lamp</a>
+                                                                <a href="shop-layout-fullwidth.php">Wall Lamp</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-layout-sidebar-left.html">Bedroom Lamp</a>
+                                                                <a href="shop-layout-sidebar-left.php">Bedroom Lamp</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-4columns.html">Garden Lamp</a>
+                                                                <a href="shop-4columns.php">Garden Lamp</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-3columns.html">Desktop Lamp</a>
+                                                                <a href="shop-3columns.php">Desktop Lamp</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -146,16 +146,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         <h5>Wood Shelf</h5>
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.html">wood Living</a>
+                                                                <a href="shop-layout-fullwidth.php">wood Living</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-layout-sidebar-left.html">wood Bedroom</a>
+                                                                <a href="shop-layout-sidebar-left.php">wood Bedroom</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-4columns.html">wood Garden</a>
+                                                                <a href="shop-4columns.php">wood Garden</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-3columns.html">wood tables</a>
+                                                                <a href="shop-3columns.php">wood tables</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -172,16 +172,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         <h5>Accessories</h5>
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.html">Shoes</a>
+                                                                <a href="shop-layout-fullwidth.php">Shoes</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-layout-sidebar-left.html">Bags</a>
+                                                                <a href="shop-layout-sidebar-left.php">Bags</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-4columns.html">Jewellery</a>
+                                                                <a href="shop-4columns.php">Jewellery</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-3columns.html">Scarves</a>
+                                                                <a href="shop-3columns.php">Scarves</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -198,16 +198,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         <h5>Sale Off</h5>
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.html">Sunglasses</a>
+                                                                <a href="shop-layout-fullwidth.php">Sunglasses</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-layout-sidebar-left.html">jackets</a>
+                                                                <a href="shop-layout-sidebar-left.php">jackets</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-4columns.html">Shirts</a>
+                                                                <a href="shop-4columns.php">Shirts</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-3columns.html">Socks</a>
+                                                                <a href="shop-3columns.php">Socks</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -268,7 +268,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
         <header id="navbar-spy" class="header header-1 header-transparent d-block d-lg-none">
             <nav id="primary-menu" class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="index-2.html">
+                    <a class="navbar-brand" href="index-2.php">
                         <img class="logo" src="assets/images/logo/logo-dark.png" alt="logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -290,16 +290,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                 <div class="col-md-12 col-lg-3">
                                                     <ul>
                                                         <li>
-                                                            <a href="home-1.html">Home 1</a>
+                                                            <a href="home-1.php">Home 1</a>
                                                         </li>
                                                         <li>
-                                                            <a href="home-2.html">Home 2</a>
+                                                            <a href="home-2.php">Home 2</a>
                                                         </li>
                                                         <li>
-                                                            <a href="home-3.html">Home 3</a>
+                                                            <a href="home-3.php">Home 3</a>
                                                         </li>
                                                         <li>
-                                                            <a href="home-4.html">Home 4</a>
+                                                            <a href="home-4.php">Home 4</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -309,16 +309,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                 <div class="col-md-12 col-lg-3">
                                                     <ul>
                                                         <li>
-                                                            <a href="home-5.html">Home 5</a>
+                                                            <a href="home-5.php">Home 5</a>
                                                         </li>
                                                         <li>
-                                                            <a href="home-6.html">Home 6</a>
+                                                            <a href="home-6.php">Home 6</a>
                                                         </li>
                                                         <li>
-                                                            <a href="home-8.html">Home 7</a>
+                                                            <a href="home-8.php">Home 7</a>
                                                         </li>
                                                         <li>
-                                                            <a href="home-8.html">Home 8</a>
+                                                            <a href="home-8.php">Home 8</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -328,16 +328,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                 <div class="col-md-12 col-lg-3">
                                                     <ul>
                                                         <li>
-                                                            <a href="home-9.html">Home 9</a>
+                                                            <a href="home-9.php">Home 9</a>
                                                         </li>
                                                         <li>
-                                                            <a href="home-10.html">Home 10</a>
+                                                            <a href="home-10.php">Home 10</a>
                                                         </li>
                                                         <li>
-                                                            <a href="home-11.html">Home 11</a>
+                                                            <a href="home-11.php">Home 11</a>
                                                         </li>
                                                         <li>
-                                                            <a href="home-12.html">Home 12</a>
+                                                            <a href="home-12.php">Home 12</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -347,10 +347,10 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                 <div class="col-md-12 col-lg-3">
                                                     <ul>
                                                         <li>
-                                                            <a href="home-13.html">Home 13</a>
+                                                            <a href="home-13.php">Home 13</a>
                                                         </li>
                                                         <li>
-                                                            <a href="home-14.html">Home 14</a>
+                                                            <a href="home-14.php">Home 14</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -373,13 +373,13 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Products Layout</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="shop-layout-fullwidth.html">fullwidth</a>
+                                                <a href="shop-layout-fullwidth.php">fullwidth</a>
                                             </li>
                                             <li>
-                                                <a href="shop-layout-sidebar-left.html">sidebar left</a>
+                                                <a href="shop-layout-sidebar-left.php">sidebar left</a>
                                             </li>
                                             <li>
-                                                <a href="shop-layout-sidebar-right-2.html">sidebar right</a>
+                                                <a href="shop-layout-sidebar-right-2.php">sidebar right</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -387,10 +387,10 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Products Columns</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="shop-4columns.html">4 columns</a>
+                                                <a href="shop-4columns.php">4 columns</a>
                                             </li>
                                             <li>
-                                                <a href="shop-3columns.html">3 columns</a>
+                                                <a href="shop-3columns.php">3 columns</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -398,16 +398,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Products Cards</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="shop-product-grid.html">grid</a>
+                                                <a href="shop-product-grid.php">grid</a>
                                             </li>
                                             <li>
-                                                <a href="shop-product-hero-3columns.html">hero 3 columns</a>
+                                                <a href="shop-product-hero-3columns.php">hero 3 columns</a>
                                             </li>
                                             <li>
-                                                <a href="shop-product-hero-2columns.html">hero 2 columns</a>
+                                                <a href="shop-product-hero-2columns.php">hero 2 columns</a>
                                             </li>
                                             <li>
-                                                <a href="shop-product-list.html">list</a>
+                                                <a href="shop-product-list.php">list</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -415,16 +415,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Products Dark</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="shop-dark-sidebar.html">with sidebar</a>
+                                                <a href="shop-dark-sidebar.php">with sidebar</a>
                                             </li>
                                             <li>
-                                                <a href="shop-dark-3columns.html">3 columns</a>
+                                                <a href="shop-dark-3columns.php">3 columns</a>
                                             </li>
                                             <li>
-                                                <a href="shop-dark-4columns.html">4 columns</a>
+                                                <a href="shop-dark-4columns.php">4 columns</a>
                                             </li>
                                             <li>
-                                                <a href="shop-dark-5columns.html">5 columns</a>
+                                                <a href="shop-dark-5columns.php">5 columns</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -432,19 +432,19 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Products Hover</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="shop-hover-2.html">hover 2</a>
+                                                <a href="shop-hover-2.php">hover 2</a>
                                             </li>
                                             <li>
-                                                <a href="shop-hover-4columns.html">hover 4 columns</a>
+                                                <a href="shop-hover-4columns.php">hover 4 columns</a>
                                             </li>
                                             <li>
-                                                <a href="shop-hover-3columns.html">hover 3 columns</a>
+                                                <a href="shop-hover-3columns.php">hover 3 columns</a>
                                             </li>
                                             <li>
-                                                <a href="shop-hover-2columns.html">hover 2 columns</a>
+                                                <a href="shop-hover-2columns.php">hover 2 columns</a>
                                             </li>
                                             <li>
-                                                <a href="shop-hover-variation.html">hover variation</a>
+                                                <a href="shop-hover-variation.php">hover variation</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -452,22 +452,22 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Single Product</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="product-boxed.html">Product Boxed</a>
+                                                <a href="product-boxed.php">Product Boxed</a>
                                             </li>
                                             <li>
-                                                <a href="product-carousel.html">Product Carousel</a>
+                                                <a href="product-carousel.php">Product Carousel</a>
                                             </li>
                                             <li>
-                                                <a href="product-dark.html">Product Dark</a>
+                                                <a href="product-dark.php">Product Dark</a>
                                             </li>
                                             <li>
-                                                <a href="product-fullwidth.html">Product Fullwidth</a>
+                                                <a href="product-fullwidth.php">Product Fullwidth</a>
                                             </li>
                                             <li>
-                                                <a href="product-hero.html">Product Hero</a>
+                                                <a href="product-hero.php">Product Hero</a>
                                             </li>
                                             <li>
-                                                <a href="product-masonry.html">Product Masonry</a>
+                                                <a href="product-masonry.php">Product Masonry</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -475,16 +475,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Single Gallery</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="product-gallery.html">Gallery Fullwidth</a>
+                                                <a href="product-gallery.php">Gallery Fullwidth</a>
                                             </li>
                                             <li>
-                                                <a href="product-gallery-horizontal.html">Gallery Horizontal</a>
+                                                <a href="product-gallery-horizontal.php">Gallery Horizontal</a>
                                             </li>
                                             <li>
-                                                <a href="product-gallery-slide.html">Gallery Slide</a>
+                                                <a href="product-gallery-slide.php">Gallery Slide</a>
                                             </li>
                                             <li>
-                                                <a href="product-gallery-vertical.html">Gallery Vertical</a>
+                                                <a href="product-gallery-vertical.php">Gallery Vertical</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -500,13 +500,13 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">about us</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="page-about-1.html">About US 1</a>
+                                                <a href="page-about-1.php">About US 1</a>
                                             </li>
                                             <li>
-                                                <a href="page-about-2.html">About US 2</a>
+                                                <a href="page-about-2.php">About US 2</a>
                                             </li>
                                             <li>
-                                                <a href="page-about-dark.html">About US dark</a>
+                                                <a href="page-about-dark.php">About US dark</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -514,13 +514,13 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">contact us</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="page-contact-1.html">page contact 1</a>
+                                                <a href="page-contact-1.php">page contact 1</a>
                                             </li>
                                             <li>
-                                                <a href="page-contact-2.html">page contact 2</a>
+                                                <a href="page-contact-2.php">page contact 2</a>
                                             </li>
                                             <li>
-                                                <a href="page-contact-dark.html">page contact dark</a>
+                                                <a href="page-contact-dark.php">page contact dark</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -528,16 +528,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">untility pages</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="page-404.html">page 404</a>
+                                                <a href="page-404.php">page 404</a>
                                             </li>
                                             <li>
-                                                <a href="page-404-dark.html">page 404 dark</a>
+                                                <a href="page-404-dark.php">page 404 dark</a>
                                             </li>
                                             <li>
-                                                <a href="page-privacy.html">page privacy</a>
+                                                <a href="page-privacy.php">page privacy</a>
                                             </li>
                                             <li>
-                                                <a href="page-terms.html">page terms</a>
+                                                <a href="page-terms.php">page terms</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -545,13 +545,13 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">page tempalates</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="page-template-fullwidth.html">fullwidth</a>
+                                                <a href="page-template-fullwidth.php">fullwidth</a>
                                             </li>
                                             <li>
-                                                <a href="page-template-right-sidebar.html">right sidebar</a>
+                                                <a href="page-template-right-sidebar.php">right sidebar</a>
                                             </li>
                                             <li>
-                                                <a href="page-template-left-sidebar.html">left sidebar</a>
+                                                <a href="page-template-left-sidebar.php">left sidebar</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -571,16 +571,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         <h5>Furniture</h5>
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.html">chair</a>
+                                                                <a href="shop-layout-fullwidth.php">chair</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-layout-sidebar-left.html">sofa</a>
+                                                                <a href="shop-layout-sidebar-left.php">sofa</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-4columns.html">table</a>
+                                                                <a href="shop-4columns.php">table</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-3columns.html">bed</a>
+                                                                <a href="shop-3columns.php">bed</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -597,16 +597,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         <h5>Lighting</h5>
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.html">Wall Lamp</a>
+                                                                <a href="shop-layout-fullwidth.php">Wall Lamp</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-layout-sidebar-left.html">Bedroom Lamp</a>
+                                                                <a href="shop-layout-sidebar-left.php">Bedroom Lamp</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-4columns.html">Garden Lamp</a>
+                                                                <a href="shop-4columns.php">Garden Lamp</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-3columns.html">Desktop Lamp</a>
+                                                                <a href="shop-3columns.php">Desktop Lamp</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -623,16 +623,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         <h5>Wood Shelf</h5>
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.html">wood Living</a>
+                                                                <a href="shop-layout-fullwidth.php">wood Living</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-layout-sidebar-left.html">wood Bedroom</a>
+                                                                <a href="shop-layout-sidebar-left.php">wood Bedroom</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-4columns.html">wood Garden</a>
+                                                                <a href="shop-4columns.php">wood Garden</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-3columns.html">wood tables</a>
+                                                                <a href="shop-3columns.php">wood tables</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -649,16 +649,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         <h5>Accessories</h5>
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.html">Shoes</a>
+                                                                <a href="shop-layout-fullwidth.php">Shoes</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-layout-sidebar-left.html">Bags</a>
+                                                                <a href="shop-layout-sidebar-left.php">Bags</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-4columns.html">Jewellery</a>
+                                                                <a href="shop-4columns.php">Jewellery</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-3columns.html">Scarves</a>
+                                                                <a href="shop-3columns.php">Scarves</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -675,16 +675,16 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         <h5>Sale Off</h5>
                                                         <ul>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.html">Sunglasses</a>
+                                                                <a href="shop-layout-fullwidth.php">Sunglasses</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-layout-sidebar-left.html">jackets</a>
+                                                                <a href="shop-layout-sidebar-left.php">jackets</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-4columns.html">Shirts</a>
+                                                                <a href="shop-4columns.php">Shirts</a>
                                                             </li>
                                                             <li>
-                                                                <a href="shop-3columns.html">Socks</a>
+                                                                <a href="shop-3columns.php">Socks</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -711,33 +711,33 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">blog Grid</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="blog-grid.html">fullwidth</a>
+                                                <a href="blog-grid.php">fullwidth</a>
                                             </li>
                                             <li>
-                                                <a href="blog-grid-sidebar-right.html">right sidebar</a>
+                                                <a href="blog-grid-sidebar-right.php">right sidebar</a>
                                             </li>
                                             <li>
-                                                <a href="blog-grid-sidebar-left.html">left sidebar</a>
+                                                <a href="blog-grid-sidebar-left.php">left sidebar</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="blog-masonry.html">blog masonry</a>
+                                        <a href="blog-masonry.php">blog masonry</a>
                                     </li>
                                     <li>
-                                        <a href="blog-parallax.html">blog parallax</a>
+                                        <a href="blog-parallax.php">blog parallax</a>
                                     </li>
                                     <li class="dropdown-submenu">
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">blog single</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="blog-single.html">fullwidth</a>
+                                                <a href="blog-single.php">fullwidth</a>
                                             </li>
                                             <li>
-                                                <a href="blog-single-sidebar-right.html">right sidebar</a>
+                                                <a href="blog-single-sidebar-right.php">right sidebar</a>
                                             </li>
                                             <li>
-                                                <a href="blog-single-sidebar-left.html">left sidebar</a>
+                                                <a href="blog-single-sidebar-left.php">left sidebar</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -753,25 +753,25 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Headers</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="header-1.html">Header 1</a>
+                                                <a href="header-1.php">Header 1</a>
                                             </li>
                                             <li>
-                                                <a href="header-2.html">Header 2</a>
+                                                <a href="header-2.php">Header 2</a>
                                             </li>
                                             <li>
-                                                <a href="header-3.html">Header 3</a>
+                                                <a href="header-3.php">Header 3</a>
                                             </li>
                                             <li>
-                                                <a href="header-4.html">Header 4</a>
+                                                <a href="header-4.php">Header 4</a>
                                             </li>
                                             <li>
-                                                <a href="header-5.html">Header 5</a>
+                                                <a href="header-5.php">Header 5</a>
                                             </li>
                                             <li>
-                                                <a href="header-6.html">Header 6</a>
+                                                <a href="header-6.php">Header 6</a>
                                             </li>
                                             <li>
-                                                <a href="header-7.html">Header 7</a>
+                                                <a href="header-7.php">Header 7</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -779,19 +779,19 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">footers</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="footer-1.html">footer 1</a>
+                                                <a href="footer-1.php">footer 1</a>
                                             </li>
                                             <li>
-                                                <a href="footer-2.html">footer 2</a>
+                                                <a href="footer-2.php">footer 2</a>
                                             </li>
                                             <li>
-                                                <a href="footer-3.html">footer 3</a>
+                                                <a href="footer-3.php">footer 3</a>
                                             </li>
                                             <li>
-                                                <a href="footer-4.html">footer 4</a>
+                                                <a href="footer-4.php">footer 4</a>
                                             </li>
                                             <li>
-                                                <a href="footer-5.html">footer 5</a>
+                                                <a href="footer-5.php">footer 5</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -799,43 +799,43 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">sliders</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="slider-1.html">slider 1</a>
+                                                <a href="slider-1.php">slider 1</a>
                                             </li>
                                             <li>
-                                                <a href="slider-2.html">slider 2</a>
+                                                <a href="slider-2.php">slider 2</a>
                                             </li>
                                             <li>
-                                                <a href="slider-3.html">slider 3</a>
+                                                <a href="slider-3.php">slider 3</a>
                                             </li>
                                             <li>
-                                                <a href="slider-4.html">slider 4</a>
+                                                <a href="slider-4.php">slider 4</a>
                                             </li>
                                             <li>
-                                                <a href="slider-5.html">slider 5</a>
+                                                <a href="slider-5.php">slider 5</a>
                                             </li>
                                             <li>
-                                                <a href="slider-6.html">slider 6</a>
+                                                <a href="slider-6.php">slider 6</a>
                                             </li>
                                             <li>
-                                                <a href="slider-7.html">slider 7</a>
+                                                <a href="slider-7.php">slider 7</a>
                                             </li>
                                             <li>
-                                                <a href="slider-8.html">slider 8</a>
+                                                <a href="slider-8.php">slider 8</a>
                                             </li>
                                             <li>
-                                                <a href="slider-9.html">slider 9</a>
+                                                <a href="slider-9.php">slider 9</a>
                                             </li>
                                             <li>
-                                                <a href="slider-10.html">slider 10</a>
+                                                <a href="slider-10.php">slider 10</a>
                                             </li>
                                             <li>
-                                                <a href="slider-11.html">slider 11</a>
+                                                <a href="slider-11.php">slider 11</a>
                                             </li>
                                             <li>
-                                                <a href="slider-12.html">slider 12</a>
+                                                <a href="slider-12.php">slider 12</a>
                                             </li>
                                             <li>
-                                                <a href="slider-13.html">slider 13</a>
+                                                <a href="slider-13.php">slider 13</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -843,10 +843,10 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">cart</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="page-cart.html">page cart</a>
+                                                <a href="page-cart.php">page cart</a>
                                             </li>
                                             <li>
-                                                <a href="page-cart-dark.html">page cart dark</a>
+                                                <a href="page-cart-dark.php">page cart dark</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -854,10 +854,10 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">checkout</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="page-checkout.html">page checkout</a>
+                                                <a href="page-checkout.php">page checkout</a>
                                             </li>
                                             <li>
-                                                <a href="page-checkout-dark.html">checkout dark</a>
+                                                <a href="page-checkout-dark.php">checkout dark</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -865,10 +865,10 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">login</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="page-login.html">page login</a>
+                                                <a href="page-login.php">page login</a>
                                             </li>
                                             <li>
-                                                <a href="page-login-dark.html">page login dark</a>
+                                                <a href="page-login-dark.php">page login dark</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -876,18 +876,18 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">wishlist</a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="page-wishlist.html">page wishlist</a>
+                                                <a href="page-wishlist.php">page wishlist</a>
                                             </li>
                                             <li>
-                                                <a href="page-wishlist-dark.html">page wishlist dark</a>
+                                                <a href="page-wishlist-dark.php">page wishlist dark</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="page-soon.html">page soon</a>
+                                        <a href="page-soon.php">page soon</a>
                                     </li>
                                     <li>
-                                        <a href="page-popup.html">page popup</a>
+                                        <a href="page-popup.php">page popup</a>
                                     </li>
                                 </ul>
                             </li><!-- li end -->
@@ -1141,10 +1141,10 @@ include_once "ozkaderautomotivepanel/php/main.php";
                         <div class="col-sm-12 col-md-6 col-lg-5ths text-center-xs widget--links">
                             <div class="widget--content">
                                 <ul class="list-unstyled">
-                                    <li><a href="page-about-1.html">Hakkımızda</a></li>
-                                    <li><a href="page-privacy.html">Gizlilik Politikası</a></li>
-                                    <li><a href="page-terms.html">Şartlar Ve Koşullar</a></li>
-                                    <li><a href="page-contact-2.html">İletişim</a></li>
+                                    <li><a href="page-about-1.php">Hakkımızda</a></li>
+                                    <li><a href="page-privacy.php">Gizlilik Politikası</a></li>
+                                    <li><a href="page-terms.php">Şartlar Ve Koşullar</a></li>
+                                    <li><a href="page-contact-2.php">İletişim</a></li>
                                 </ul>
                             </div>
                         </div>
