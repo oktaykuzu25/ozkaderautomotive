@@ -551,7 +551,6 @@ if (isset($_POST['lower-category-update'])) {
     }
 }
 
-
 function fetch_data_upper_category_name($db, $tableName, $columns, $id)
 {
     if (empty($db)) {
