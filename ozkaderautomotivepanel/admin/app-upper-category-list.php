@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Marka Listesi | Özkader Otomotiv | Yönetim Paneli </title>
+    <title>Ust Kategori | Özkader Otomotiv | Yönetim Paneli </title>
     <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
     <link href="../layouts/modern-light-menu/css/light/loader.css" rel="stylesheet" type="text/css" />
     <link href="../layouts/modern-light-menu/css/dark/loader.css" rel="stylesheet" type="text/css" />
@@ -138,8 +138,8 @@
                             </svg><span>Uygulamalar</span></div>
                     </li>
 
-                    <li class="menu active">
-                        <a href="#brands" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                    <li class="menu">
+                        <a href="#brands" data-bs-toggle="collapse" aria-expanded="" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -158,8 +158,8 @@
                                 </svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled show" id="brands" data-bs-parent="#accordionExample">
-                            <li class="active">
+                        <ul class="collapse submenu list-unstyled" id="brands" data-bs-parent="#accordionExample">
+                            <li>
                                 <a href="./app-brand-list.php"> Marka Listesi </a>
                             </li>
                             <li>
@@ -167,9 +167,9 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu">
-                        <a href="#upperCategory" data-bs-toggle="collapse" aria-expanded="false"
-                            class="dropdown-toggle">
+
+                    <li class="menu active">
+                        <a href="#upperCategory" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -188,9 +188,8 @@
                                 </svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled" id="upperCategory"
-                            data-bs-parent="#accordionExample">
-                            <li>
+                        <ul class="collapse submenu list-unstyled show" id="upperCategory" data-bs-parent="#accordionExample">
+                            <li class="active">
                                 <a href="./app-upper-category-list.php"> Ust Kategori Listesi </a>
                             </li>
                             <li>
@@ -220,9 +219,9 @@
                     <div class="page-meta">
                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Uygulamalar</a></li>
-                                <li class="breadcrumb-item"><a href="#">Markalar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Marka Listesi</li>
+                            <li class="breadcrumb-item"><a href="#">Uygulamalar</a></li>
+                                <li class="breadcrumb-item"><a href="#">Ust Kategori</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Ust Kategori Listesi</li>
                             </ol>
                         </nav>
                     </div>
@@ -236,46 +235,42 @@
                                     <thead>
                                         <tr>
                                             <th class="checkbox-column"></th>
-                                            <th>Marka</th>
-                                            <th>Marka Kodu</th>
+                                            <th>Ust Kategory Adi</th>
                                             <th>Durumu</th>
                                             <th class="no-content text-center">Aksiyon</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if (is_array($fetchDataBrand)) {
+                                        if (is_array($fetchDataUpperCategory)) {
                                             $sn = 1;
-                                            foreach ($fetchDataBrand as $data) {
-                                                $brand_name_url = $data['brand_name'];
-                                                $brand_id_url = $data['brand_id'];
+                                            foreach ($fetchDataUpperCategory as $data) {
+                                                $upper_category_name_url = $data['upper_category_name'];
+                                                $upper_category_id_url = $data['upper_category_id'];
 
-                                                $seo_name = cleanTurkishCharacters($brand_name_url);
+                                                $seo_name = cleanTurkishCharacters($upper_category_name_url);
 
                                                 // SEO uyumlu URL'yi oluştur
-                                                $url = "/$seo_name" . "/$brand_id_url";
+                                                $url = "/$seo_name" . "/$upper_category_id_url";
                                         ?>
                                         <tr>
                                             <td>1</td>
                                             <td>
                                                 <div class="d-flex justify-content-left align-items-center">
                                                     <div class="avatar  me-3">
-                                                        <img src="../<?php echo $data['brand_logo'] ?>" alt="Avatar"
+                                                        <img src="../<?php echo $data['upper_category_photo'] ?>" alt="Avatar"
                                                             width="64" height="64">
                                                     </div>
                                                     <div class="d-flex flex-column">
-                                                        <span
-                                                            class="text-truncate fw-bold"><?php echo $data['brand_name'] ?></span>
+                                                        <span class="text-truncate fw-bold"><?php echo $data['upper_category_name'] ?></span>
                                                     </div>
                                                 </div>
                                             </td>
 
-                                            <td><?php echo $data['brand_code'] ?></td>
-
                                             <?php
-                                                    if ($data['brand_publicy'] == 1) {
+                                                    if ($data['upper_category_publicy'] == 1) {
                                                         echo '<td><span class="badge badge-success">Aktif</span></td>';
-                                                    } elseif ($data['brand_publicy'] == 0) {
+                                                    } elseif ($data['upper_category_publicy'] == 0) {
                                                         echo '<td><span class="badge badge-danger">Pasif</span></td>';
                                                     }
                                                     ?>
@@ -296,10 +291,9 @@
                                                         </svg>
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                        <a class="dropdown-item"
-                                                            href="app-brand-edit.php?<?php echo $url ?>">Düzenle</a>
-                                                        <a class="dropdown-item"
-                                                            href="app-brand-list.php?deleteBrand=<?php echo $data['brand_id']; ?>">Sil</a>
+                                                        <a class="dropdown-item" href="app-upper-category-edit.php?<?php echo $url ?>">Düzenle</a>
+                                                        <a class="dropdown-item" href="app-upper-category-list.php?deleteUpperCategory=<?php echo $data['upper_category_id']; ?>">Sil</a>
+                                                        <a class="dropdown-item" href="app-lower-category-add.php?<?php echo $url ?>">Alt Kategori Ekle</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -308,7 +302,7 @@
                                                 $sn++;
                                             }
                                         } else {
-                                            echo $fetchDataBrand;
+                                            echo $fetchDataUpperCategory;
                                         } ?>
                                     </tbody>
                                 </table>
