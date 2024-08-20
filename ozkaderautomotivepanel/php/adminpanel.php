@@ -55,6 +55,9 @@ $columnsUpperCategory = ['upper_category_id', 'upper_category_name', 'upper_cate
 $tableNameLowerCategory = "lower_category";
 $columnsLowerCategory = ['lower_category_id', 'lower_category_name', 'lower_category_publicy', 'upper_category_id'];
 
+$tableNameProduct = "product";
+$columnsProduct = ['product_id', 'upper_category_id', 'lower_category_id', 'brand_id', 'product_name', 'product_code', 'product_manufacturer_code', 'product_photo', 'product_publicy', 'product_stock_status', 'product_slider_photos', 'product_slider_status', 'product_featured_status', 'product_currentDateTime'];
+
 
 /* Marka Kodlari  */
 if (isset($_POST['brand-add'])) {
@@ -579,3 +582,223 @@ function fetch_data_upper_category_name($db, $tableName, $columns, $id)
 
     return $msg;
 }
+
+
+
+
+
+
+
+
+/* Urun Kodlari  */
+if (isset($_POST['product-add'])) {
+    $upper_category_id = mysqli_real_escape_string($db, $_POST['upper_category_id']);
+    $lower_category_id = mysqli_real_escape_string($db, $_POST['lower_category_id']);
+    $brand_id = mysqli_real_escape_string($db, $_POST['brand_id']);
+    $product_name = mysqli_real_escape_string($db, $_POST['product_name']);
+    $product_code = mysqli_real_escape_string($db, $_POST['product_code']);
+    $product_manufacturer_code = mysqli_real_escape_string($db, $_POST['product_manufacturer_code']);
+    $product_publicy = isset($_POST['product_publicy']) ? 1 : 0;
+    $product_stock_status = isset($_POST['product_stock_status']) ? 1 : 0;
+    $product_slider_status = isset($_POST['product_slider_status']) ? 1 : 0;
+    $product_featured_status = isset($_POST['product_featured_status']) ? 1 : 0;
+
+    $targetDirectory = "product_photos/";
+
+    $product_photo = $_FILES['product_photo']['name'];
+    $product_photo_normal = $targetDirectory . basename($_FILES['product_photo']['name']);
+    $product_photo_normal_img = $product_photo_normal;
+
+    $product_slider_photos = $_FILES['product_slider_photos']['name'];
+    $product_slider_photos_normal = $targetDirectory . basename($_FILES['product_slider_photos']['name']);
+    $product_slider_photos_normal_img = $product_slider_photos_normal;
+
+    $product_name_query = "SELECT * FROM  product WHERE `product_name`='$product_name'";
+    $resultProductNameQuery = mysqli_query($db, $product_name_query);
+    $resultAlreadyControl = mysqli_fetch_assoc($resultProductNameQuery);
+
+    date_default_timezone_set('Europe/Istanbul');
+    setlocale(LC_TIME, 'tr_TR.utf8'); // Türkçe dil desteği için locale ayarı
+    $gunler = array(
+        'Pazar',
+        'Pazartesi',
+        'Salı',
+        'Çarşamba',
+        'Perşembe',
+        'Cuma',
+        'Cumartesi'
+    );
+    $aylar = array(
+        'Ocak',
+        'Şubat',
+        'Mart',
+        'Nisan',
+        'Mayıs',
+        'Haziran',
+        'Temmuz',
+        'Ağustos',
+        'Eylül',
+        'Ekim',
+        'Kasım',
+        'Aralık'
+    );
+    $gun = $gunler[date('w')];
+    $ay = $aylar[date('n') - 1];
+    $gunAyYil = date('d') . ' ' . $ay . ' ' . date('Y');
+    $saatDakika = date('H:i');
+    $currentDateTime = $gunAyYil . ' ' . $saatDakika;
+
+    if ($resultAlreadyControl) {
+        if ($resultAlreadyControl['product_name'] === $product_name) {
+            array_push($errors, "This product is already available in the system!");
+        }
+    }
+
+    if (count($errors) == 0) {
+
+        $query = "INSERT INTO product (upper_category_id,lower_category_id,brand_id,product_name,product_code,product_manufacturer_code,product_photo,product_publicy,product_stock_status,product_slider_photos,product_slider_status,product_featured_status,product_currentDateTime) 
+        VALUES ('$upper_category_id','$lower_category_id','$brand_id','$product_name','$product_code','$product_manufacturer_code','$product_photo_normal_img','$product_publicy','$product_stock_status','$product_slider_photos_normal_img','$product_slider_status','$product_featured_status','$currentDateTime')";
+        $post_data_query = mysqli_query($db, $query);
+
+        if ($post_data_query) {
+            header('location: app-product-list.php');
+        } else {
+            $errors[] = "Work could not be loaded: " . mysqli_error($db);
+        }
+    }
+}
+
+/*
+$fetchDataBrand = fetch_data_product($db, $tableNameBrand, $columnsBrand);
+function fetch_data_product($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " ORDER BY brand_id";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Marka Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+if (isset($_GET['deleteBrand'])) {
+    $id = validate($_GET['deleteBrand']);
+    $condition = ['brand_id' => $id];
+    $deleteMsg = delete_data_brand($db, $tableNameBrand, $condition);
+    header("location:app-brand-list.php");
+}
+
+function delete_data_brand($db, $tableName, $condition)
+{
+    $conditionData = '';
+    $i = 0;
+    foreach ($condition as $index => $data) {
+        $and = ($i > 0) ? ' AND ' : '';
+        $conditionData .= $and . $index . " = " . "'" . $data . "'";
+        $i++;
+    }
+
+    $query = "DELETE FROM " . $tableName . " WHERE " . $conditionData;
+    $result = $db->query($query);
+    if ($result) {
+        $msg = "data was deleted successfully";
+    } else {
+        $msg = $db->error;
+    }
+    return $msg;
+}
+
+if (isset($_SERVER['REQUEST_URI'])) {
+    $url_segments = explode('/', $_SERVER['REQUEST_URI']);
+    $brand_id = end($url_segments);
+    $id = validate($brand_id);
+    $fetchDataBrandDetails = fetch_data_brand_detail($db, $tableNameBrand, $columnsBrand, $id);
+}
+function fetch_data_brand_detail($db, $tableName, $columns, $id)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE brand_id = '$id'";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $msg = $row;
+            } else {
+                $msg = "No data found";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+if (isset($_POST['brand-update'])) {
+    $brand_id = mysqli_real_escape_string($db, $_POST['brand_id']);
+    $brand_name = mysqli_real_escape_string($db, $_POST['brand_name']);
+    $brand_code = mysqli_real_escape_string($db, $_POST['brand_code']);
+    $brand_publicy = isset($_POST['brand_publicy']) ? 1 : 0;
+
+    $select_query = "SELECT * FROM brands WHERE brand_id = '$brand_id'";
+    $result = mysqli_query($db, $select_query);
+    $row = mysqli_fetch_assoc($result);
+
+    $brand_logo_brand_img = $row['brand_logo'];
+
+    $targetDirectory = "brand_photos/";
+
+    if (!empty($_FILES['brand_logo']['name'])) {
+        $brand_logo = $_FILES['brand_logo']['name'];
+        $brand_logo_brand_img = $targetDirectory . basename($brand_logo);
+    } else {
+        $brand_logo_brand_img = $row['brand_logo'];
+    }
+
+    $update_query = "UPDATE brands SET 
+    brand_name = '$brand_name',
+    brand_code = '$brand_code',
+    brand_publicy = '$brand_publicy',
+    brand_logo = '$brand_logo_brand_img'        
+    WHERE brand_id = '$brand_id'";
+
+    $update_result = mysqli_query($db, $update_query);
+
+    if ($update_result) {
+        header('location: app-brand-list.php');
+    } else {
+        $errors[] = "Work could not be updated: " . mysqli_error($db);
+    }
+}
+    */
+    

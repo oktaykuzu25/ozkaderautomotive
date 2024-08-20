@@ -1,5 +1,21 @@
 <?php
 include_once "ozkaderautomotivepanel/php/main.php";
+
+$upper_category_id_for_product_detail = $fetchDataProductDetails['upper_category_id'];
+$lower_category_id_for_product_detail = $fetchDataProductDetails['lower_category_id'];
+$brand_id_for_product_detail = $fetchDataProductDetails['brand_id'];
+
+$fetchDataUpperCategoryForProduct = fetch_data_upper_category_for_product($db, $tableNameUpperCategory, $columnsUpperCategory, $upper_category_id_for_product_detail);
+$fetchDataLowerCategoryForProduct = fetch_data_lower_category_for_product($db, $tableNameLowerCategory, $columnsLowerCategory, $lower_category_id_for_product_detail);
+$fetchDataBrandForProduct = fetch_data_brand_for_product($db, $tableNameBrand, $columnsBrand, $brand_id_for_product_detail);
+
+$upper_category_name_for_product = $fetchDataUpperCategoryForProduct['upper_category_name'];
+$lower_category_name_for_product = $fetchDataLowerCategoryForProduct['lower_category_name'];
+$brand_name_for_product = $fetchDataBrandForProduct['brand_name'];
+
+
+$fetchDataProductFeatured = fetch_data_product_with_categories($db, $tableNameProduct, $columnsProduct, $lower_category_id_for_product_detail);
+
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="tr">
@@ -35,7 +51,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
 
     <!-- Document Title
     ============================================= -->
-    <title>Ürün Detay | Özkader Otomotiv</title>
+    <title><?php echo $fetchDataProductDetails['product_name'] ?> Detay | Özkader Otomotiv</title>
 </head>
 
 <body>
@@ -917,21 +933,21 @@ include_once "ozkaderautomotivepanel/php/main.php";
                         <div class="title title-1 mb-70">
                             <div class="title--content">
                                 <div class="title--heading">
-                                    <h1>24V H1 70W P14,5S - FRT40.34155</h1>
+                                    <h1><?php echo $fetchDataProductDetails['product_name'] ?></h1>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <ol class="breadcrumb">
                                 <li><a href="index.php">Anasayfa</a></li>
-                                <li><a href="index-2.html">Ampuller</a></li>
-                                <li class="active">H Serisi Civalı Ampuller Ampul</li>
+                                <li><a href="#"><?php echo $upper_category_name_for_product ?></a></li>
+                                <li class="active"><?php echo $lower_category_name_for_product ?></li>
                             </ol>
                         </div>
                         <!-- .title end -->
                         <div class="products-gallery-carousel">
                             <div class="owl-carousel products-slider">
                                 <div class="product-img">
-                                    <img src="assets/images/products/gallery/test.png" alt="product">
+                                    <img src="ozkaderautomotivepanel/<?php echo $fetchDataProductDetails['product_photo'] ?>" alt="product">
                                 </div>
                             </div>
                         </div>
@@ -952,7 +968,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3">
                         <div class="product--title">
-                            <h3>24V H1 70W P14,5S - FRT40.34155</h3>
+                            <h3><?php echo $fetchDataProductDetails['product_name'] ?></h3>
                         </div>
                         <!-- .product-title end -->
                         <div class="product--rating">
@@ -962,18 +978,26 @@ include_once "ozkaderautomotivepanel/php/main.php";
                             <i class="fa fa-star active"></i>
                             <i class="fa fa-star active"></i>
                         </div>
-                        <div class="product--review">Üretici Kodu: 34155</div>
+                        <div class="product--review">Üretici Kodu: <?php echo $fetchDataProductDetails['product_manufacturer_code'] ?></div>
                         <!--- .product-review end -->
-                        <div class="product--price">FRT LIGHT </div>
+                        <div class="product--price"><?php echo $brand_name_for_product ?> </div>
                         <!-- .product-price end -->
                         <div class="product--meta">
                             <!-- .product-desc-tabs end -->
                             <ul class="product--meta-info list-unstyled">
-                                <li>Stok Durumu:<span>Stokta</span></li>
-                                <li>Ürün Kodu:<span>FRT40.34155</span></li>
+                                <li>Stok Durumu: <span>
+                                        <?php
+                                        if ($fetchDataProductDetails['product_publicy'] == 1) {
+                                            echo 'Stokta';
+                                        } else {
+                                            echo 'Stokta Yok';
+                                        }
+                                        ?>
+                                    </span></li>
+                                <li>Ürün Kodu:<span><?php echo $fetchDataProductDetails['product_code'] ?></span></li>
                             </ul>
                             <div class="product--meta-action clearfix mb-0">
-                                <a href="#" class="btn btn--primary btn--rounded btn--block mb-40">Bize Ulaşın!</a>
+                                <a href="tel:05387027010" class="btn btn--primary btn--rounded btn--block mb-40">Bize Ulaşın!</a>
                                 <div class="inline-block product--share">
                                     <a class="phone" href="tel:05387027010">
                                         <i class="fa fa-phone"></i>
@@ -1011,7 +1035,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="heading text-center mb-50">
-                            <h2 class="heading--title">Son Ürünler</h2>
+                            <h2 class="heading--title">Benzer Ürünler</h2>
                         </div>
                     </div>
                     <!-- .col-lg-12 end -->
@@ -1022,258 +1046,56 @@ include_once "ozkaderautomotivepanel/php/main.php";
                         <div class="carousel owl-carousel carousel-dots" data-slide="4" data-slide-rs="2"
                             data-autoplay="true" data-nav="false" data-dots="true" data-space="15" data-loop="true"
                             data-speed="800">
-                            <!-- Product item #1 -->
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="assets/images/products/related/1.jpg" alt="product" />
-                                </div>
-                                <!-- .product-img end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Hebes Great Chair</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$ 42.00</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
-                                                    class="icon-bag"></i>ADD TO CART</a>
-                                            <a data-toggle="modal" data-target="#product-popup"><i
-                                                    class="ti-search"></i></a>
-                                            <a href="#"><i class="ti-heart"></i></a>
-                                            <a href="#" class="compare" data-toggle="modal"
-                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
+                            <?php
+                            if (is_array($fetchDataProductFeatured)) {
+                                foreach ($fetchDataProductFeatured as $data) {
+                                    $upper_category_id_for_product = $data['upper_category_id'];
+                                    $lower_category_id_for_product = $data['lower_category_id'];
+                                    $product_name_for_url = $data['product_name'];
+                                    $product_id_for_url = $data['product_id'];
+                                    $fetchDataUpperCategoryForProduct = fetch_data_upper_category_for_product($db, $tableNameUpperCategory, $columnsUpperCategory, $upper_category_id_for_product);
+                                    $fetchDataLowerCategoryForProduct = fetch_data_lower_category_for_product($db, $tableNameLowerCategory, $columnsLowerCategory, $lower_category_id_for_product);
+                                    $upper_category_name = $fetchDataUpperCategoryForProduct['upper_category_name'];
+                                    $lower_category_name = $fetchDataLowerCategoryForProduct['lower_category_name'];
+
+                                    $upper_category_name = cleanTurkishCharacters($upper_category_name);
+                                    $lower_category_name = cleanTurkishCharacters($lower_category_name);
+                                    $product_name_for_url = cleanTurkishCharacters($product_name_for_url);
+
+                                    $url = "/$upper_category_name" . "/$lower_category_name" . "/$product_name_for_url" . "/$product_id_for_url";
+                            ?>
+                                    <!-- Product item #1 -->
+                                    <div class="product-item">
+                                        <div class="product--img">
+                                            <img src="ozkaderautomotivepanel/<?php echo $data['product_photo'] ?>" alt="product" />
                                         </div>
-                                    </div>
-                                    <!-- .product-hover end -->
-                                </div>
-                                <!-- .product-content end -->
-                            </div>
-                            <!-- .product-item end -->
-                            <!-- product item #2 -->
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="assets/images/products/related/2.jpg" alt="product" />
-                                </div>
-                                <!-- .carousel end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Hebes Great Chair</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$ 42.00</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
-                                                    class="icon-bag"></i>ADD TO CART</a>
-                                            <a data-toggle="modal" data-target="#product-popup"><i
-                                                    class="ti-search"></i></a>
-                                            <a href="#"><i class="ti-heart"></i></a>
-                                            <a href="#" class="compare" data-toggle="modal"
-                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
+                                        <!-- .product-img end -->
+                                        <div class="product--content">
+                                            <div class="product--title">
+                                                <h3><a href="product-details.php?<?php echo $url ?>"><?php echo $data['product_name'] ?></a></h3>
+                                            </div>
+                                            <!-- .product-title end -->
+                                            <div class="product--price">
+                                                <span>$ 42.00</span>
+                                            </div>
+                                            <!-- .product-price end -->
+                                            <div class="product--hover">
+                                                <div class="product--action">
+                                                    <a href="product-details.php?<?php echo $url ?>"" class=" btn btn--primary btn--rounded"><i
+                                                            class="icon-bag"></i>Incele</a>
+                                                </div>
+                                            </div>
+                                            <!-- .product-hover end -->
                                         </div>
+                                        <!-- .product-content end -->
                                     </div>
-                                    <!-- .product-hover end -->
-                                </div>
-                                <!-- .product-content end -->
-                            </div>
-                            <!-- .product-item end -->
-                            <!-- Product item #3 -->
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="assets/images/products/related/3.jpg" alt="product" />
-                                </div>
-                                <!-- .product-img end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Hebes Amazing Chair</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$ 42.00</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
-                                                    class="icon-bag"></i>ADD TO CART</a>
-                                            <a data-toggle="modal" data-target="#product-popup"><i
-                                                    class="ti-search"></i></a>
-                                            <a href="#"><i class="ti-heart"></i></a>
-                                            <a href="#" class="compare" data-toggle="modal"
-                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- .product-hover end -->
-                                </div>
-                                <!-- .product-content end -->
-                            </div>
-                            <!-- .product-item end -->
-                            <!-- Product item #4 -->
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="assets/images/products/related/4.jpg" alt="product" />
-                                    <span class="featured-item">hot</span>
-                                </div>
-                                <!-- .product-img end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Hebes Black wood Chair</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$ 42.00</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
-                                                    class="icon-bag"></i>ADD TO CART</a>
-                                            <a data-toggle="modal" data-target="#product-popup"><i
-                                                    class="ti-search"></i></a>
-                                            <a href="#"><i class="ti-heart"></i></a>
-                                            <a href="#" class="compare" data-toggle="modal"
-                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- .product-hover end -->
-                                </div>
-                                <!-- .product-content end -->
-                            </div>
-                            <!-- .product-item end -->
-                            <!-- Product item #5 -->
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="assets/images/products/related/5.jpg" alt="product" />
-                                    <span class="featured-item featured-item2">hot</span>
-                                </div>
-                                <!-- .product-img end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Hebes Great Chair</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$ 42.00</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
-                                                    class="icon-bag"></i>ADD TO CART</a>
-                                            <a data-toggle="modal" data-target="#product-popup"><i
-                                                    class="ti-search"></i></a>
-                                            <a href="#"><i class="ti-heart"></i></a>
-                                            <a href="#" class="compare" data-toggle="modal"
-                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- .product-hover end -->
-                                </div>
-                                <!-- .product-content end -->
-                            </div>
-                            <!-- .product-item end -->
-                            <!-- Product item #6 -->
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="assets/images/products/related/3.jpg" alt="product" />
-                                </div>
-                                <!-- .product-img end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Hebes Amazing Chair</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$ 42.00</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
-                                                    class="icon-bag"></i>ADD TO CART</a>
-                                            <a data-toggle="modal" data-target="#product-popup"><i
-                                                    class="ti-search"></i></a>
-                                            <a href="#"><i class="ti-heart"></i></a>
-                                            <a href="#" class="compare" data-toggle="modal"
-                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- .product-hover end -->
-                                </div>
-                                <!-- .product-content end -->
-                            </div>
-                            <!-- .product-item end -->
-                            <!-- Product item #7 -->
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="assets/images/products/related/4.jpg" alt="product" />
-                                    <span class="featured-item">hot</span>
-                                </div>
-                                <!-- .product-img end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Hebes Black wood Chair</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$ 42.00</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
-                                                    class="icon-bag"></i>ADD TO CART</a>
-                                            <a data-toggle="modal" data-target="#product-popup"><i
-                                                    class="ti-search"></i></a>
-                                            <a href="#"><i class="ti-heart"></i></a>
-                                            <a href="#" class="compare" data-toggle="modal"
-                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- .product-hover end -->
-                                </div>
-                                <!-- .product-content end -->
-                            </div>
-                            <!-- .product-item end -->
-                            <!-- Product item #8 -->
-                            <div class="product-item">
-                                <div class="product--img">
-                                    <img src="assets/images/products/related/5.jpg" alt="product" />
-                                    <span class="featured-item featured-item2">hot</span>
-                                </div>
-                                <!-- .product-img end -->
-                                <div class="product--content">
-                                    <div class="product--title">
-                                        <h3><a href="#">Hebes Great Chair</a></h3>
-                                    </div>
-                                    <!-- .product-title end -->
-                                    <div class="product--price">
-                                        <span>$ 42.00</span>
-                                    </div>
-                                    <!-- .product-price end -->
-                                    <div class="product--hover">
-                                        <div class="product--action">
-                                            <a href="page-cart.html" class="btn btn--primary btn--rounded"><i
-                                                    class="icon-bag"></i>ADD TO CART</a>
-                                            <a data-toggle="modal" data-target="#product-popup"><i
-                                                    class="ti-search"></i></a>
-                                            <a href="#"><i class="ti-heart"></i></a>
-                                            <a href="#" class="compare" data-toggle="modal"
-                                                data-target="#compare-popup"><i class="ti-control-shuffle"></i></a>
-                                        </div>
-                                    </div>
-                                    <!-- .product-hover end -->
-                                </div>
-                                <!-- .product-content end -->
-                            </div>
-                            <!-- .product-item end -->
+                                    <!-- .product-item end -->
+                            <?php
+                                }
+                            } else {
+                                echo $fetchDataProductFeatured;
+                            }
+                            ?>
                         </div>
                         <!-- .carousel end -->
 

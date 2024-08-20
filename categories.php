@@ -1,5 +1,19 @@
 <?php
 include_once "ozkaderautomotivepanel/php/main.php";
+$url = $_SERVER['REQUEST_URI'];
+
+$parts = explode('/', trim($url, '/'));
+
+$lowerCategoryId = intval(end($parts));
+
+if ($lowerCategoryId > 0) {
+    $products = fetch_data_product_with_categories($db, $tableNameProduct, $columnsProduct, $lowerCategoryId);
+    $product_count = is_array($products) ? count($products) : 0;
+
+} else {
+    $products = fetch_data_product($db, $tableNameProduct, $columnsProduct);
+    $product_count = is_array($products) ? count($products) : 0;
+}
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="tr">
@@ -951,7 +965,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                                 $lower_category_url = "/$seo_name/$lower_category_seo_name/$lower_category_id";
                                                         ?>
                                                                 <li><a
-                                                                        href="categories.php?<?php echo $lower_category_url ?>"><?php echo $lowerCategory['lower_category_name'] ?><span>34</span></a>
+                                                                        href="categories.php?<?php echo $lower_category_url ?>"><?php echo $lowerCategory['lower_category_name'] ?><span></span></a>
                                                                 </li>
                                                         <?php
                                                             }
@@ -980,7 +994,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-lg-12 category-options">
                                 <div class="category-num pull-left pull-none-xs">
-                                    <h2><span>260</span>Ürün </h2>
+                                    <h2><span><?php echo $product_count ?></span>Ürün </h2>
                                 </div>
                                 <!-- .category-num end -->
                                 <div class="category-select pull-right text-right text-left-sm pull-none-xs">
@@ -996,7 +1010,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                                         $sn = 1;
                                                         foreach ($fetchDataBrand as $data) {
                                                     ?>
-                                                            <option ><?php echo $data['brand_name'] ?></option>
+                                                            <option><?php echo $data['brand_name'] ?></option>
                                                     <?php
                                                             $sn++;
                                                         }
@@ -1014,54 +1028,59 @@ include_once "ozkaderautomotivepanel/php/main.php";
                         <!-- .row end -->
 
                         <div class="row mb-60">
+                            <?php
+                            if (is_array($products)) {
+                                foreach ($products as $product) {
+                                    $upper_category_id_for_product = $product['upper_category_id'];
+                                    $lower_category_id_for_product = $product['lower_category_id'];
+                                    $product_name_for_url = $product['product_name'];
+                                    $product_id_for_url = $product['product_id'];
+                                    $fetchDataUpperCategoryForProduct = fetch_data_upper_category_for_product($db, $tableNameUpperCategory, $columnsUpperCategory, $upper_category_id_for_product);
+                                    $fetchDataLowerCategoryForProduct = fetch_data_lower_category_for_product($db, $tableNameLowerCategory, $columnsLowerCategory, $lower_category_id_for_product);
+                                    $upper_category_name = $fetchDataUpperCategoryForProduct['upper_category_name'];
+                                    $lower_category_name = $fetchDataLowerCategoryForProduct['lower_category_name'];
 
-                            <!-- category item #1 -->
+                                    $upper_category_name = cleanTurkishCharacters($upper_category_name);
+                                    $lower_category_name = cleanTurkishCharacters($lower_category_name);
+                                    $product_name_for_url = cleanTurkishCharacters($product_name_for_url);
+
+                                    $url = "/$upper_category_name" . "/$lower_category_name" . "/$product_name_for_url" . "/$product_id_for_url";
+                                    echo '
                             <div class="col-sm-6 col-md-6 col-lg-4">
                                 <div class="category-item">
                                     <div class="category--img">
-                                        <img src="assets/images/products/gallery/test.png" alt="category" />
-                                        <span class="featured-item featured-item2">new</span>
+                                        <img src="ozkaderautomotivepanel/' . $product['product_photo'] . '" alt="category" />
                                     </div>
-                                    <!-- .category-img end -->
                                     <div class="category--content">
                                         <div class="category--title">
-                                            <h3><a href="#">Hebes Great Chair</a></h3>
+                                            <h3><a href="product-details.php?' . $url . '">' . $product['product_name'] . '</a></h3>
                                         </div>
-                                        <!-- .category-title end -->
                                         <div class="category--price">
-                                            <span>$ 42.00</span>
+                                            <span>' . $product['product_code'] . '</span>
                                         </div>
-                                        <!-- .category-price end -->
                                     </div>
-                                    <!-- .category-content end -->
                                     <div class="category--hover">
                                         <div class="category--action">
-                                            <a href="product-details.php" class="btn btn--primary btn--rounded"><i
-                                                    class="icon-bag"></i>Incele</a>
+                                            <a href="product-details.php?' . $url . '" class="btn btn--primary btn--rounded"><i class="icon-bag"></i>Incele</a>
                                             <div class="category--action-content">
-
-                                                <!-- .category-action-icons end -->
                                                 <div class="category--hover-info">
                                                     <div class="category--title">
-                                                        <h3><a href="#">Hebes Great Chair</a></h3>
+                                                        <h3><a href="product-details.php?' . $url . '">' . $product['product_name'] . '</a></h3>
                                                     </div>
-                                                    <!-- .category-title end -->
                                                     <div class="category--price">
-                                                        <span>$ 42.00</span>
+                                                        <span>' . $product['product_code'] . '</span>
                                                     </div>
-                                                    <!-- .category-price end -->
                                                 </div>
-                                                <!-- .category-hover-info end -->
                                             </div>
-                                            <!-- .category-action-content end -->
                                         </div>
-                                        <!-- .category-action end -->
                                     </div>
-                                    <!-- .category-hover end -->
                                 </div>
-                            </div>
-                            <!-- .category-item end -->
-
+                            </div>';
+                                }
+                            } else {
+                                echo '<p>' . $products . '</p>';
+                            }
+                            ?>
 
                         </div>
                         <!-- .row end -->
