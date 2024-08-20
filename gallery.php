@@ -1,3 +1,6 @@
+<?php
+include_once "ozkaderautomotivepanel/php/main.php";
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="tr">
 
@@ -936,42 +939,42 @@
                     <!-- Blog Entry #1 -->
                     <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
                         <div class="entry--img">
-                                <img src="assets/images/gallery/gallery-1.webp" alt="entry image" />
+                            <img src="assets/images/gallery/gallery-1.webp" alt="entry image" />
                         </div>
                     </div>
                     <!-- .blog-entry end -->
                     <!-- Blog Entry #1 -->
                     <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
                         <div class="entry--img">
-                                <img src="assets/images/gallery/gallery-2.webp" alt="entry image" />
+                            <img src="assets/images/gallery/gallery-2.webp" alt="entry image" />
                         </div>
                     </div>
                     <!-- .blog-entry end -->
-                     <!-- Blog Entry #1 -->
+                    <!-- Blog Entry #1 -->
                     <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
                         <div class="entry--img">
-                                <img src="assets/images/gallery/gallery-3.webp" alt="entry image" />
+                            <img src="assets/images/gallery/gallery-3.webp" alt="entry image" />
                         </div>
                     </div>
                     <!-- .blog-entry end -->
-                     <!-- Blog Entry #1 -->
+                    <!-- Blog Entry #1 -->
                     <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
                         <div class="entry--img">
-                                <img src="assets/images/gallery/gallery-4.webp" alt="entry image" />
+                            <img src="assets/images/gallery/gallery-4.webp" alt="entry image" />
                         </div>
                     </div>
                     <!-- .blog-entry end -->
-                     <!-- Blog Entry #1 -->
+                    <!-- Blog Entry #1 -->
                     <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
                         <div class="entry--img">
-                                <img src="assets/images/gallery/gallery-5.webp" alt="entry image" />
+                            <img src="assets/images/gallery/gallery-5.webp" alt="entry image" />
                         </div>
                     </div>
                     <!-- .blog-entry end -->
-                     <!-- Blog Entry #1 -->
+                    <!-- Blog Entry #1 -->
                     <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
                         <div class="entry--img">
-                                <img src="assets/images/gallery/gallery-6.webp" alt="entry image" />
+                            <img src="assets/images/gallery/gallery-6.webp" alt="entry image" />
                         </div>
                     </div>
                     <!-- .blog-entry end -->
@@ -1066,7 +1069,7 @@
         </footer>
 
 
-        
+
     </div><!-- #wrapper end -->
 
     <!-- Footer Scripts

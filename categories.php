@@ -35,7 +35,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
 
     <!-- Document Title
     ============================================= -->
-    <title>İletişim | Özkader Otomotiv</title>
+    <title>Kategoriler | Özkader Otomotiv</title>
 </head>
 
 <body>
@@ -88,136 +88,57 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                     <li>
                                         <div class="container">
                                             <div class="row">
-                                                <!-- Column #1 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Furniture</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">chair</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">sofa</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">table</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">bed</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/1.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
+                                                <?php
+                                                if (is_array($fetchDataUpperCategoryLimitFive)) {
+                                                    foreach ($fetchDataUpperCategoryLimitFive as $data) {
+                                                        $upper_category_name_url = $data['upper_category_name'];
+                                                        $upper_category_id_url = $data['upper_category_id'];
 
-                                                <!-- Column #2 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Lighting</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">Wall Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">Bedroom Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">Garden Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">Desktop Lamp</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/37.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
+                                                        // Alt kategorileri çek
+                                                        $fetchDataLowerCategoryLimitFive = fetch_data_lower_category_limit_five($db, $tableNameLowerCategory, $columnsLowerCategory, $upper_category_id_url);
 
-                                                <!-- Column #3 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Wood Shelf</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">wood Living</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">wood Bedroom</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">wood Garden</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">wood tables</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/34.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
+                                                        $seo_name = cleanTurkishCharacters($upper_category_name_url);
+                                                        $url = "/$seo_name" . "/$upper_category_id_url";
+                                                ?>
+                                                        <!-- Column #1 -->
+                                                        <div class="col-md-12 col-lg-5ths">
+                                                            <div class="collection--menu-content">
+                                                                <h5><?php echo $data['upper_category_name'] ?></h5>
+                                                                <ul>
+                                                                    <?php
+                                                                    if (is_array($fetchDataLowerCategoryLimitFive)) {
+                                                                        foreach ($fetchDataLowerCategoryLimitFive as $lowerCategory) {
+                                                                            // Alt kategorilerin adını ve ID'sini kullanarak liste oluştur
+                                                                            $lower_category_name = $lowerCategory['lower_category_name']; // Alt kategori adı
+                                                                            $lower_category_id = $lowerCategory['lower_category_id'];   // Alt kategori ID'si
 
-                                                <!-- Column #4 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Accessories</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">Shoes</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">Bags</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">Jewellery</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">Scarves</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/35.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
-
-                                                <!-- Column #5 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Sale Off</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">Sunglasses</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">jackets</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">Shirts</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">Socks</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/36.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
+                                                                            // SEO uyumlu URL'yi oluşturun
+                                                                            $lower_category_seo_name = cleanTurkishCharacters($lower_category_name);
+                                                                            $lower_category_url = "/$seo_name/$lower_category_seo_name/$lower_category_id";
+                                                                    ?>
+                                                                            <li>
+                                                                                <a
+                                                                                    href="<?php echo $lower_category_url; ?>"><?php echo $lower_category_name; ?></a>
+                                                                            </li>
+                                                                    <?php
+                                                                        }
+                                                                    } else {
+                                                                        // Alt kategori bulunamadığında
+                                                                        echo "<li>Alt Kategoriler Bulunamadı!</li>";
+                                                                    }
+                                                                    ?>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <!-- .col-lg-5ths end -->
+                                                <?php
+                                                    }
+                                                } else {
+                                                    echo $fetchDataUpperCategoryLimitFive;
+                                                }
+                                                ?>
                                             </div>
+
                                             <!-- .row end -->
                                         </div>
                                         <!-- container end -->
@@ -987,163 +908,151 @@ include_once "ozkaderautomotivepanel/php/main.php";
             </nav>
         </header>
 
-        <!-- Page Title #1
+        <!-- categorey #10
 ============================================= -->
-        <section id="page-title" class="page-title mt-0">
+        <section id="categorey10" class="category category-3 category-6 category-8 pt-70 pb-80">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="title title-1 text-center">
-                            <div class="title--content">
-                                <div class="title--heading">
-                                    <h1>Her Zaman Yanınızdayız,<br> Bize Ulaşın</h1>
+                    <div class="col-sm-12 col-md-12 col-lg-3">
+                        <div class="sidebar cat-sidebar">
+
+                            <!-- Categories
+    ============================= -->
+                            <div class="widget widget-categories2">
+                                <div class="widget--title">
+                                    <h3>Kategoriler</h3>
+                                </div>
+                                <div class="widget--content">
+                                    <ul class="main--list list-unstyled mb-0">
+
+                                        <?php
+                                        if (is_array($fetchDataUpperCategory)) {
+                                            foreach ($fetchDataUpperCategory as $data) {
+                                                $upper_category_name_url = $data['upper_category_name'];
+                                                $upper_category_id_url = $data['upper_category_id'];
+
+                                                $fetchDataLowerCategory = fetch_data_lower_category($db, $tableNameLowerCategory, $columnsLowerCategory, $upper_category_id_url);
+                                                $lower_category_count = is_array($fetchDataLowerCategory) ? count($fetchDataLowerCategory) : 0;
+
+                                                $seo_name = cleanTurkishCharacters($upper_category_name_url);
+                                                $url = "/$seo_name" . "/$upper_category_id_url";
+                                        ?>
+                                                <li>
+                                                    <a href="#"><?php echo $data['upper_category_name'] ?> <span>(<?php echo $lower_category_count ?>)</span></a>
+                                                    <ul class="inner--list list-unstyled mb-0">
+                                                        <?php
+                                                        if (is_array($fetchDataLowerCategory)) {
+                                                            foreach ($fetchDataLowerCategory as $lowerCategory) {
+                                                                $lower_category_name = $lowerCategory['lower_category_name']; // Alt kategori adı
+                                                                $lower_category_id = $lowerCategory['lower_category_id'];   // Alt kategori ID'si
+
+                                                                $lower_category_seo_name = cleanTurkishCharacters($lower_category_name);
+                                                                $lower_category_url = "/$seo_name/$lower_category_seo_name/$lower_category_id";
+                                                        ?>
+                                                                <li><a href="categories.php?<?php echo $lower_category_url ?>"><?php echo $lowerCategory['lower_category_name'] ?><span>34</span></a></li>
+                                                        <?php
+                                                            }
+                                                        } else {
+                                                            // Alt kategori bulunamadığında
+                                                            echo "<li>Alt Kategoriler Bulunamadı!</li>";
+                                                        }
+                                                        ?>
+                                                    </ul>
+                                                </li>
+
+                                        <?php
+                                            }
+                                        } else {
+                                            echo $fetchDataUpperCategory;
+                                        }
+                                        ?>
+
+                                    </ul>
+                                </div>
+                            </div> <!-- .widget-categories end -->
+                        </div>
+                    </div>
+                    <!-- .col-lg-3 end -->
+                    <div class="col-sm-12 col-md-12 col-lg-9">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 category-options">
+                                <div class="category-num pull-left pull-none-xs">
+                                    <h2><span>260</span>Ürün </h2>
+                                </div>
+                                <!-- .category-num end -->
+                                <div class="category-select pull-right text-right text-left-sm pull-none-xs">
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="option sort--options">
+                                            <span class="option--title">Markalar:</span>
+                                            <div class="select-form">
+                                                <i class="fa fa-caret-down"></i>
+                                                <select>
+                                                    <option selected="" value="Default">name</option>
+                                                    <option value="color">color</option>
+                                                    <option value="price">price</option>
+                                                    <option value="branding">branding</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="clearfix"></div>
-                            <ol class="breadcrumb breadcrumb-bottom">
-                                <li><a href="index.php">Anasayfa</a></li>
-                                <li class="active">İletişim</li>
-                            </ol>
+                            <!-- .category-options end -->
                         </div>
-                        <!-- .title end -->
+                        <!-- .row end -->
+
+                        <div class="row mb-60">
+
+                            <!-- category item #1 -->
+                            <div class="col-sm-6 col-md-6 col-lg-4">
+                                <div class="category-item">
+                                    <div class="category--img">
+                                        <img src="assets/images/categories/cat9/1.jpg" alt="category" />
+                                        <span class="featured-item featured-item2">new</span>
+                                    </div>
+                                    <!-- .category-img end -->
+                                    <div class="category--content">
+                                        <div class="category--title">
+                                            <h3><a href="#">Hebes Great Chair</a></h3>
+                                        </div>
+                                        <!-- .category-title end -->
+                                        <div class="category--price">
+                                            <span>$ 42.00</span>
+                                        </div>
+                                        <!-- .category-price end -->
+                                    </div>
+                                    <!-- .category-content end -->
+                                    <div class="category--hover">
+                                        <div class="category--action">
+                                            <div class="category--action-content">
+                                                <div class="category--hover-info">
+                                                    <div class="category--title">
+                                                        <h3><a href="#">Hebes Great Chair</a></h3>
+                                                    </div>
+                                                    <!-- .category-title end -->
+                                                </div>
+                                                <!-- .category-hover-info end -->
+                                            </div>
+                                            <!-- .category-action-content end -->
+                                        </div>
+                                        <!-- .category-action end -->
+                                    </div>
+                                    <!-- .category-hover end -->
+                                </div>
+                            </div>
+                            <!-- .category-item end -->
+
+
+                        </div>
+                        <!-- .row end -->
                     </div>
-                    <!-- .col-lg-12 end -->
+                    <!-- .col-lg-9 end -->
                 </div>
                 <!-- .row end -->
             </div>
             <!-- .container end -->
         </section>
-        <!-- #page-title end -->
-
-        <!-- contact #1
-=========================================-->
-        <section id="contact1" class="contact contact-1 pt-50 pb-110">
-            <div class="container">
-                <div class="row">
-                    <!-- contact panel #1 -->
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <div class="contact-panel">
-                            <div class="contact--icon">B</div>
-                            <div class="contact--content">
-                                <h3>Bizi Arayin!</h3>
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="tel:05387027010">Telefon Numara: 0538 702 7010</a></li>
-                                </ul>
-                            </div>
-                            <!-- .contact-content end -->
-                        </div>
-                    </div>
-                    <!-- .contact-panel end -->
-                    <!-- contact panel #2 -->
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <div class="contact-panel">
-                            <div class="contact--icon">Z</div>
-                            <div class="contact--content">
-                                <h3>Ziyaret Edin!</h3>
-                                <ul class="list-unstyled mb-0">
-                                    <li>Selçuklu Cd. No:147,</li>
-                                    <li>42120 Selçuklu/Konya</li>
-                                </ul>
-                            </div>
-                            <!-- .contact-content end -->
-                        </div>
-                    </div>
-                    <!-- .contact-panel end -->
-                    <!-- contact panel #3 -->
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <div class="contact-panel">
-                            <div class="contact--icon">E</div>
-                            <div class="contact--content">
-                                <h3>Email</h3>
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="mailto:ozkaderoto42@hotmail.com">ozkaderoto42@hotmail.com</a></li>
-                                </ul>
-                            </div>
-                            <!-- .contact-content end -->
-                        </div>
-                    </div>
-                    <!-- .contact-panel end -->
-                </div>
-                <!-- .row end -->
-            </div>
-            <!-- .container end -->
-        </section>
-        <!-- #contact #1 end -->
-
-
-        <!-- google-map
-============================================= -->
-        <section id="google-map" class="google-map pb-0 pt-0">
-            <div class="container-fluid pr-0 pl-0">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12 pr-0 pl-0">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3146.5497849757994!2d32.520127075097626!3d37.94094697194394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d08e3a64604945%3A0xb7d1d7155d948a!2s%C3%96ZKADER%20OTOMOT%C4%B0V%20aksesuar%20ve%20yedek%20par%C3%A7a!5e0!3m2!1str!2str!4v1724071637656!5m2!1str!2str"
-                            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- #google-map end -->
-
-        <!-- contact #2
-============================================= -->
-        <section id="contact2" class="contact contact-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3">
-                        <div class="heading heading-2 mb-40 text--center">
-                            <h2 class="heading--title">Bizimle İletişime Geçin</h2>
-                            <p class="heading--desc italic">Her türlü soru, öneri veya talepleriniz için aşağıdaki formu
-                                doldurarak bize ulaşabilirsiniz. Ekibimiz en kısa sürede size geri dönüş yapacaktır.
-                            </p>
-                        </div>
-                    </div><!-- .col-md-6 end -->
-                </div><!-- .row end -->
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <form method="post" action="assets/php/contact.php" class="contactForm mb-0">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12 col-lg-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Adınızı girin">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-12 col-lg-4">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="email" placeholder="E-postanız">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-12 col-lg-4">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="subject" placeholder="Konu">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group mb-80">
-                                        <textarea class="form-control" id="message" rows="2"
-                                            placeholder="Mesajınızı buraya yazın"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-12 col-lg-12 text--center">
-                                    <button type="submit" class="btn btn--primary btn--rounded">GÖNDER</button>
-                                </div>
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div id="contactResult" class="contact-result"></div>
-                                </div>
-                            </div>
-                            <!-- .row end -->
-                        </form>
-                    </div>
-                    <!-- .col-lg-12 end -->
-                </div>
-                <!-- .row end -->
-            </div>
-            <!-- .container end -->
-        </section>
-        <!-- #contact2 end -->
-
+        <!-- #categorey end -->
 
         <!-- Footer #2
 ============================================= -->
@@ -1226,6 +1135,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
             </div>
             <!-- .footer-widget end -->
         </footer>
+
 
     </div><!-- #wrapper end -->
 
