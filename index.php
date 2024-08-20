@@ -93,136 +93,56 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                     <li>
                                         <div class="container">
                                             <div class="row">
-                                                <!-- Column #1 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Furniture</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.html">chair</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.html">sofa</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.html">table</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.html">bed</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/1.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
+                                                <?php
+                                                if (is_array($fetchDataUpperCategoryLimitFive)) {
+                                                    foreach ($fetchDataUpperCategoryLimitFive as $data) {
+                                                        $upper_category_name_url = $data['upper_category_name'];
+                                                        $upper_category_id_url = $data['upper_category_id'];
 
-                                                <!-- Column #2 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Lighting</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.html">Wall Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.html">Bedroom Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.html">Garden Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.html">Desktop Lamp</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/37.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
+                                                        // Alt kategorileri çek
+                                                        $fetchDataLowerCategoryLimitFive = fetch_data_lower_category_limit_five($db, $tableNameLowerCategory, $columnsLowerCategory, $upper_category_id_url);
 
-                                                <!-- Column #3 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Wood Shelf</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.html">wood Living</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.html">wood Bedroom</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.html">wood Garden</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.html">wood tables</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/34.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
+                                                        $seo_name = cleanTurkishCharacters($upper_category_name_url);
+                                                        $url = "/$seo_name" . "/$upper_category_id_url";
+                                                ?>
+                                                        <!-- Column #1 -->
+                                                        <div class="col-md-12 col-lg-5ths">
+                                                            <div class="collection--menu-content">
+                                                                <h5><?php echo $data['upper_category_name'] ?></h5>
+                                                                <ul>
+                                                                    <?php
+                                                                    if (is_array($fetchDataLowerCategoryLimitFive)) {
+                                                                        foreach ($fetchDataLowerCategoryLimitFive as $lowerCategory) {
+                                                                            // Alt kategorilerin adını ve ID'sini kullanarak liste oluştur
+                                                                            $lower_category_name = $lowerCategory['lower_category_name']; // Alt kategori adı
+                                                                            $lower_category_id = $lowerCategory['lower_category_id'];   // Alt kategori ID'si
 
-                                                <!-- Column #4 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Accessories</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.html">Shoes</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.html">Bags</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.html">Jewellery</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.html">Scarves</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/35.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
-
-                                                <!-- Column #5 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Sale Off</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.html">Sunglasses</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.html">jackets</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.html">Shirts</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.html">Socks</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/36.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
+                                                                            // SEO uyumlu URL'yi oluşturun
+                                                                            $lower_category_seo_name = cleanTurkishCharacters($lower_category_name);
+                                                                            $lower_category_url = "/$seo_name/$lower_category_seo_name/$lower_category_id";
+                                                                    ?>
+                                                                            <li>
+                                                                                <a href="<?php echo $lower_category_url; ?>"><?php echo $lower_category_name; ?></a>
+                                                                            </li>
+                                                                    <?php
+                                                                        }
+                                                                    } else {
+                                                                        // Alt kategori bulunamadığında
+                                                                        echo "<li>Alt Kategoriler Bulunamadı!</li>";
+                                                                    }
+                                                                    ?>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <!-- .col-lg-5ths end -->
+                                                <?php
+                                                    }
+                                                } else {
+                                                    echo $fetchDataUpperCategoryLimitFive;
+                                                }
+                                                ?>
                                             </div>
+
                                             <!-- .row end -->
                                         </div>
                                         <!-- container end -->
@@ -1371,136 +1291,136 @@ include_once "ozkaderautomotivepanel/php/main.php";
             </div><!-- END REVOLUTION SLIDER -->
         </div>
         <script>
-        var revapi7,
-            tpj;
-        (function() {
-            if (!/loaded|interactive|complete/.test(document.readyState)) document.addEventListener(
-                "DOMContentLoaded", onLoad)
-            else
-                onLoad();
+            var revapi7,
+                tpj;
+            (function() {
+                if (!/loaded|interactive|complete/.test(document.readyState)) document.addEventListener(
+                    "DOMContentLoaded", onLoad)
+                else
+                    onLoad();
 
-            function onLoad() {
-                if (tpj === undefined) {
-                    tpj = jQuery;
+                function onLoad() {
+                    if (tpj === undefined) {
+                        tpj = jQuery;
 
-                    if ("off" == "on") tpj.noConflict();
-                }
-                if (tpj("#rev_slider_7_1").revolution == undefined) {
-                    revslider_showDoubleJqueryError("#rev_slider_7_1");
-                } else {
-                    revapi7 = tpj("#rev_slider_7_1").show().revolution({
-                        sliderType: "standard",
-                        jsFileLocation: "assets/revolution/js/",
-                        sliderLayout: "fullscreen",
-                        dottedOverlay: "none",
-                        delay: 9000,
-                        navigation: {
-                            keyboardNavigation: "off",
-                            keyboard_direction: "horizontal",
-                            mouseScrollNavigation: "off",
-                            mouseScrollReverse: "default",
-                            onHoverStop: "off",
-                            arrows: {
-                                style: "hermes",
-                                enable: true,
-                                hide_onmobile: false,
-                                hide_onleave: false,
-                                tmp: '<div class="tp-arr-allwrapper">	<div class="tp-arr-imgholder"></div>	<div class="tp-arr-titleholder">{{title}}</div>	</div>',
-                                left: {
-                                    h_align: "left",
-                                    v_align: "center",
-                                    h_offset: 50,
-                                    v_offset: 0
-                                },
-                                right: {
-                                    h_align: "right",
-                                    v_align: "center",
-                                    h_offset: 50,
-                                    v_offset: 0
+                        if ("off" == "on") tpj.noConflict();
+                    }
+                    if (tpj("#rev_slider_7_1").revolution == undefined) {
+                        revslider_showDoubleJqueryError("#rev_slider_7_1");
+                    } else {
+                        revapi7 = tpj("#rev_slider_7_1").show().revolution({
+                            sliderType: "standard",
+                            jsFileLocation: "assets/revolution/js/",
+                            sliderLayout: "fullscreen",
+                            dottedOverlay: "none",
+                            delay: 9000,
+                            navigation: {
+                                keyboardNavigation: "off",
+                                keyboard_direction: "horizontal",
+                                mouseScrollNavigation: "off",
+                                mouseScrollReverse: "default",
+                                onHoverStop: "off",
+                                arrows: {
+                                    style: "hermes",
+                                    enable: true,
+                                    hide_onmobile: false,
+                                    hide_onleave: false,
+                                    tmp: '<div class="tp-arr-allwrapper">	<div class="tp-arr-imgholder"></div>	<div class="tp-arr-titleholder">{{title}}</div>	</div>',
+                                    left: {
+                                        h_align: "left",
+                                        v_align: "center",
+                                        h_offset: 50,
+                                        v_offset: 0
+                                    },
+                                    right: {
+                                        h_align: "right",
+                                        v_align: "center",
+                                        h_offset: 50,
+                                        v_offset: 0
+                                    }
                                 }
+                                //							,
+                                //							tabs: {
+                                //								style:"metis",
+                                //								enable:true,
+                                //								width:100,
+                                //								height:50,
+                                //								min_width:0,
+                                //								wrapper_padding:0,
+                                //								wrapper_color:"transparent",
+                                //								tmp:'<div class="tp-tab-wrapper"><div class="tp-tab-number">{{param1}}</div><div class="tp-tab-divider"></div><div class="tp-tab-title-mask"><div class="tp-tab-title">{{title}}</div></div></div>',
+                                //								visibleAmount: 5,
+                                //								hide_onmobile: false,
+                                //								hide_onleave:false,
+                                //								hide_delay:200,
+                                //								direction:"vertical",
+                                //								span:false,
+                                //								position:"inner",
+                                //								space:5,
+                                //								h_align:"left",
+                                //								v_align:"center",
+                                //								h_offset:0,
+                                //                                v_offset:20
+                                //							}
+                            },
+                            responsiveLevels: [1240, 1024, 778, 480],
+                            visibilityLevels: [1240, 1024, 778, 480],
+                            gridwidth: [1240, 1024, 778, 480],
+                            gridheight: [700, 768, 960, 720],
+                            lazyType: "none",
+                            parallax: {
+                                type: "mouse",
+                                origo: "enterpoint",
+                                speed: 400,
+                                speedbg: 0,
+                                speedls: 0,
+                                levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 3, 2, 55],
+                            },
+                            shadow: 0,
+                            spinner: "spinner0",
+                            stopLoop: "off",
+                            stopAfterLoops: -1,
+                            stopAtSlide: -1,
+                            shuffle: "off",
+                            autoHeight: "off",
+                            fullScreenAutoWidth: "off",
+                            fullScreenAlignForce: "off",
+                            fullScreenOffsetContainer: "",
+                            fullScreenOffset: "",
+                            disableProgressBar: "on",
+                            hideThumbsOnMobile: "off",
+                            hideSliderAtLimit: 0,
+                            hideCaptionAtLimit: 0,
+                            hideAllCaptionAtLilmit: 0,
+                            debugMode: false,
+                            fallbacks: {
+                                simplifyAll: "off",
+                                nextSlideOnWindowFocus: "off",
+                                disableFocusListener: false,
                             }
-                            //							,
-                            //							tabs: {
-                            //								style:"metis",
-                            //								enable:true,
-                            //								width:100,
-                            //								height:50,
-                            //								min_width:0,
-                            //								wrapper_padding:0,
-                            //								wrapper_color:"transparent",
-                            //								tmp:'<div class="tp-tab-wrapper"><div class="tp-tab-number">{{param1}}</div><div class="tp-tab-divider"></div><div class="tp-tab-title-mask"><div class="tp-tab-title">{{title}}</div></div></div>',
-                            //								visibleAmount: 5,
-                            //								hide_onmobile: false,
-                            //								hide_onleave:false,
-                            //								hide_delay:200,
-                            //								direction:"vertical",
-                            //								span:false,
-                            //								position:"inner",
-                            //								space:5,
-                            //								h_align:"left",
-                            //								v_align:"center",
-                            //								h_offset:0,
-                            //                                v_offset:20
-                            //							}
-                        },
-                        responsiveLevels: [1240, 1024, 778, 480],
-                        visibilityLevels: [1240, 1024, 778, 480],
-                        gridwidth: [1240, 1024, 778, 480],
-                        gridheight: [700, 768, 960, 720],
-                        lazyType: "none",
-                        parallax: {
-                            type: "mouse",
-                            origo: "enterpoint",
-                            speed: 400,
-                            speedbg: 0,
-                            speedls: 0,
-                            levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 3, 2, 55],
-                        },
-                        shadow: 0,
-                        spinner: "spinner0",
-                        stopLoop: "off",
-                        stopAfterLoops: -1,
-                        stopAtSlide: -1,
-                        shuffle: "off",
-                        autoHeight: "off",
-                        fullScreenAutoWidth: "off",
-                        fullScreenAlignForce: "off",
-                        fullScreenOffsetContainer: "",
-                        fullScreenOffset: "",
-                        disableProgressBar: "on",
-                        hideThumbsOnMobile: "off",
-                        hideSliderAtLimit: 0,
-                        hideCaptionAtLimit: 0,
-                        hideAllCaptionAtLilmit: 0,
-                        debugMode: false,
-                        fallbacks: {
-                            simplifyAll: "off",
-                            nextSlideOnWindowFocus: "off",
-                            disableFocusListener: false,
-                        }
-                    });
-                    var api = revapi7;
+                        });
+                        var api = revapi7;
 
-                    /* no need to edit below */
-                    var divider = ' / ',
-                        totalSlides,
-                        numberText;
+                        /* no need to edit below */
+                        var divider = ' / ',
+                            totalSlides,
+                            numberText;
 
-                    api.one('revolution.slide.onloaded', function() {
+                        api.one('revolution.slide.onloaded', function() {
 
-                        totalSlides = api.revmaxslide();
-                        numberText = api.find('.slide-status-numbers').text('1' + divider + totalSlides);
+                            totalSlides = api.revmaxslide();
+                            numberText = api.find('.slide-status-numbers').text('1' + divider + totalSlides);
 
-                        api.on('revolution.slide.onbeforeswap', function(e, data) {
+                            api.on('revolution.slide.onbeforeswap', function(e, data) {
 
-                            numberText.text((data.nextslide.index() + 1) + divider + totalSlides);
+                                numberText.text((data.nextslide.index() + 1) + divider + totalSlides);
+
+                            });
 
                         });
-
-                    });
-                }; /* END OF revapi call */
-            }; /* END OF ON LOAD FUNCTION */
-        }()); /* END OF WRAPPING FUNCTION */
+                    }; /* END OF revapi call */
+                }; /* END OF ON LOAD FUNCTION */
+            }()); /* END OF WRAPPING FUNCTION */
         </script>
 
         <!-- about #1
@@ -1563,34 +1483,34 @@ include_once "ozkaderautomotivepanel/php/main.php";
                             </p>
                         </div>
                     </div>
-                    <!-- .col-lg-3 end -->
-                    <div class="col-sm-12 col-md-4 col-lg-3">
-                        <div class="cat--list-item">
-                            <a href="#">
-                                <img src="assets/images/categories/list/1.jpg" alt="img">
-                                <h4># Elektronik Devre</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- .col-lg-3 end -->
-                    <div class="col-sm-12 col-md-4 col-lg-3">
-                        <div class="cat--list-item">
-                            <a href="#">
-                                <img src="assets/images/categories/list/2.jpg" alt="img">
-                                <h4># Ampuller</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- .col-lg-3 end -->
-                    <div class="col-sm-12 col-md-4 col-lg-3">
-                        <div class="cat--list-item">
-                            <a href="#">
-                                <img src="assets/images/categories/list/3.jpg" alt="img">
-                                <h4># Marş Grubu</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- .col-lg-3 end -->
+                    <?php
+                    if (is_array($fetchDataUpperCategoryLimitThree)) {
+                        $sn = 1;
+                        foreach ($fetchDataUpperCategoryLimitThree as $data) {
+                            $upper_category_name_url = $data['upper_category_name'];
+                            $upper_category_id_url = $data['upper_category_id'];
+
+                            $seo_name = cleanTurkishCharacters($upper_category_name_url);
+
+                            // SEO uyumlu URL'yi oluştur
+                            $url = "/$seo_name" . "/$upper_category_id_url";
+                    ?>
+                            <!-- .col-lg-3 end -->
+                            <div class="col-sm-12 col-md-4 col-lg-3">
+                                <div class="cat--list-item">
+                                    <a href="#">
+                                        <img src="ozkaderautomotivepanel/<?php echo $data['upper_category_photo'] ?>" alt="img">
+                                        <h4># <?php echo $data['upper_category_name'] ?></h4>
+                                    </a>
+                                </div>
+                            </div>
+                    <?php
+                            $sn++;
+                        }
+                    } else {
+                        echo $fetchDataUpperCategoryLimitThree;
+                    } ?>
+
                 </div>
                 <!-- .row end -->
             </div>
@@ -2063,10 +1983,10 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                 $sn = 1;
                                 foreach ($fetchDataBrand as $data) {
                             ?>
-                            <div class="client">
-                                <img src="ozkaderautomotivepanel/<?php echo $data['brand_logo']?>"
-                                    alt="<?php echo $data['brand_name']?>">
-                            </div>
+                                    <div class="client">
+                                        <img src="ozkaderautomotivepanel/<?php echo $data['brand_logo'] ?>"
+                                            alt="<?php echo $data['brand_name'] ?>">
+                                    </div>
                             <?php
                                     $sn++;
                                 }
