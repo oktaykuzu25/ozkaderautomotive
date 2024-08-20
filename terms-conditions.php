@@ -2,7 +2,7 @@
 include_once "ozkaderautomotivepanel/php/main.php";
 ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="tr">
+<html dir="ltr" lang="en-US">
 
 <head>
     <!-- Document Meta
@@ -35,25 +35,14 @@ include_once "ozkaderautomotivepanel/php/main.php";
 
     <!-- Document Title
     ============================================= -->
-    <title>Markalar | Özkader Otomotiv</title>
-
+    <title>Şartlar ve Koşullar | Özkader Otomotiv</title>
     <style>
-    .blog-entry {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 15px;
-    }
-
-    .entry--img img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .entry--title h4 {
-        margin: 0;
+    #gradient-text {
+        background: linear-gradient(to right, #606da6, #151825);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
     }
     </style>
 </head>
@@ -108,136 +97,57 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                     <li>
                                         <div class="container">
                                             <div class="row">
+                                                <?php
+                                                if (is_array($fetchDataUpperCategoryLimitFive)) {
+                                                    foreach ($fetchDataUpperCategoryLimitFive as $data) {
+                                                        $upper_category_name_url = $data['upper_category_name'];
+                                                        $upper_category_id_url = $data['upper_category_id'];
+
+                                                        // Alt kategorileri çek
+                                                        $fetchDataLowerCategoryLimitFive = fetch_data_lower_category_limit_five($db, $tableNameLowerCategory, $columnsLowerCategory, $upper_category_id_url);
+
+                                                        $seo_name = cleanTurkishCharacters($upper_category_name_url);
+                                                        $url = "/$seo_name" . "/$upper_category_id_url";
+                                                ?>
                                                 <!-- Column #1 -->
                                                 <div class="col-md-12 col-lg-5ths">
                                                     <div class="collection--menu-content">
-                                                        <h5>Furniture</h5>
+                                                        <h5><?php echo $data['upper_category_name'] ?></h5>
                                                         <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">chair</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">sofa</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">table</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">bed</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/1.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
+                                                            <?php
+                                                                    if (is_array($fetchDataLowerCategoryLimitFive)) {
+                                                                        foreach ($fetchDataLowerCategoryLimitFive as $lowerCategory) {
+                                                                            // Alt kategorilerin adını ve ID'sini kullanarak liste oluştur
+                                                                            $lower_category_name = $lowerCategory['lower_category_name']; // Alt kategori adı
+                                                                            $lower_category_id = $lowerCategory['lower_category_id'];   // Alt kategori ID'si
 
-                                                <!-- Column #2 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Lighting</h5>
-                                                        <ul>
+                                                                            // SEO uyumlu URL'yi oluşturun
+                                                                            $lower_category_seo_name = cleanTurkishCharacters($lower_category_name);
+                                                                            $lower_category_url = "/$seo_name/$lower_category_seo_name/$lower_category_id";
+                                                                    ?>
                                                             <li>
-                                                                <a href="shop-layout-fullwidth.php">Wall Lamp</a>
+                                                                <a
+                                                                    href="<?php echo $lower_category_url; ?>"><?php echo $lower_category_name; ?></a>
                                                             </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">Bedroom Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">Garden Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">Desktop Lamp</a>
-                                                            </li>
+                                                            <?php
+                                                                        }
+                                                                    } else {
+                                                                        // Alt kategori bulunamadığında
+                                                                        echo "<li>Alt Kategoriler Bulunamadı!</li>";
+                                                                    }
+                                                                    ?>
                                                         </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/37.png" alt="img"
-                                                            class="img-fluid">
                                                     </div>
                                                 </div>
                                                 <!-- .col-lg-5ths end -->
-
-                                                <!-- Column #3 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Wood Shelf</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">wood Living</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">wood Bedroom</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">wood Garden</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">wood tables</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/34.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
-
-                                                <!-- Column #4 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Accessories</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">Shoes</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">Bags</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">Jewellery</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">Scarves</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/35.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
-
-                                                <!-- Column #5 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Sale Off</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">Sunglasses</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">jackets</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">Shirts</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">Socks</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/36.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
+                                                <?php
+                                                    }
+                                                } else {
+                                                    echo $fetchDataUpperCategoryLimitFive;
+                                                }
+                                                ?>
                                             </div>
+
                                             <!-- .row end -->
                                         </div>
                                         <!-- container end -->
@@ -1007,67 +917,26 @@ include_once "ozkaderautomotivepanel/php/main.php";
             </nav>
         </header>
 
+
         <!-- Page Title #1
 ============================================= -->
-        <section id="page-title" class="page-title mt-0">
+        <section id="page-title" class="page-title bg-parallax">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="title title-1 text-center">
+                        <div class="title title-3 text-center">
                             <div class="title--content">
                                 <div class="title--heading">
-                                    <h1>Öne Çıkan İş Ortaklarımız</h1>
+                                    <h1 id="gradient-text" style="font-size: 70px;">Şartlar ve Koşullar</h1>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <ol class="breadcrumb breadcrumb-bottom">
-                                <li><a href="index-2.php">Anasayfa</a></li>
-                                <li class="active">Markalar</li>
+                            <ol class="breadcrumb">
+                                <li>Son Güncelleme:</li>
+                                <li class="active" id="gradient-text" >20/08/2024</li>
                             </ol>
-                        </div><!-- .title end -->
-                    </div><!-- .col-md-12 end -->
-                </div><!-- .row end -->
-            </div><!-- .container end -->
-        </section><!-- #page-title end -->
-
-        <!-- Brand grid 
-=========================================-->
-        <section id="blog" class="blog blog-grid-2 pt-0">
-            <div class="container">
-                <div class="row">
-                    <?php
-                    if (is_array($fetchDataBrand)) {
-                        $sn = 1;
-                        foreach ($fetchDataBrand as $data) {
-                    ?>
-                    <!-- Blog Entry #1 -->
-                    <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair"
-                        style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-                        <div class="entry--img">
-                            <a href="#">
-                                <img src="ozkaderautomotivepanel/<?php echo $data['brand_logo'] ?>"
-                                    alt="<?php echo $data['brand_name'] ?>" />
-                            </a>
                         </div>
-                        <div class="entry--content">
-                            <div class="entry--title">
-                                <h4><a href="#"><?php echo $data['brand_name'] ?></a></h4>
-                            </div>
-                        </div>
-                        <!-- .entry-content end -->
-                    </div>
-                    <!-- .blog-entry end -->
-                    <?php
-                            $sn++;
-                        }
-                    } else {
-                        echo $fetchDataBrand;
-                    } ?>
-                </div>
-                <!-- .row end -->
-                <div class="row clearfix">
-                    <div class="col-sm-12 col-md-12 col-lg-12 text-center">
-                        <a href="#" class="btn--more btn--more-1">Daha Fazla</a>
+                        <!-- .title end -->
                     </div>
                     <!-- .col-lg-12 end -->
                 </div>
@@ -1075,7 +944,78 @@ include_once "ozkaderautomotivepanel/php/main.php";
             </div>
             <!-- .container end -->
         </section>
-        <!-- #blog end -->
+        <!-- #page-title end -->
+
+        <!-- Columns Section
+============================================= -->
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Bu Şartlar ve Koşullar ("Koşullar"), Özkader Otomotiv’in web sitesine ("Web Sitesi")
+                            erişiminiz ve kullanımınız için geçerlidir. Web Sitesini kullanarak veya erişerek bu
+                            Koşulları kabul etmiş olursunuz. Koşulları kabul etmiyorsanız, Web Sitesini
+                            kullanmamalısınız.</p>
+                        <h6>Kullanım Şartları</h6>
+                        <p>Web Sitesini yalnızca yasal amaçlarla kullanmalısınız ve Web Sitesinin kullanımında geçerli
+                            olan tüm yasa ve düzenlemelere uymalısınız. Web Sitesinin aşağıdaki şekilde kullanılmasını
+                            yasaklarız:</p>
+                        <ul>
+                            <li><b>Kötüye Kullanım: </b>Web Sitesini kötüye kullanma, virüs veya zararlı yazılım yayma,
+                                sistemlere yetkisiz erişim sağlama gibi yasa dışı eylemler.</li>
+                            <li><b>Telif Hakkı İhlali: </b>Web Sitesindeki içerikleri izinsiz olarak kopyalama, dağıtma
+                                veya değiştirme.</li>
+                            <li><b>Spam ve Reklam: </b>Web Sitesini spam, reklam veya tanıtım amacıyla kullanma.</li>
+                        </ul>
+                        <h6>İçerik</h6>
+                        <p>Web Sitesinde yer alan tüm içerikler, metinler, grafikler, logolar ve diğer materyaller,
+                            Özkader Otomotiv’in mülkiyetindedir ve telif haklarıyla korunmaktadır. İçeriklerin izinsiz
+                            çoğaltılması, dağıtılması veya değiştirilmesi yasaktır. İçeriklere ilişkin telif hakkı veya
+                            diğer mülkiyet haklarına aykırı hareket etmek, hukuki sorumluluk doğurabilir.</p>
+                        <h6>Ürün ve Hizmetler</h6>
+                        <p>Web Sitesinde sunulan ürünler ve hizmetler hakkında mümkün olan en doğru bilgi sağlanmaya
+                            çalışılmaktadır. Ancak, Web Sitesinde bulunan bilgiler doğruluk garantisi olmaksızın
+                            sunulmaktadır. Ürünler, fiyatlar ve hizmetlerin içeriği önceden haber verilmeksizin
+                            değiştirilebilir. Web Sitesindeki herhangi bir bilgi veya ürün ile ilgili hatalar veya
+                            eksikliklerden dolayı sorumluluk kabul edilmez.</p>
+                        <h6>Siparişler ve Ödemeler</h6>
+                        <p>Web Sitesi üzerinden verilen siparişler, stok durumuna ve diğer şartlara bağlı olarak işleme
+                            alınır. Siparişlerinizi tamamlamadan önce ödeme bilgilerinizin doğru ve güncel olduğunu
+                            doğrulamanız gerekmektedir. Ödemeler, belirtilen yöntemler aracılığıyla yapılmalıdır.
+                            Siparişinizin işlenmesi ve teslimat süreci hakkında daha fazla bilgi için müşteri
+                            hizmetlerimizle iletişime geçebilirsiniz.</p>
+                        <h6>Üçüncü Taraf Bağlantılar</h6>
+                        <p>Web Sitesinde üçüncü taraf web sitelerine bağlantılar bulunabilir. Bu bağlantılar yalnızca
+                            size kolaylık sağlamak amacıyla verilmiştir. Bu üçüncü taraf web sitelerinin içeriğinden ve
+                            güvenliğinden sorumlu değiliz. Üçüncü taraf web sitelerinin kullanım koşulları ve gizlilik
+                            politikaları kendi sorumluluğunuzdadır.</p>
+                        <h6>Sorumluluk Reddi</h6>
+                        <p>Web Sitesinin kesintisiz veya hatasız çalışacağını garanti edemeyiz. Web Sitesinin
+                            kullanımından kaynaklanan herhangi bir doğrudan veya dolaylı zarar, kayıp veya hasardan
+                            sorumlu değiliz. Web Sitesi üzerinden sağlanan bilgiler yalnızca bilgilendirme amaçlıdır ve
+                            profesyonel tavsiye yerine geçmez.</p>
+                        <h6>Değişiklikler</h6>
+                        <p>Bu Koşullarda zaman zaman değişiklikler yapabiliriz. Değişiklikler Web Sitesinde yayınlandığı
+                            tarihten itibaren geçerli olacaktır. Koşulları düzenli olarak gözden geçirmenizi tavsiye
+                            ederiz. Değişiklikleri kabul etmiyorsanız, Web Sitesini kullanmayı bırakmalısınız.</p>
+                        <h6>Uygulanabilir Hukuk</h6>
+                        <p>Bu Koşullar, Türkiye yasalarına tabi olacaktır. Koşullardan kaynaklanan herhangi bir
+                            uyuşmazlık, Türkiye mahkemelerinde çözülmelidir.</p>
+                        <h6>İletişim</h6>
+                        <p>Şartlar ve Koşullarımızla ilgili sorularınız varsa, lütfen bizimle iletişime geçin:</p>
+                        <ul>
+                            <li><b>E-posta: </b><a href="mailto:ozkaderoto42@hotmail.com">ozkaderoto42@hotmail.com</a>
+                            </li>
+                            <li><b>Telefon: </b><a href="tel:05387027010">0538 702 7010</a></li>
+                            <li><b>Adres: </b><a
+                                    href="https://www.google.com/maps/place/Horozluhan,+Sel%C3%A7uklu+Cd.+No:147,+42120+Sel%C3%A7uklu%2FKonya/@37.940947,32.5201271,17z/data=!3m1!4b1!4m6!3m5!1s0x14d08e3a641ed2df:0x576857acf802d675!8m2!3d37.940947!4d32.522702!16s%2Fg%2F11c5npn00n?coh=219816&entry=tts&g_ep=EgoyMDI0MDgxNC4xKgBIAVAD">Selçuklu
+                                    Cd. No:147,
+                                    42120 Selçuklu/Konya</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
 
@@ -1161,6 +1101,12 @@ include_once "ozkaderautomotivepanel/php/main.php";
             <!-- .footer-widget end -->
         </footer>
 
+
+
+
+
+
+        
     </div><!-- #wrapper end -->
 
     <!-- Footer Scripts
