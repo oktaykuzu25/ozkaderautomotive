@@ -153,7 +153,6 @@ function fetch_data_upper_category_limit_five($db, $tableName, $columns)
     return $msg;
 }
 
-
 function fetch_data_lower_category_limit_five($db, $tableName, $columns, $categoryId)
 {
     if (empty($db)) {
@@ -170,6 +169,83 @@ function fetch_data_lower_category_limit_five($db, $tableName, $columns, $catego
         $query = "SELECT " . $columnName . " FROM " . $tableName;
         $query .= " WHERE upper_category_id = ?"; 
         $query .= " ORDER BY upper_category_id LIMIT 3";
+
+        $stmt = $db->prepare($query);
+        $stmt->bind_param("i", $categoryId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Ust Kategori Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $stmt->error;
+        }
+
+        $stmt->close();
+    }
+
+    return $msg;
+}
+
+
+
+$fetchDataUpperCategory = fetch_data_upper_category($db, $tableNameUpperCategory, $columnsUpperCategory);
+function fetch_data_upper_category($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " ORDER BY upper_category_id";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Ust Kategori Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+function fetch_data_lower_category($db, $tableName, $columns, $categoryId)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } elseif (empty($categoryId)) {
+        $msg = "Category ID is required";
+    } else {
+        $columnName = implode(", ", $columns);
+
+        $query = "SELECT " . $columnName . " FROM " . $tableName;
+        $query .= " WHERE upper_category_id = ?"; 
+        $query .= " ORDER BY upper_category_id";
 
         $stmt = $db->prepare($query);
         $stmt->bind_param("i", $categoryId);
