@@ -195,8 +195,6 @@ function fetch_data_lower_category_limit_five($db, $tableName, $columns, $catego
     return $msg;
 }
 
-
-
 $fetchDataUpperCategory = fetch_data_upper_category($db, $tableNameUpperCategory, $columnsUpperCategory);
 function fetch_data_upper_category($db, $tableName, $columns)
 {
@@ -271,3 +269,6 @@ function fetch_data_lower_category($db, $tableName, $columns, $categoryId)
 
     return $msg;
 }
+
+
+
