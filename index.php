@@ -52,1381 +52,376 @@ include_once "ozkaderautomotivepanel/php/main.php";
     <!-- Document Wrapper
 	============================================= -->
     <div id="wrapperParallax" class="wrapper clearfix">
-        <!-- Show in desktop Onky -->
-        <header id="navbar-spy1" class="header header-4 header-light d-none d-lg-block">
-            <nav id="primary-menu1" class="navbar navbar-expand-lg navbar-light logo-centered">
-                <div class="container">
-                    <!-- Module Menu -->
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="navbarContent1">
-                        <ul class="navbar-nav ml-auto mr-auto">
-                            <!-- home Menu -->
-                            <li class="active">
-                                <a href="index.php" class="menu-item">Anasayfa</a>
-                            </li>
-                            <!-- Pages Menu -->
-                            <li>
-                                <a href="about.php" class="menu-item">Hakkımızda</a>
-                            </li>
-                            <!-- Pages Menu -->
-                            <!-- shop Menu -->
-                            <li>
-                                <a href="brand.php" class="menu-item">Markalar</a>
-                            </li>
-                        </ul>
+        <?php include_once "website_part/header.php" ?>
 
-                    </div>
-                    <!-- /.navbar-collapse -->
+        <div class="slider slider-11">
 
-                    <a class="navbar-brand" href="index-2.php">
-                        <img class="logo" src="assets/images/logo/logo-dark.png" alt="logo">
-                    </a>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="navbarContent2">
-                        <ul class="navbar-nav mr-auto ml-auto">
-                            <!-- collection Menu -->
-                            <li class="has-dropdown mega-dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Kategori</a>
-                                <ul class="dropdown-menu mega-dropdown-menu collections-menu">
-                                    <li>
-                                        <div class="container">
-                                            <div class="row">
-                                                <?php
-                                                if (is_array($fetchDataUpperCategoryLimitFive)) {
-                                                    foreach ($fetchDataUpperCategoryLimitFive as $data) {
-                                                        $upper_category_name_url = $data['upper_category_name'];
-                                                        $upper_category_id_url = $data['upper_category_id'];
-
-                                                        // Alt kategorileri çek
-                                                        $fetchDataLowerCategoryLimitFive = fetch_data_lower_category_limit_five($db, $tableNameLowerCategory, $columnsLowerCategory, $upper_category_id_url);
-
-                                                        $seo_name = cleanTurkishCharacters($upper_category_name_url);
-                                                        $url = "/$seo_name" . "/$upper_category_id_url";
-                                                ?>
-                                                        <!-- Column #1 -->
-                                                        <div class="col-md-12 col-lg-5ths">
-                                                            <div class="collection--menu-content">
-                                                                <h5><?php echo $data['upper_category_name'] ?></h5>
-                                                                <ul>
-                                                                    <?php
-                                                                    if (is_array($fetchDataLowerCategoryLimitFive)) {
-                                                                        foreach ($fetchDataLowerCategoryLimitFive as $lowerCategory) {
-                                                                            // Alt kategorilerin adını ve ID'sini kullanarak liste oluştur
-                                                                            $lower_category_name = $lowerCategory['lower_category_name']; // Alt kategori adı
-                                                                            $lower_category_id = $lowerCategory['lower_category_id'];   // Alt kategori ID'si
-
-                                                                            // SEO uyumlu URL'yi oluşturun
-                                                                            $lower_category_seo_name = cleanTurkishCharacters($lower_category_name);
-                                                                            $lower_category_url = "/$seo_name/$lower_category_seo_name/$lower_category_id";
-                                                                    ?>
-                                                                            <li>
-                                                                                <a
-                                                                                    href="<?php echo $lower_category_url; ?>"><?php echo $lower_category_name; ?></a>
-                                                                            </li>
-                                                                    <?php
-                                                                        }
-                                                                    } else {
-                                                                        // Alt kategori bulunamadığında
-                                                                        echo "<li>Alt Kategoriler Bulunamadı!</li>";
-                                                                    }
-                                                                    ?>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <!-- .col-lg-5ths end -->
-                                                <?php
-                                                    }
-                                                } else {
-                                                    echo $fetchDataUpperCategoryLimitFive;
-                                                }
-                                                ?>
-                                            </div>
-
-                                            <!-- .row end -->
-                                        </div>
-                                        <!-- container end -->
-                                    </li>
-                                </ul>
-                                <!-- .mega-dropdown-menu end -->
-                            </li><!-- li end -->
-
-                            <!-- Blog Menu-->
-                            <li class="has-dropdown">
-                                <a href="gallery.php" class="menu-item">
-                                    Galeri</a>
-                            </li><!-- li end -->
-
-                            <!-- Blog Menu-->
-                            <li class="has-dropdown">
-                                <a href="contact.php" class="menu-item">
-                                    İletişim</a>
-                            </li><!-- li end -->
-
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
-
-                    <div class="pull-right">
-                        <div class="module-container">
-                            <!-- Module Search -->
-                            <div class="module module-search pull-left">
-                                <div class="module-icon search-icon">
-                                    <i class="lnr lnr-magnifier"></i>
-                                    <span class="title">Search</span>
-                                </div>
-                                <div class="module-content module--search-box">
-                                    <form class="form-search">
-                                        <input type="text" class="form-control" placeholder="Search anything">
-                                        <button type="submit"><span class="fa fa-arrow-right"></span></button>
-                                    </form><!-- .form-search end -->
-                                </div>
-                            </div><!-- .module-search end -->
-                        </div>
-                    </div>
-
-                </div>
-            </nav>
-        </header>
-
-        <!-- Show in Mobile Only -->
-        <header id="navbar-spy" class="header header-1 header-transparent d-block d-lg-none">
-            <nav id="primary-menu" class="navbar navbar-expand-lg navbar-light">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="index-2.php">
-                        <img class="logo" src="assets/images/logo/logo-dark.png" alt="logo">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
-                        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="navbarContent">
-                        <ul class="navbar-nav mr-auto">
-                            <!-- home Menu -->
-                            <li class="has-dropdown mega-dropdown active">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Home</a>
-                                <ul class="dropdown-menu mega-dropdown-menu">
-                                    <li>
-                                        <div class="container">
-                                            <div class="row">
-                                                <!-- Column #1 -->
-                                                <div class="col-md-12 col-lg-3">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="home-1.php">Home 1</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="home-2.php">Home 2</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="home-3.php">Home 3</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="home-4.php">Home 4</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- .col-lg-3 end -->
-
-                                                <!-- Column #2 -->
-                                                <div class="col-md-12 col-lg-3">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="home-5.php">Home 5</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="home-6.php">Home 6</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="home-8.php">Home 7</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="home-8.php">Home 8</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- .col-lg-3 end -->
-
-                                                <!-- Column #3 -->
-                                                <div class="col-md-12 col-lg-3">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="home-9.php">Home 9</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="home-10.php">Home 10</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="home-11.php">Home 11</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="home-12.php">Home 12</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- .col-lg-3 end -->
-
-                                                <!-- Column #4 -->
-                                                <div class="col-md-12 col-lg-3">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="home-13.php">Home 13</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="home-14.php">Home 14</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- .col-lg-3 end -->
-                                            </div>
-                                            <!-- .row end -->
-                                        </div>
-                                        <!-- container end -->
-                                    </li>
-                                </ul>
-                                <!-- .mega-dropdown-menu end -->
-                            </li><!-- li end -->
-
-                            <!-- shop Menu -->
-                            <li class="has-dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle link-hover"
-                                    data-hover="shop">shop</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Products Layout</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="shop-layout-fullwidth.php">fullwidth</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-layout-sidebar-left.php">sidebar left</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-layout-sidebar-right-2.php">sidebar right</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Products Columns</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="shop-4columns.php">4 columns</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-3columns.php">3 columns</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Products Cards</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="shop-product-grid.php">grid</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-product-hero-3columns.php">hero 3 columns</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-product-hero-2columns.php">hero 2 columns</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-product-list.php">list</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Products Dark</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="shop-dark-sidebar.php">with sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-dark-3columns.php">3 columns</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-dark-4columns.php">4 columns</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-dark-5columns.php">5 columns</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Products Hover</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="shop-hover-2.php">hover 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-hover-4columns.php">hover 4 columns</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-hover-3columns.php">hover 3 columns</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-hover-2columns.php">hover 2 columns</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-hover-variation.php">hover variation</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Single Product</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="product-boxed.php">Product Boxed</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-carousel.php">Product Carousel</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-dark.php">Product Dark</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-fullwidth.php">Product Fullwidth</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-hero.php">Product Hero</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-masonry.php">Product Masonry</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Single Gallery</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="product-gallery.php">Gallery Fullwidth</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-gallery-horizontal.php">Gallery Horizontal</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-gallery-slide.php">Gallery Slide</a>
-                                            </li>
-                                            <li>
-                                                <a href="product-gallery-vertical.php">Gallery Vertical</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li><!-- li end -->
-
-                            <!-- Pages Menu -->
-                            <li class="has-dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle link-hover"
-                                    data-hover="pages">page</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">about us</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="page-about-1.php">About US 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-about-2.php">About US 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-about-dark.php">About US dark</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">contact us</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="page-contact-1.php">page contact 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-contact-2.php">page contact 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-contact-dark.php">page contact dark</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">untility pages</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="page-404.php">page 404</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-404-dark.php">page 404 dark</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-privacy.php">page privacy</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-terms.php">page terms</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">page tempalates</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="page-template-fullwidth.php">fullwidth</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-template-right-sidebar.php">right sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-template-left-sidebar.php">left sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li><!-- li end -->
-
-                            <!-- collection Menu -->
-                            <li class="has-dropdown mega-dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Collections</a>
-                                <ul class="dropdown-menu mega-dropdown-menu collections-menu">
-                                    <li>
-                                        <div class="container">
-                                            <div class="row">
-                                                <!-- Column #1 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Furniture</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">chair</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">sofa</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">table</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">bed</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/1.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
-
-                                                <!-- Column #2 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Lighting</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">Wall Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">Bedroom Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">Garden Lamp</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">Desktop Lamp</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/37.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
-
-                                                <!-- Column #3 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Wood Shelf</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">wood Living</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">wood Bedroom</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">wood Garden</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">wood tables</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/34.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
-
-                                                <!-- Column #4 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Accessories</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">Shoes</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">Bags</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">Jewellery</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">Scarves</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/35.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
-
-                                                <!-- Column #5 -->
-                                                <div class="col-md-12 col-lg-5ths">
-                                                    <div class="collection--menu-content">
-                                                        <h5>Sale Off</h5>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="shop-layout-fullwidth.php">Sunglasses</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-layout-sidebar-left.php">jackets</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-4columns.php">Shirts</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="shop-3columns.php">Socks</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="menu--img">
-                                                        <img src="assets/images/slider/layers/36.png" alt="img"
-                                                            class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <!-- .col-lg-5ths end -->
-                                            </div>
-                                            <!-- .row end -->
-                                        </div>
-                                        <!-- container end -->
-                                    </li>
-                                </ul>
-                                <!-- .mega-dropdown-menu end -->
-                            </li><!-- li end -->
-
-                            <!-- Blog Menu-->
-                            <li class="has-dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Blog</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">blog Grid</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="blog-grid.php">fullwidth</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-grid-sidebar-right.php">right sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-grid-sidebar-left.php">left sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="blog-masonry.php">blog masonry</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-parallax.php">blog parallax</a>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">blog single</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="blog-single.php">fullwidth</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-single-sidebar-right.php">right sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-single-sidebar-left.php">left sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li><!-- li end -->
-
-                            <!-- features Menu -->
-                            <li class="has-dropdown">
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle link-hover"
-                                    data-hover="pages">features</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Headers</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="header-1.php">Header 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="header-2.php">Header 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="header-3.php">Header 3</a>
-                                            </li>
-                                            <li>
-                                                <a href="header-4.php">Header 4</a>
-                                            </li>
-                                            <li>
-                                                <a href="header-5.php">Header 5</a>
-                                            </li>
-                                            <li>
-                                                <a href="header-6.php">Header 6</a>
-                                            </li>
-                                            <li>
-                                                <a href="header-7.php">Header 7</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">footers</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="footer-1.php">footer 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="footer-2.php">footer 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="footer-3.php">footer 3</a>
-                                            </li>
-                                            <li>
-                                                <a href="footer-4.php">footer 4</a>
-                                            </li>
-                                            <li>
-                                                <a href="footer-5.php">footer 5</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">sliders</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="slider-1.php">slider 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-2.php">slider 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-3.php">slider 3</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-4.php">slider 4</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-5.php">slider 5</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-6.php">slider 6</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-7.php">slider 7</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-8.php">slider 8</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-9.php">slider 9</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-10.php">slider 10</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-11.php">slider 11</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-12.php">slider 12</a>
-                                            </li>
-                                            <li>
-                                                <a href="slider-13.php">slider 13</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">cart</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="page-cart.php">page cart</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-cart-dark.php">page cart dark</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">checkout</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="page-checkout.php">page checkout</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-checkout-dark.php">checkout dark</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">login</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="page-login.php">page login</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-login-dark.php">page login dark</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">wishlist</a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="page-wishlist.php">page wishlist</a>
-                                            </li>
-                                            <li>
-                                                <a href="page-wishlist-dark.php">page wishlist dark</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="page-soon.php">page soon</a>
-                                    </li>
-                                    <li>
-                                        <a href="page-popup.php">page popup</a>
-                                    </li>
-                                </ul>
-                            </li><!-- li end -->
-                        </ul>
-                        <div class="module-container">
-                            <!-- Module Search -->
-                            <div class="module module-search pull-left">
-                                <div class="module-icon search-icon">
-                                    <i class="lnr lnr-magnifier"></i>
-                                    <span class="title">Search</span>
-                                </div>
-                                <div class="module-content module--search-box">
-                                    <form class="form-search">
-                                        <input type="text" class="form-control" placeholder="Search anything">
-                                        <button type="submit"><span class="fa fa-arrow-right"></span></button>
-                                    </form><!-- .form-search end -->
-                                </div>
-                            </div><!-- .module-search end -->
-                            <div class="vertical-divider pull-left mr-30"></div>
-                            <div class="module module-lang  module-dropdown module-dropdown-right pull-left">
-                                <div class="module-icon">
-                                    <button type="button" class="dropdown-toggle" data-toggle="dropdown">
-                                        ENG <i class="fa fa-caret-down"></i>
-                                    </button>
-                                </div>
-                                <div class="module-dropdown-menu module-content">
-                                    <a class="dropdown-item" href="#">RU</a>
-                                    <a class="dropdown-item" href="#">FR</a>
-                                    <a class="dropdown-item" href="#">AR</a>
-                                </div>
-                            </div>
-                            <div class="module module-dropdown module-currency module-dropdown-right pull-left">
-                                <div class="module-icon dropdown">
-                                    <button type="button" class="dropdown-toggle" data-toggle="dropdown">
-                                        USD <i class="fa fa-caret-down"></i>
-                                    </button>
-                                </div>
-                                <div class="module-dropdown-menu module-content">
-                                    <a class="dropdown-item" href="#">EUR</a>
-                                    <a class="dropdown-item" href="#">CAD</a>
-                                    <a class="dropdown-item" href="#">pound</a>
-                                </div>
-                            </div> <!-- Module Cart -->
-                            <div class="module module-cart pull-left">
-                                <div class="module-icon cart-icon">
-                                    <i class="icon-bag"></i>
-                                    <span class="title">shop cart</span>
-                                    <label class="module-label">2</label>
-                                </div>
-                                <div class="module-content module-box cart-box">
-                                    <div class="cart-overview">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <img class="img-fluid" src="assets/images/products/thumb/1.jpg"
-                                                    alt="product" />
-                                                <div class="product-meta">
-                                                    <h5 class="product-title">Hebes Great Chair</h5>
-                                                    <p class="product-qunt">Quantity: 01</p>
-                                                    <p class="product-price">$24.00</p>
-                                                </div>
-                                                <a class="cart-cancel" href="#"><i class="lnr lnr-cross"></i></a>
-                                            </li>
-                                            <li>
-                                                <img class="img-fluid" src="assets/images/products/thumb/2.jpg"
-                                                    alt="product" />
-                                                <div class="product-meta">
-                                                    <h5 class="product-title">Hebes Great Chair</h5>
-                                                    <p class="product-qunt">Quantity: 01</p>
-                                                    <p class="product-price">$24.00</p>
-                                                </div>
-                                                <a class="cart-cancel" href="#"><i class="lnr lnr-cross"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="cart-total">
-                                        <div class="total-desc">
-                                            Sub total
-                                        </div>
-                                        <div class="total-price">
-                                            $48.00
-                                        </div>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                    <div class="cart--control">
-                                        <a class="btn btn--white btn--bordered btn--rounded" href="#">view cart </a>
-                                        <a class="btn btn--primary btn--rounded" href="#">Checkout</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- .module-cart end -->
-                        </div>
-                    </div>
-                    <!-- /.navbar-collapse -->
-                </div>
-                <!-- /.container -->
-            </nav>
-        </header>
-
-
-        <div class="slider slider-4">
-            <div id="rev_slider_7_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="hebes-home-4"
+            <div id="rev_slider_12_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="hebes-home-11"
                 data-source="gallery" style="background:transparent;padding:0px;">
                 <!-- START REVOLUTION SLIDER 5.4.7 fullscreen mode -->
-                <div id="rev_slider_7_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.7">
+                <div id="rev_slider_12_1" class="rev_slider fullscreenbanner" style="display:none;"
+                    data-version="5.4.7">
                     <ul>
                         <!-- SLIDE  -->
-                        <li data-index="rs-21" data-transition="parallaxtotop" data-easein="Power4.easeInOut"
-                            data-easeout="Power4.easeInOut" data-masterspeed="2000"
-                            data-thumb="assets/images/slider/thumb/8.png"
-                            data-title="<p>NEXT UP</p><h6>Chair blue Decor</h6>">
+                        <li data-index="rs-47" data-transition="parallaxtoleft" data-easein="Power4.easeInOut"
+                            data-easeout="Power4.easeInOut" data-masterspeed="2000">
                             <!-- MAIN IMAGE -->
-                            <img src="assets/images/slider/bg/1.jpg" alt="" data-bgposition="center center"
+                            <img src="assets/images/slider/bg/9.jpg" alt="" data-bgposition="center center"
                                 data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg"
                                 data-no-retina>
                             <!-- LAYERS -->
 
                             <!-- LAYER NR. 1 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-21-layer-2"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['179','179','179','121']"
-                                data-fontsize="['14','14','14','13']" data-lineheight="['26','26','26','18']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":1500,"speed":1500,"frame":"0","from":"y:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                            <div class="tp-caption   tp-resizeme" id="slide-47-layer-2"
+                                data-x="['left','left','left','left']" data-hoffset="['100','100','70','50']"
+                                data-y="['top','top','top','top']" data-voffset="['212','212','212','212']"
+                                data-fontsize="['14','14','14','13']" data-lineheight="['26','26','26','26']"
+                                data-letterspacing="['5','5','5','3']" data-width="none" data-height="none"
+                                data-whitespace="nowrap" data-type="text" data-responsive_offset="on"
+                                data-frames='[{"delay":1700,"speed":1500,"frame":"0","from":"y:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
                                 data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
                                 data-paddingleft="[0,0,0,0]"
-                                style="z-index: 5; white-space: nowrap; font-size: 14px; line-height: 26px; font-weight: 700; color: #000000; letter-spacing: 3px;font-family:Montserrat;">
-                                TRENDING SOFA <br>
+                                style="z-index: 5; white-space: nowrap; font-size: 14px; line-height: 26px; font-weight: 700; color: #000000; letter-spacing: 5px;font-family:Montserrat;">
+                                NEW <br>
                                 COLLECTION <br>
                                 2019 </div>
 
                             <!-- LAYER NR. 2 -->
-                            <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" id="slide-21-layer-3"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['167','167','167','104']"
-                                data-width="30" data-height="1" data-whitespace="nowrap" data-type="shape"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":1700,"speed":1500,"frame":"0","from":"y:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]" style="z-index: 6;background-color:rgb(0,0,0);"> </div>
-
-                            <!-- LAYER NR. 3 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-21-layer-5"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['302','302','343','247']"
-                                data-fontsize="['120','120','100','60']" data-lineheight="['120','120','100','60']"
+                            <div class="tp-caption   tp-resizeme" id="slide-47-layer-5"
+                                data-x="['left','left','left','left']" data-hoffset="['100','100','70','50']"
+                                data-y="['top','top','top','top']" data-voffset="['390','390','350','320']"
+                                data-fontsize="['72','72','72','60']" data-lineheight="['72','72','72','60']"
                                 data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
                                 data-responsive_offset="on"
-                                data-frames='[{"delay":1600,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                                data-frames='[{"delay":2000,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
                                 data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
                                 data-paddingleft="[0,0,0,0]"
-                                style="z-index: 7; white-space: nowrap; font-size: 120px; line-height: 120px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
-                                <span style="color:#606da6">X </span>Chair
+                                style="z-index: 6; white-space: nowrap; font-size: 72px; line-height: 72px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
+                                White Chair<br>
+                                <span style="color:#606da6">Decor </span>
+
                             </div>
 
-                            <!-- LAYER NR. 4 -->
-                            <div class="tp-caption rev-btn" id="slide-21-layer-6" data-x="['left','left','left','left']"
-                                data-hoffset="['90','90','60','30']" data-y="['top','top','top','top']"
-                                data-voffset="['580','580','730','571']"
-                                data-color="['rgb(96,109,166)','rgb(96,109,166)','rgb(0,0,0)','rgb(0,0,0)']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="button"
-                                data-responsive_offset="on" data-responsive="off"
-                                data-frames='[{"delay":3200,"speed":1500,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0,0,0,1);bg:rgba(255,255,255,0);bs:solid;bw:0 0 0 0;"}]'
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption rev-btn" id="slide-47-layer-6" data-x="['left','left','left','left']"
+                                data-hoffset="['100','100','70','50']" data-y="['top','top','top','top']"
+                                data-voffset="['575','575','550','520']" data-fontsize="['14','14','13','13']"
+                                data-letterspacing="['3','3','1','1']" data-width="none" data-height="none"
+                                data-whitespace="nowrap" data-type="button" data-responsive_offset="on"
+                                data-responsive="off"
+                                data-frames='[{"delay":2800,"speed":1500,"frame":"0","from":"x:[175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[-100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0,0,0,1);bg:rgba(255,255,255,0);bs:solid;bw:0 0 0 0;"}]'
                                 data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
                                 data-paddingleft="[0,0,0,0]"
-                                style="z-index: 8; white-space: nowrap; font-size: 13px; line-height: 14px; font-weight: 700; color: #606da6; letter-spacing: 1px;font-family:Montserrat;background-color:rgba(0,0,0,0);border-color:rgba(0,0,0,1);outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
+                                style="z-index: 7; white-space: nowrap; font-size: 14px; line-height: 14px; font-weight: 700; color: #000000; letter-spacing: 3px;font-family:Montserrat;background-color:rgba(0,0,0,0);border-color:rgba(0,0,0,1);outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
                                 <a href="#" class="btn btn--underlined">SHOP NOW</a>
                             </div>
 
-                            <!-- LAYER NR. 5 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-21-layer-8"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['504','515','605','445']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
+                            <!-- LAYER NR. 4 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" id="slide-47-layer-15"
+                                data-x="['left','left','left','left']" data-hoffset="['100','100','70','50']"
+                                data-y="['top','top','top','top']" data-voffset="['193','193','193','193']"
+                                data-width="34" data-height="4" data-whitespace="nowrap" data-type="shape"
                                 data-responsive_offset="on"
-                                data-frames='[{"delay":2200,"speed":1500,"frame":"0","from":"x:200px;skX:-85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                                data-frames='[{"delay":1800,"speed":1500,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
                                 data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 9; white-space: nowrap; font-size: 16px; line-height: 22px; font-weight: 400; color: #a1a1a1; letter-spacing: 0px;font-family:Montserrat;">
-                                unique design <br>
-                                Chair trending </div>
-
-                            <!-- LAYER NR. 6 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-21-layer-9"
-                                data-x="['left','left','left','left']" data-hoffset="['289','285','303','232']"
-                                data-y="['top','top','top','top']" data-voffset="['503','516','601','443']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2300,"speed":1500,"frame":"0","from":"x:200px;skX:-85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 10; white-space: nowrap; font-size: 16px; line-height: 22px; font-weight: 400; color: #a1a1a1; letter-spacing: 0px;font-family:Montserrat;">
-                                the best material <br>
-                                for the product </div>
-
-                            <!-- LAYER NR. 7 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-21-layer-13"
-                                data-x="['left','left','left','left']" data-hoffset="['291','288','304','226']"
-                                data-y="['top','top','top','top']" data-voffset="['477','477','568','409']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2100,"speed":1000,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 11; white-space: nowrap; font-size: 18px; line-height: 22px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
-                                .02 </div>
-
-                            <!-- LAYER NR. 8 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-21-layer-14"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['482','482','574','413']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2200,"speed":1000,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 12; white-space: nowrap; font-size: 18px; line-height: 22px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
-                                .01 </div>
+                                data-paddingleft="[0,0,0,0]" style="z-index: 8;background-color:rgb(96,109,166);">
+                            </div>
                         </li>
                         <!-- SLIDE  -->
-                        <li data-index="rs-24" data-transition="cube" data-easein="Power4.easeInOut"
-                            data-easeout="Power4.easeInOut" data-masterspeed="2000"
-                            data-thumb="assets/images/slider/thumb/8.png"
-                            data-title="<p>NEXT UP</p><h6>Chair blue Decor</h6>">
+                        <li data-index="rs-50" data-transition="slidingoverlaydown" data-easein="Power4.easeInOut"
+                            data-easeout="Power4.easeInOut" data-masterspeed="2000">
                             <!-- MAIN IMAGE -->
-                            <img src="assets/images/slider/bg/2.jpg" alt="" data-bgposition="center center"
+                            <img src="assets/images/slider/bg/10.jpg" alt="" data-bgposition="center center"
+                                data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg"
+                                data-no-retina>
+                            <!-- LAYERS -->
+
+                            <!-- LAYER NR. 5 -->
+                            <div class="tp-caption   tp-resizeme" id="slide-50-layer-2"
+                                data-x="['left','left','left','left']" data-hoffset="['100','100','70','50']"
+                                data-y="['top','top','top','top']" data-voffset="['212','212','212','212']"
+                                data-fontsize="['14','14','14','13']" data-lineheight="['26','26','26','26']"
+                                data-letterspacing="['5','5','5','3']" data-width="none" data-height="none"
+                                data-whitespace="nowrap" data-type="text" data-responsive_offset="on"
+                                data-frames='[{"delay":1700,"speed":1500,"frame":"0","from":"x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
+                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
+                                data-paddingleft="[0,0,0,0]"
+                                style="z-index: 5; white-space: nowrap; font-size: 14px; line-height: 26px; font-weight: 700; color: #000000; letter-spacing: 5px;font-family:Montserrat;">
+                                NEW <br>
+                                COLLECTION <br>
+                                2019 </div>
+
+                            <!-- LAYER NR. 6 -->
+                            <div class="tp-caption   tp-resizeme" id="slide-50-layer-5"
+                                data-x="['left','left','left','left']" data-hoffset="['100','100','70','50']"
+                                data-y="['top','top','top','top']" data-voffset="['390','390','350','320']"
+                                data-fontsize="['72','72','72','60']" data-lineheight="['72','72','72','60']"
+                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
+                                data-responsive_offset="on"
+                                data-frames='[{"delay":2300,"speed":1500,"frame":"0","from":"x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
+                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
+                                data-paddingleft="[0,0,0,0]"
+                                style="z-index: 6; white-space: nowrap; font-size: 72px; line-height: 72px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
+                                Wood Table<br>
+                                <span style="color:#606da6">Hebes Decor </span>
+
+                            </div>
+
+                            <!-- LAYER NR. 7 -->
+                            <div class="tp-caption rev-btn" id="slide-50-layer-6" data-x="['left','left','left','left']"
+                                data-hoffset="['100','100','70','50']" data-y="['top','top','top','top']"
+                                data-voffset="['575','575','550','520']" data-fontsize="['14','14','13','13']"
+                                data-letterspacing="['3','3','1','1']" data-width="none" data-height="none"
+                                data-whitespace="nowrap" data-type="button" data-responsive_offset="on"
+                                data-responsive="off"
+                                data-frames='[{"delay":2800,"speed":1000,"frame":"0","from":"z:0;rX:0deg;rY:0;rZ:0;sX:2;sY:2;skX:0;skY:0;opacity:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0,0,0,1);bg:rgba(255,255,255,0);bs:solid;bw:0 0 0 0;"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
+                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
+                                data-paddingleft="[0,0,0,0]"
+                                style="z-index: 7; white-space: nowrap; font-size: 14px; line-height: 14px; font-weight: 700; color: #000000; letter-spacing: 3px;font-family:Montserrat;background-color:rgba(0,0,0,0);border-color:rgba(0,0,0,1);outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
+                                <a href="#" class="btn btn--underlined">SHOP NOW</a>
+                            </div>
+
+                            <!-- LAYER NR. 8 -->
+                            <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" id="slide-50-layer-15"
+                                data-x="['left','left','left','left']" data-hoffset="['100','100','70','50']"
+                                data-y="['top','top','top','top']" data-voffset="['193','193','193','193']"
+                                data-width="34" data-height="4" data-whitespace="nowrap" data-type="shape"
+                                data-responsive_offset="on"
+                                data-frames='[{"delay":1500,"speed":1500,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
+                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
+                                data-paddingleft="[0,0,0,0]" style="z-index: 8;background-color:rgb(96,109,166);">
+                            </div>
+                        </li>
+                        <!-- SLIDE  -->
+                        <li data-index="rs-51" data-transition="cube" data-easein="Power4.easeInOut"
+                            data-easeout="Power4.easeInOut" data-masterspeed="2000">
+                            <!-- MAIN IMAGE -->
+                            <img src="assets/images/slider/bg/11.jpg" alt="" data-bgposition="center center"
                                 data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg"
                                 data-no-retina>
                             <!-- LAYERS -->
 
                             <!-- LAYER NR. 9 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-24-layer-2"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['180','180','180','121']"
-                                data-fontsize="['14','14','14','13']" data-lineheight="['26','26','26','18']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":1500,"speed":1500,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                            <div class="tp-caption   tp-resizeme" id="slide-51-layer-2"
+                                data-x="['left','left','left','left']" data-hoffset="['100','100','70','50']"
+                                data-y="['top','top','top','top']" data-voffset="['212','212','212','212']"
+                                data-fontsize="['14','14','14','13']" data-lineheight="['26','26','26','26']"
+                                data-letterspacing="['5','5','5','3']" data-width="none" data-height="none"
+                                data-whitespace="nowrap" data-type="text" data-responsive_offset="on"
+                                data-frames='[{"delay":1900,"speed":1500,"frame":"0","from":"x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
                                 data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
                                 data-paddingleft="[0,0,0,0]"
-                                style="z-index: 5; white-space: nowrap; font-size: 14px; line-height: 26px; font-weight: 700; color: #000000; letter-spacing: 3px;font-family:Montserrat;">
-                                TRENDING SOFA <br>
+                                style="z-index: 5; white-space: nowrap; font-size: 14px; line-height: 26px; font-weight: 700; color: #000000; letter-spacing: 5px;font-family:Montserrat;">
+                                NEW <br>
                                 COLLECTION <br>
                                 2019 </div>
 
                             <!-- LAYER NR. 10 -->
-                            <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" id="slide-24-layer-3"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['167','167','167','104']"
-                                data-width="30" data-height="1" data-whitespace="nowrap" data-type="shape"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":1600,"speed":1500,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]" style="z-index: 6;background-color:rgb(0,0,0);"> </div>
-
-                            <!-- LAYER NR. 11 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-24-layer-5"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['302','302','344','247']"
-                                data-fontsize="['120','120','100','60']" data-lineheight="['120','120','100','60']"
+                            <div class="tp-caption   tp-resizeme" id="slide-51-layer-5"
+                                data-x="['left','left','left','left']" data-hoffset="['100','100','70','50']"
+                                data-y="['top','top','top','top']" data-voffset="['390','390','350','320']"
+                                data-fontsize="['72','72','72','60']" data-lineheight="['72','72','72','60']"
                                 data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
                                 data-responsive_offset="on"
-                                data-frames='[{"delay":1800,"split":"chars","splitdelay":0.05,"speed":2000,"split_direction":"forward","frame":"0","from":"y:[-100%];z:0;rZ:35deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                                data-frames='[{"delay":2500,"speed":2000,"frame":"0","from":"x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:1;","mask":"x:[100%];y:0;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
                                 data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
                                 data-paddingleft="[0,0,0,0]"
-                                style="z-index: 7; white-space: nowrap; font-size: 120px; line-height: 120px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
-                                <span style="color:#606da6">Chair </span> Blue Decor
+                                style="z-index: 6; white-space: nowrap; font-size: 72px; line-height: 72px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
+                                Red Collection<br>
+                                <span style="color:#606da6">Decor </span>
+
+                            </div>
+
+                            <!-- LAYER NR. 11 -->
+                            <div class="tp-caption rev-btn" id="slide-51-layer-6" data-x="['left','left','left','left']"
+                                data-hoffset="['100','100','70','50']" data-y="['top','top','top','top']"
+                                data-voffset="['575','575','550','520']" data-fontsize="['14','14','13','13']"
+                                data-letterspacing="['3','3','1','1']" data-width="none" data-height="none"
+                                data-whitespace="nowrap" data-type="button" data-responsive_offset="on"
+                                data-responsive="off"
+                                data-frames='[{"delay":3000,"speed":1600,"frame":"0","from":"z:0;rX:0deg;rY:0;rZ:0;sX:2;sY:2;skX:0;skY:0;opacity:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0,0,0,1);bg:rgba(255,255,255,0);bs:solid;bw:0 0 0 0;"}]'
+                                data-textAlign="['inherit','inherit','inherit','inherit']"
+                                data-paddingtop="[10,10,10,10]" data-paddingright="[30,30,30,30]"
+                                data-paddingbottom="[10,10,10,10]" data-paddingleft="[30,30,30,30]"
+                                style="z-index: 7; white-space: nowrap; font-size: 14px; line-height: 14px; font-weight: 700; color: #000000; letter-spacing: 3px;font-family:Montserrat;background-color:rgba(0,0,0,0);border-color:rgba(0,0,0,1);outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
+                                <a href="#" class="btn btn--underlined">SHOP NOW</a>
                             </div>
 
                             <!-- LAYER NR. 12 -->
-                            <div class="tp-caption rev-btn" id="slide-24-layer-6" data-x="['left','left','left','left']"
-                                data-hoffset="['90','90','60','30']" data-y="['top','top','top','top']"
-                                data-voffset="['580','580','730','571']"
-                                data-color="['rgb(96,109,166)','rgb(96,109,166)','rgb(0,0,0)','rgb(0,0,0)']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="button"
-                                data-responsive_offset="on" data-responsive="off"
-                                data-frames='[{"delay":3000,"speed":1500,"frame":"0","from":"z:0;rX:0deg;rY:0;rZ:0;sX:2;sY:2;skX:0;skY:0;opacity:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0,0,0,1);bg:rgba(255,255,255,0);bs:solid;bw:0 0 0 0;"}]'
+                            <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" id="slide-51-layer-15"
+                                data-x="['left','left','left','left']" data-hoffset="['100','100','70','50']"
+                                data-y="['top','top','top','top']" data-voffset="['193','193','193','193']"
+                                data-width="34" data-height="4" data-whitespace="nowrap" data-type="shape"
+                                data-responsive_offset="on"
+                                data-frames='[{"delay":1600,"speed":1700,"frame":"0","from":"x:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
                                 data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 8; white-space: nowrap; font-size: 13px; line-height: 14px; font-weight: 700; color: #606da6; letter-spacing: 1px;font-family:Montserrat;background-color:rgba(0,0,0,0);border-color:rgba(0,0,0,1);outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
-                                <a href="#" class="btn btn--underlined">SHOP NOW</a>
+                                data-paddingleft="[0,0,0,0]" style="z-index: 8;background-color:rgb(96,109,166);">
                             </div>
-
-                            <!-- LAYER NR. 13 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-24-layer-8"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['504','515','605','445']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"x:200px;skX:-85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 9; white-space: nowrap; font-size: 16px; line-height: 22px; font-weight: 400; color: #a1a1a1; letter-spacing: 0px;font-family:Montserrat;">
-                                unique design <br>
-                                Chair trending </div>
-
-                            <!-- LAYER NR. 14 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-24-layer-9"
-                                data-x="['left','left','left','left']" data-hoffset="['289','285','303','232']"
-                                data-y="['top','top','top','top']" data-voffset="['503','516','601','443']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2200,"speed":1500,"frame":"0","from":"x:200px;skX:-85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 10; white-space: nowrap; font-size: 16px; line-height: 22px; font-weight: 400; color: #a1a1a1; letter-spacing: 0px;font-family:Montserrat;">
-                                the best material <br>
-                                for the product </div>
-
-                            <!-- LAYER NR. 15 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-24-layer-13"
-                                data-x="['left','left','left','left']" data-hoffset="['291','288','304','226']"
-                                data-y="['top','top','top','top']" data-voffset="['477','477','568','409']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2200,"speed":1000,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 11; white-space: nowrap; font-size: 18px; line-height: 22px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
-                                .02 </div>
-
-                            <!-- LAYER NR. 16 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-24-layer-14"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['482','482','574','413']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2100,"speed":1000,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 12; white-space: nowrap; font-size: 18px; line-height: 22px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
-                                .01 </div>
-                        </li>
-                        <!-- SLIDE  -->
-                        <li data-index="rs-25" data-transition="incube-horizontal" data-easein="Power4.easeInOut"
-                            data-easeout="Power4.easeInOut" data-masterspeed="2000"
-                            data-thumb="assets/images/slider/thumb/8.png"
-                            data-title="<p>NEXT UP</p><h6>Chair blue Decor</h6>">
-                            <!-- MAIN IMAGE -->
-                            <img src="assets/images/slider/bg/3.jpg" alt="" data-bgposition="center center"
-                                data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg"
-                                data-no-retina>
-                            <!-- LAYERS -->
-
-                            <!-- LAYER NR. 17 -->
-                            <div class="tp-caption tp-resizeme" id="slide-25-layer-2"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['180','180','180','121']"
-                                data-fontsize="['14','14','14','13']" data-lineheight="['26','26','26','18']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":1500,"speed":1500,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 5; white-space: nowrap; font-size: 14px; line-height: 26px; font-weight: 700; color: #000000; letter-spacing: 3px;font-family:Montserrat;">
-                                TRENDING SOFA <br>
-                                COLLECTION <br>
-                                2019 </div>
-
-                            <!-- LAYER NR. 18 -->
-                            <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" id="slide-25-layer-3"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['167','167','167','104']"
-                                data-width="30" data-height="1" data-whitespace="nowrap" data-type="shape"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":1700,"speed":1500,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]" style="z-index: 6;background-color:rgb(0,0,0);"> </div>
-
-                            <!-- LAYER NR. 19 -->
-                            <div class="tp-caption tp-resizeme" id="slide-25-layer-5"
-                                data-x="['left','left','left','left']" data-hoffset="['88','88','80','25']"
-                                data-y="['top','top','top','top']" data-voffset="['302','302','344','247']"
-                                data-fontsize="['120','120','100','60']" data-lineheight="['120','120','100','60']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2200,"split":"chars","splitdelay":0.05,"speed":2000,"split_direction":"forward","frame":"0","from":"y:[100%];z:0;rZ:-35deg;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 7; white-space: nowrap; font-size: 120px; line-height: 120px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
-                                Lamp <span style="color:#606da6">Wood</span> </div>
-
-                            <!-- LAYER NR. 20 -->
-                            <div class="tp-caption rev-btn" id="slide-25-layer-6" data-x="['left','left','left','left']"
-                                data-hoffset="['90','90','60','30']" data-y="['top','top','top','top']"
-                                data-voffset="['580','580','730','571']"
-                                data-color="['rgb(96,109,166)','rgb(96,109,166)','rgb(0,0,0)','rgb(0,0,0)']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="button"
-                                data-responsive_offset="on" data-responsive="off"
-                                data-frames='[{"delay":2800,"speed":1500,"frame":"0","from":"x:200px;skX:-85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"0","ease":"Linear.easeNone","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0,0,0,1);bg:rgba(255,255,255,0);bs:solid;bw:0 0 0 0;"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 8; white-space: nowrap; font-size: 13px; line-height: 14px; font-weight: 700; color: #606da6; letter-spacing: 1px;font-family:Montserrat;background-color:rgba(0,0,0,0);border-color:rgba(0,0,0,1);outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">
-                                <a href="#" class="btn btn--underlined">SHOP NOW</a>
-                            </div>
-
-                            <!-- LAYER NR. 21 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-25-layer-8"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['504','515','605','445']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2100,"speed":1500,"frame":"0","from":"x:200px;skX:-85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 9; white-space: nowrap; font-size: 16px; line-height: 22px; font-weight: 400; color: #a1a1a1; letter-spacing: 0px;font-family:Montserrat;">
-                                unique design <br>
-                                Chair trending </div>
-
-                            <!-- LAYER NR. 22 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-25-layer-9"
-                                data-x="['left','left','left','left']" data-hoffset="['289','285','303','232']"
-                                data-y="['top','top','top','top']" data-voffset="['503','516','601','443']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2200,"speed":1500,"frame":"0","from":"x:200px;skX:-85px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 10; white-space: nowrap; font-size: 16px; line-height: 22px; font-weight: 400; color: #a1a1a1; letter-spacing: 0px;font-family:Montserrat;">
-                                the best material <br>
-                                for the product </div>
-
-                            <!-- LAYER NR. 23 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-25-layer-13"
-                                data-x="['left','left','left','left']" data-hoffset="['291','288','304','226']"
-                                data-y="['top','top','top','top']" data-voffset="['477','477','568','409']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2200,"speed":1000,"frame":"0","from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 11; white-space: nowrap; font-size: 18px; line-height: 22px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
-                                .02 </div>
-
-                            <!-- LAYER NR. 24 -->
-                            <div class="tp-caption   tp-resizeme" id="slide-25-layer-14"
-                                data-x="['left','left','left','left']" data-hoffset="['90','90','60','30']"
-                                data-y="['top','top','top','top']" data-voffset="['482','482','574','413']"
-                                data-width="none" data-height="none" data-whitespace="nowrap" data-type="text"
-                                data-responsive_offset="on"
-                                data-frames='[{"delay":2100,"speed":1000,"frame":"0","from":"x:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]"
-                                style="z-index: 12; white-space: nowrap; font-size: 18px; line-height: 22px; font-weight: 700; color: #000000; letter-spacing: 0px;font-family:Montserrat;">
-                                .01 </div>
                         </li>
                     </ul>
                     <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
                 </div>
-
             </div><!-- END REVOLUTION SLIDER -->
+
         </div>
         <script>
-            var revapi7,
-                tpj;
-            (function() {
-                if (!/loaded|interactive|complete/.test(document.readyState)) document.addEventListener(
-                    "DOMContentLoaded", onLoad)
-                else
-                    onLoad();
+        var revapi12,
+            tpj;
+        (function() {
+            if (!/loaded|interactive|complete/.test(document.readyState)) document.addEventListener(
+                "DOMContentLoaded", onLoad)
+            else
+                onLoad();
 
-                function onLoad() {
-                    if (tpj === undefined) {
-                        tpj = jQuery;
+            function onLoad() {
+                if (tpj === undefined) {
+                    tpj = jQuery;
 
-                        if ("off" == "on") tpj.noConflict();
-                    }
-                    if (tpj("#rev_slider_7_1").revolution == undefined) {
-                        revslider_showDoubleJqueryError("#rev_slider_7_1");
-                    } else {
-                        revapi7 = tpj("#rev_slider_7_1").show().revolution({
-                            sliderType: "standard",
-                            jsFileLocation: "assets/revolution/js/",
-                            sliderLayout: "fullscreen",
-                            dottedOverlay: "none",
-                            delay: 9000,
-                            navigation: {
-                                keyboardNavigation: "off",
-                                keyboard_direction: "horizontal",
-                                mouseScrollNavigation: "off",
-                                mouseScrollReverse: "default",
-                                onHoverStop: "off",
-                                arrows: {
-                                    style: "hermes",
-                                    enable: true,
-                                    hide_onmobile: false,
-                                    hide_onleave: false,
-                                    tmp: '<div class="tp-arr-allwrapper">	<div class="tp-arr-imgholder"></div>	<div class="tp-arr-titleholder">{{title}}</div>	</div>',
-                                    left: {
-                                        h_align: "left",
-                                        v_align: "center",
-                                        h_offset: 50,
-                                        v_offset: 0
-                                    },
-                                    right: {
-                                        h_align: "right",
-                                        v_align: "center",
-                                        h_offset: 50,
-                                        v_offset: 0
-                                    }
+                    if ("off" == "on") tpj.noConflict();
+                }
+                if (tpj("#rev_slider_12_1").revolution == undefined) {
+                    revslider_showDoubleJqueryError("#rev_slider_12_1");
+                } else {
+                    revapi12 = tpj("#rev_slider_12_1").show().revolution({
+                        sliderType: "standard",
+                        jsFileLocation: "assets/revolution/js/",
+                        sliderLayout: "auto",
+                        dottedOverlay: "none",
+                        delay: 9000,
+                        navigation: {
+                            keyboardNavigation: "off",
+                            keyboard_direction: "horizontal",
+                            mouseScrollNavigation: "off",
+                            mouseScrollReverse: "default",
+                            onHoverStop: "off",
+                            arrows: {
+                                style: "uranus",
+                                enable: true,
+                                hide_onmobile: false,
+                                hide_onleave: false,
+                                tmp: '',
+                                left: {
+                                    h_align: "left",
+                                    v_align: "center",
+                                    h_offset: 20,
+                                    v_offset: 0
+                                },
+                                right: {
+                                    h_align: "right",
+                                    v_align: "center",
+                                    h_offset: 20,
+                                    v_offset: 0
                                 }
-                                //							,
-                                //							tabs: {
-                                //								style:"metis",
-                                //								enable:true,
-                                //								width:100,
-                                //								height:50,
-                                //								min_width:0,
-                                //								wrapper_padding:0,
-                                //								wrapper_color:"transparent",
-                                //								tmp:'<div class="tp-tab-wrapper"><div class="tp-tab-number">{{param1}}</div><div class="tp-tab-divider"></div><div class="tp-tab-title-mask"><div class="tp-tab-title">{{title}}</div></div></div>',
-                                //								visibleAmount: 5,
-                                //								hide_onmobile: false,
-                                //								hide_onleave:false,
-                                //								hide_delay:200,
-                                //								direction:"vertical",
-                                //								span:false,
-                                //								position:"inner",
-                                //								space:5,
-                                //								h_align:"left",
-                                //								v_align:"center",
-                                //								h_offset:0,
-                                //                                v_offset:20
-                                //							}
-                            },
-                            responsiveLevels: [1240, 1024, 778, 480],
-                            visibilityLevels: [1240, 1024, 778, 480],
-                            gridwidth: [1240, 1024, 778, 480],
-                            gridheight: [700, 768, 960, 720],
-                            lazyType: "none",
-                            parallax: {
-                                type: "mouse",
-                                origo: "enterpoint",
-                                speed: 400,
-                                speedbg: 0,
-                                speedls: 0,
-                                levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 3, 2, 55],
-                            },
-                            shadow: 0,
-                            spinner: "spinner0",
-                            stopLoop: "off",
-                            stopAfterLoops: -1,
-                            stopAtSlide: -1,
-                            shuffle: "off",
-                            autoHeight: "off",
-                            fullScreenAutoWidth: "off",
-                            fullScreenAlignForce: "off",
-                            fullScreenOffsetContainer: "",
-                            fullScreenOffset: "",
-                            disableProgressBar: "on",
-                            hideThumbsOnMobile: "off",
-                            hideSliderAtLimit: 0,
-                            hideCaptionAtLimit: 0,
-                            hideAllCaptionAtLilmit: 0,
-                            debugMode: false,
-                            fallbacks: {
-                                simplifyAll: "off",
-                                nextSlideOnWindowFocus: "off",
-                                disableFocusListener: false,
                             }
+                        },
+                        responsiveLevels: [1240, 1024, 778, 480],
+                        visibilityLevels: [1240, 1024, 778, 480],
+                        gridwidth: [1240, 1024, 778, 480],
+                        gridheight: [700, 768, 960, 720],
+                        lazyType: "none",
+                        parallax: {
+                            type: "mouse",
+                            origo: "enterpoint",
+                            speed: 400,
+                            speedbg: 0,
+                            speedls: 0,
+                            levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 3, 2, 55],
+                        },
+                        shadow: 0,
+                        spinner: "spinner0",
+                        stopLoop: "off",
+                        stopAfterLoops: -1,
+                        stopAtSlide: -1,
+                        shuffle: "off",
+                        autoHeight: "off",
+                        fullScreenAutoWidth: "off",
+                        fullScreenAlignForce: "off",
+                        fullScreenOffsetContainer: "",
+                        fullScreenOffset: "",
+                        disableProgressBar: "on",
+                        hideThumbsOnMobile: "off",
+                        hideSliderAtLimit: 0,
+                        hideCaptionAtLimit: 0,
+                        hideAllCaptionAtLilmit: 0,
+                        debugMode: false,
+                        fallbacks: {
+                            simplifyAll: "off",
+                            nextSlideOnWindowFocus: "off",
+                            disableFocusListener: false,
+                        }
+                    });
+                    var api = revapi12;
+
+                    /* no need to edit below */
+                    var divider = ' / ',
+                        totalSlides,
+                        numberText;
+
+                    api.one('revolution.slide.onloaded', function() {
+
+                        totalSlides = api.revmaxslide();
+                        numberText = api.find('.slide-status-numbers').text('1' + divider + totalSlides);
+
+                        api.on('revolution.slide.onbeforeswap', function(e, data) {
+
+                            numberText.text((data.nextslide.index() + 1) + divider + totalSlides);
+
                         });
-                        var api = revapi7;
 
-                        /* no need to edit below */
-                        var divider = ' / ',
-                            totalSlides,
-                            numberText;
-
-                        api.one('revolution.slide.onloaded', function() {
-
-                            totalSlides = api.revmaxslide();
-                            numberText = api.find('.slide-status-numbers').text('1' + divider + totalSlides);
-
-                            api.on('revolution.slide.onbeforeswap', function(e, data) {
-
-                                numberText.text((data.nextslide.index() + 1) + divider + totalSlides);
-
-                            });
-
-                        });
-                    }; /* END OF revapi call */
-                }; /* END OF ON LOAD FUNCTION */
-            }()); /* END OF WRAPPING FUNCTION */
+                    });
+                }; /* END OF revapi call */
+            }; /* END OF ON LOAD FUNCTION */
+        }()); /* END OF WRAPPING FUNCTION */
         </script>
+
+
+        <!-- contact #4  
+============================================= -->
+        <section id="contact4" class="contact-4 pt-40 pb-60-xs text-center-sm text-center-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-lg-3">
+                        <div class="info--panel">
+                            <i class="fa fa-phone"></i>
+                            <a href="tel:05387027010">Telefon: 0538 702 7010</a>
+                        </div>
+                        <!-- .info-panel end -->
+                    </div>
+                    <!-- .col-lg-3 end -->
+                    <div class="col-sm-12 col-md-4 col-lg-3">
+                        <div class="info--panel">
+                            <i class="fa fa-envelope"></i>
+                            <a href="mailto:ozkaderoto42@hotmail.com" target="_top">Bize Ulaşın!</a>
+                        </div>
+                        <!-- .info-panel end -->
+                    </div>
+                    <!-- .col-lg-3 end -->
+                </div>
+                <!-- .row end -->
+            </div>
+            <!-- .container end -->
+        </section>
+        <!-- #contact4 end -->
+
+
+
+
 
         <!-- about #1
 ============================================= -->
-        <section id="about1" class="about about-1 pt-140 pt-60-xs pb-20 pb-60-xs">
+        <section id="about1" class="about about-1 pt-50 pb-150 pt-60-xs pb-20 pb-60-xs">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-6">
@@ -1496,15 +491,15 @@ include_once "ozkaderautomotivepanel/php/main.php";
                             // SEO uyumlu URL'yi oluştur
                             $url = "/$seo_name" . "/$upper_category_id_url";
                     ?>
-                            <!-- .col-lg-3 end -->
-                            <div class="col-sm-12 col-md-4 col-lg-3">
-                                <div class="cat--list-item">
-                                    <a href="#">
-                                        <img src="ozkaderautomotivepanel/<?php echo $data['upper_category_photo'] ?>" alt="img">
-                                        <h4># <?php echo $data['upper_category_name'] ?></h4>
-                                    </a>
-                                </div>
-                            </div>
+                    <!-- .col-lg-3 end -->
+                    <div class="col-sm-12 col-md-4 col-lg-3">
+                        <div class="cat--list-item">
+                            <a href="#">
+                                <img src="ozkaderautomotivepanel/<?php echo $data['upper_category_photo'] ?>" alt="img">
+                                <h4># <?php echo $data['upper_category_name'] ?></h4>
+                            </a>
+                        </div>
+                    </div>
                     <?php
                             $sn++;
                         }
@@ -1984,10 +979,10 @@ include_once "ozkaderautomotivepanel/php/main.php";
                                 $sn = 1;
                                 foreach ($fetchDataBrand as $data) {
                             ?>
-                                    <div class="client">
-                                        <img src="ozkaderautomotivepanel/<?php echo $data['brand_logo'] ?>"
-                                            alt="<?php echo $data['brand_name'] ?>">
-                                    </div>
+                            <div class="client">
+                                <img src="ozkaderautomotivepanel/<?php echo $data['brand_logo'] ?>"
+                                    alt="<?php echo $data['brand_name'] ?>">
+                            </div>
                             <?php
                                     $sn++;
                                 }
@@ -2070,85 +1065,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
 
         <!-- Footer #2
 ============================================= -->
-        <footer id="footerParallax" class="footer footer-2">
-            <div class="container pr-40 pl-40">
-                <div class="footer-widget">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-5ths widget--logo text-center-xs">
-                            <div class="widget--content">
-                                <div class="widget--logo-img">
-                                    <img src="assets/images/logo/logo-dark.png" alt="logo">
-                                </div>
-                            </div>
-                            <div class="footer--copyright">
-                                <span>&copy; 2019 Özkader Otomotiv - Tüm Hakları Saklıdır </span><a
-                                    href="mailto:treebsoftware@gmail.com">Treeb</a>
-                            </div>
-                            <!-- .footer-copyright end -->
-                        </div>
-                        <!-- .col-lg-5ths end -->
-                        <div class="col-sm-12 col-md-6 col-lg-5ths text-center-xs widget--contact-info">
-                            <div class="widget--content">
-                                <ul class="list-unstyled">
-                                    <li><a href="https://maps.app.goo.gl/EAknrr9NrdAvmCU36">Selçuklu Cd. No:147,</a>
-                                    </li>
-                                    <li><a href="https://maps.app.goo.gl/EAknrr9NrdAvmCU36">42120 Selçuklu/Konya</a>
-                                    </li>
-                                    <li><a href="mailto:ozkaderoto42@hotmail.com">ozkaderoto42@hotmail.com</a></li>
-                                    <li><a href="tel:05387027010">0538 702 7010</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- .col-lg-5ths end -->
-                        <div class="col-sm-12 col-md-6 col-lg-5ths text-center-xs widget--links">
-                            <div class="widget--content">
-                                <ul class="list-unstyled">
-                                    <li><a href="page-about-1.php">Hakkımızda</a></li>
-                                    <li><a href="page-privacy.php">Gizlilik Politikası</a></li>
-                                    <li><a href="page-terms.php">Şartlar Ve Koşullar</a></li>
-                                    <li><a href="page-contact-2.php">İletişim</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-12 col-md-6 col-lg-5ths text-center-xs widget--links">
-                            <div class="widget--content">
-                                <p>Son Eklenen Ürünler</p>
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Marş Dinamoları Komple</a></li>
-                                    <li><a href="#">Marş Kollektörleri</a></li>
-                                    <li><a href="#">Marş Yastıkları</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- .col-lg-5ths end -->
-                        <div class="col-sm-12 col-md-6 col-lg-5ths  text-center-xs widget--social">
-                            <div class="widget--content">
-                                <div class="social--icons">
-                                    <span>Bize Ulaşın!</span>
-                                    <a class="phone" href="tel:05387027010">
-                                        <i class="fa fa-phone"></i>
-                                    </a>
-                                    <a class="envelope" href="mailto:ozkaderoto42@hotmail.com">
-                                        <i class="fa fa-envelope"></i>
-                                    </a>
-                                    <a class="whatsapp" href="https://wa.me/05387027010" rel="nofollow" target="_blank">
-                                        <i class="fa fa-whatsapp"></i>
-                                    </a>
-                                    <a class="instagram" href="https://www.instagram.com/ozkaderotomotiv42_/">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .col-lg-5ths end -->
-                    </div>
-                    <!-- .row end -->
-                </div>
-                <!-- .container end -->
-            </div>
-            <!-- .footer-widget end -->
-        </footer>
+       <?php include_once "website_part/footer.php" ?>
 
     </div><!-- #wrapper end -->
 
