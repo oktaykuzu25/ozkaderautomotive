@@ -49,8 +49,20 @@ function cleanPhoneNumber($phoneNumber)
 $tableNameBrand = "brands";
 $columnsBrand = ['brand_id', 'brand_name', 'brand_code', 'brand_logo', 'brand_publicy'];
 
+
+
+$tableNameContact = "contact";
+$columnsContact = ['contact_id', 'contact_phone_number', 'contact_email', 'contact_instagram', 'contact_city','contact_district', 'contact_address', 'contact_address_url', 'contact_address_url_iframe'];
+
 $tableNameUpperCategory = "upper_category";
 $columnsUpperCategory = ['upper_category_id', 'upper_category_name', 'upper_category_photo', 'upper_category_publicy'];
+
+
+$tableNameİnstagram = "socialmedia";
+$columnsİnstagram = ['instagram_id', 'instagram_name', 'instagram_url', 'instagram_foto','instagram_publicy'];
+
+$tableNameGallery = "gallery";
+$columnsGallery = ['gallery_id', 'gallery_name','gallery_foto'];
 
 $tableNameLowerCategory = "lower_category";
 $columnsLowerCategory = ['lower_category_id', 'lower_category_name', 'lower_category_publicy', 'upper_category_id'];
@@ -231,8 +243,6 @@ if (isset($_POST['brand-update'])) {
 }
 
 
-
-
 /* Ust Kategori Kodlari  */
 if (isset($_POST['upper-category-add'])) {
     $upper_category_name = mysqli_real_escape_string($db, $_POST['upper_category_name']);
@@ -269,6 +279,8 @@ if (isset($_POST['upper-category-add'])) {
         }
     }
 }
+
+
 
 $fetchDataUpperCategory = fetch_data_upper_category($db, $tableNameUpperCategory, $columnsUpperCategory);
 function fetch_data_upper_category($db, $tableName, $columns)
@@ -802,3 +814,463 @@ if (isset($_POST['brand-update'])) {
 }
     */
     
+
+    /* Sosyal Medya Kodları */
+if (isset($_POST['instagram-add'])) {
+    $instagram_url = mysqli_real_escape_string($db, $_POST['instagram_url']);
+    $instagram_name = mysqli_real_escape_string($db, $_POST['instagram_name']);
+    $instagram_publicy = isset($_POST['instagram_publicy']) ? 1 : 0;
+
+    $targetDirectory = "socialmedia_photos/";
+
+    $instagram_foto = $_FILES['instagram_foto']['name'];
+
+    $instagram_foto_brand = $targetDirectory . basename($_FILES['instagram_foto']['name']);
+
+    $instagram_foto_brand_img = $instagram_foto_brand;
+
+    $instagram_name_query = "SELECT * FROM  socialmedia WHERE `instagram_name`='$instagram_name'";
+    $resultİnstagramNameQuery = mysqli_query($db,$instagram_name_query);
+    $resultAlreadyControl = mysqli_fetch_assoc($resultİnstagramNameQuery);
+
+    if ($resultAlreadyControl) {
+        if ($resultAlreadyControl['instagram_name'] === $instagram_name) {
+            array_push($errors, "This brand is already available in the system!");
+        }
+    }
+
+
+    if (count($errors) == 0) {
+
+        $query = "INSERT INTO socialmedia (instagram_url,instagram_name,instagram_foto,instagram_publicy) 
+        VALUES ('$instagram_url','$instagram_name','$instagram_foto_brand_img','$instagram_publicy')";
+        $post_data_query = mysqli_query($db, $query);
+
+        if ($post_data_query) {
+            header('location: app-social-media-list.php');
+        } else {
+            $errors[] = "Work could not be loaded: " . mysqli_error($db);
+        }
+    }
+}
+
+
+/* Sosyal Medya Çekme */
+
+$fetchDataİnstagram = fetch_data_instagram($db, $tableNameİnstagram, $columnsİnstagram);
+
+function fetch_data_instagram($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " ORDER BY instagram_id";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Markalar Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+
+/* Sosyal Medya Silme Kodları */
+
+if (isset($_GET['deleteinstagram'])) {
+    $id = validate($_GET['deleteinstagram']);
+    $condition = ['instagram_id' => $id];
+    $deleteMsg = delete_data_instagram($db, $tableNameİnstagram, $condition);
+    header("location:app-social-media-list.php");
+}
+
+function delete_data_instagram($db, $tableName, $condition)
+{
+    $conditionData = '';
+    $i = 0;
+    foreach ($condition as $index => $data) {
+        $and = ($i > 0) ? ' AND ' : '';
+        $conditionData .= $and . $index . " = " . "'" . $data . "'";
+        $i++;
+    }
+
+    $query = "DELETE FROM " . $tableName . " WHERE " . $conditionData;
+    $result = $db->query($query);
+    if ($result) {
+        $msg = "data was deleted successfully";
+    } else {
+        $msg = $db->error;
+    }
+    return $msg;
+}
+
+if (isset($_SERVER['REQUEST_URI'])) {
+    $url_segments = explode('/', $_SERVER['REQUEST_URI']);
+    $instagram_id = end($url_segments);
+    $id = validate($instagram_id);
+    $fetchDataBrandDetails = fetch_data_instagram_detail($db, $tableNameİnstagram, $columnsİnstagram, $id);
+}
+function fetch_data_instagram_detail($db, $tableName, $columns, $id)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE instagram_id = '$id'";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $msg = $row;
+            } else {
+                $msg = "No data found";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+/* Sosyal Medya Silme Bitiş */
+
+if (isset($_SERVER['REQUEST_URI'])) {
+    $url_segments = explode('/', $_SERVER['REQUEST_URI']);
+    $edit_instagram_id = end($url_segments);
+    $id = validate($edit_instagram_id);
+    $fetchDataEditİnstagramDetails = fetch_data_edit_instagram_detail($db, $tableNameİnstagram, $columnsİnstagram, $id);
+}
+function fetch_data_edit_instagram_detail($db, $tableName, $columns, $id)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE instagram_id = '$id'";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $msg = $row;
+            } else {
+                $msg = "No data found";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+if (isset($_POST['instagram-update'])) {
+    $instagram_id = mysqli_real_escape_string($db, $_POST['instagram_id']);
+    $instagram_url = mysqli_real_escape_string($db, $_POST['instagram_url']);
+    $instagram_name = mysqli_real_escape_string($db, $_POST['instagram_name']);
+
+    $instagram_publicy = isset($_POST['instagram_publicy']) ? 1 : 0;
+
+    $select_query = "SELECT * FROM socialmedia WHERE instagram_id = '$instagram_id'";
+    $result = mysqli_query($db, $select_query);
+    $row = mysqli_fetch_assoc($result);
+
+    $instagram_edit_photo_img = $row['instagram_foto'];
+
+    $targetDirectory = "socialmedia_photos/";
+
+    if (!empty($_FILES['socialmedia_photos']['name'])) {
+        $instagram_foto = $_FILES['socialmedia_photos']['name'];
+        $instagram_edit_foto_img = $targetDirectory . basename($instagram_foto);
+    } else {
+        $instagram_edit_foto_img = $row['socialmedia_photos'];
+    }
+
+    $update_query = "UPDATE socialmedia SET 
+    instagram_url = '$instagram_url',
+    instagram_name = '$instagram_name',
+    instagram_publicy = '$instagram_publicy',
+    instagram_foto = '$instagram_edit_photo_img'        
+    WHERE instagram_id = '$instagram_id'";
+
+    $update_result = mysqli_query($db, $update_query);
+
+    if ($update_result) {
+        header('location: app-social-media-list.php');
+    } else {
+        $errors[] = "Work could not be updated: " . mysqli_error($db);
+    }
+}
+
+
+
+
+   /* Galeri Fotosu Ekleme */
+   if (isset($_POST['gallery-add'])) {
+    $gallery_name = mysqli_real_escape_string($db, $_POST['gallery_name']);
+
+    $targetDirectory = "gallery_photos/";
+
+    $gallery_foto = $_FILES['gallery_foto']['name'];
+
+    $gallery_foto_brand = $targetDirectory . basename($_FILES['gallery_foto']['name']);
+
+    $gallery_foto_brand_img = $gallery_foto_brand;
+
+
+
+    if (count($errors) == 0) {
+
+        $query = "INSERT INTO gallery (gallery_name, gallery_foto) 
+        VALUES ('$gallery_name', '$gallery_foto')";
+        $post_data_query = mysqli_query($db, $query);
+
+
+        if ($post_data_query) {
+            header('location: app-gallery-add.php');
+        } else {
+            $errors[] = "Work could not be loaded: " . mysqli_error($db);
+        }
+    }
+}
+
+
+
+/* Galeri Listesine Veri  Çekme */
+
+$fetchDataGallery = fetch_data_gallery($db, $tableNameGallery, $columnsGallery);
+
+function fetch_data_gallery($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " ORDER BY gallery_id";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Markalar Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+
+/* Galeri Fotoğrafı Silme Kodları */
+
+if (isset($_GET['deleteGallery'])) {
+    $id = validate($_GET['deleteGallery']);
+    $condition = ['gallery_id' => $id];
+    $deleteMsg = delete_data_gallery($db, $tableNameGallery, $condition);
+    header("location:app-gallery-list.php");
+}
+
+function delete_data_gallery($db, $tableName, $condition)
+{
+    $conditionData = '';
+    $i = 0;
+    foreach ($condition as $index => $data) {
+        $and = ($i > 0) ? ' AND ' : '';
+        $conditionData .= $and . $index . " = " . "'" . $data . "'";
+        $i++;
+    }
+
+    $query = "DELETE FROM " . $tableName . " WHERE " . $conditionData;
+    $result = $db->query($query);
+    if ($result) {
+        $msg = "data was deleted successfully";
+    } else {
+        $msg = $db->error;
+    }
+    return $msg;
+}
+
+if (isset($_SERVER['REQUEST_URI'])) {
+    $url_segments = explode('/', $_SERVER['REQUEST_URI']);
+    $gallery_id = end($url_segments);
+    $id = validate($gallery_id);
+    $fetchDataGalleryDetails = fetch_data_gallery_detail($db, $tableNameGallery, $columnsGallery, $id);
+}
+function fetch_data_gallery_detail($db, $tableName, $columns, $id)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE gallery_id = '$id'";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $msg = $row;
+            } else {
+                $msg = "No data found";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+
+
+
+/* İletişim Çekme kodları  */
+
+$fetchDataContact = fetch_data_contact($db, $tableNameContact, $columnsContact);
+
+function fetch_data_contact($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " ORDER BY contact_id";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Markalar Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+if (isset($_SERVER['REQUEST_URI'])) {
+    $url_segments = explode('/', $_SERVER['REQUEST_URI']);
+    $contact_id = end($url_segments);
+    $id = validate($contact_id);
+    $fetchDatacontactUpdate = fetch_data_contact_update($db, $tableNameContact, $columnsContact, $id);
+}
+function fetch_data_contact_update($db, $tableName, $columns, $id)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE contact_id = '$id'";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $msg = $row;
+            } else {
+                $msg = "No data found";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+
+if (isset($_POST['contact-update'])) {
+    $contact_phone_number = mysqli_real_escape_string($db, $_POST['contact_phone_number']);
+    $contact_email = mysqli_real_escape_string($db, $_POST['contact_email']);
+    $contact_instagram = mysqli_real_escape_string($db, $_POST['contact_instagram']);
+    $contact_city = mysqli_real_escape_string($db, $_POST['contact_city']);
+    $contact_district = mysqli_real_escape_string($db, $_POST['contact_district']);
+    $contact_address = mysqli_real_escape_string($db, $_POST['contact_address']);
+    $contact_address_url = mysqli_real_escape_string($db, $_POST['contact_address_url']);
+    $contact_address_url_iframe = mysqli_real_escape_string($db, $_POST['contact_address_url_iframe']);
+
+
+    $contact_id = 1; // Örnek olarak 'contact_id'
+
+    $update_query = "UPDATE contact SET 
+        contact_phone_number = '$contact_phone_number',
+        contact_email = '$contact_email',
+        contact_instagram = '$contact_instagram',
+        contact_city = '$contact_city',
+        contact_district = '$contact_district',
+        contact_address = '$contact_address',
+        contact_address_url = '$contact_address_url',
+        contact_address_url_iframe = '$contact_address_url_iframe'
+        WHERE contact_id = '$contact_id'"; // WHERE şartı eklenmeli
+
+    $update_result = mysqli_query($db, $update_query);
+
+    if ($update_result) {
+        header('location: app-contact.php');
+    } else {
+        $errors[] = "Work could not be updated: " . mysqli_error($db);
+    }
+}
+
+

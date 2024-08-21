@@ -91,7 +91,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
                             <div class="contact--content">
                                 <h3>Bizi Arayin!</h3>
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="tel:05387027010">Telefon Numara: 0538 702 7010</a></li>
+                                    <li><a href="tel:05387027010">Telefon Numara: <?php echo $fetchDataContact[0]['contact_phone_number']; ?></a></li>
                                 </ul>
                             </div>
                             <!-- .contact-content end -->
@@ -105,8 +105,8 @@ include_once "ozkaderautomotivepanel/php/main.php";
                             <div class="contact--content">
                                 <h3>Ziyaret Edin!</h3>
                                 <ul class="list-unstyled mb-0">
-                                    <li>Selçuklu Cd. No:147,</li>
-                                    <li>42120 Selçuklu/Konya</li>
+                                    <li><?php echo $fetchDataContact[0]['contact_address']; ?></li>
+                                
                                 </ul>
                             </div>
                             <!-- .contact-content end -->
@@ -120,7 +120,7 @@ include_once "ozkaderautomotivepanel/php/main.php";
                             <div class="contact--content">
                                 <h3>Email</h3>
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="mailto:ozkaderoto42@hotmail.com">ozkaderoto42@hotmail.com</a></li>
+                                    <li><a href="mailto:ozkaderoto42@hotmail.com"><?php echo $fetchDataContact[0]['contact_email']; ?><</a></li>
                                 </ul>
                             </div>
                             <!-- .contact-content end -->

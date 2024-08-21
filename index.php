@@ -1014,49 +1014,42 @@ include_once "ozkaderautomotivepanel/php/main.php";
                     <!-- .col-lg-6 end -->
                 </div>
                 <!-- .row end -->
+
+
                 <div class="row row-no-padding">
-                    <!-- instagarm img #1 -->
-                    <div class="col">
-                        <div class="instagram--img">
-                            <div class="img--hover"></div>
-                            <img src="assets/images/instagram/1.jpg" alt="img" class="img-fluid">
-                        </div>
-                    </div>
+                <?php
+if (is_array($fetchDataInstagram)) {
+    $sn = 1;
+    foreach ($fetchDataInstagram as $data) {
+       
+            $instagram_name_url = $data['instagram_name'];
+            $instagram_id_url = $data['instagram_id'];
+
+            $seo_name = cleanTurkishCharacters($instagram_name_url);
+
+            // SEO uyumlu URL'yi oluştur
+            $url = "/$seo_name" . "/$instagram_id_url";
+        
+?>
                     <!-- .col-md-5ths end -->
                     <!-- instagarm img #2 -->
                     <div class="col">
                         <div class="instagram--img">
                             <div class="img--hover"></div>
-                            <img src="assets/images/instagram/2.jpg" alt="img" class="img-fluid">
+                            <img src="ozkaderautomotivepanel/<?php echo $data['instagram_foto']; ?>" alt="<?php echo $data['instagram_name']; ?>" class="img-fluid">
                         </div>
                     </div>
+                
                     <!-- .col-md-5ths end -->
-                    <!-- instagarm img #3 -->
-                    <div class="col">
-                        <div class="instagram--img">
-                            <div class="img--hover"></div>
-                            <img src="assets/images/instagram/3.jpg" alt="img" class="img-fluid">
-                        </div>
-                    </div>
-                    <!-- .col-md-5ths end -->
-                    <!-- instagarm img #4 -->
-                    <div class="col">
-                        <div class="instagram--img">
-                            <div class="img--hover"></div>
-                            <img src="assets/images/instagram/4.jpg" alt="img" class="img-fluid">
-                        </div>
-                    </div>
-                    <!-- .col-md-5ths end -->
-                    <!-- instagarm img #5 -->
-                    <div class="col">
-                        <div class="instagram--img">
-                            <div class="img--hover"></div>
-                            <img src="assets/images/instagram/5.jpg" alt="img" class="img-fluid">
-                        </div>
-                    </div>
-                    <!-- .col-md-5ths end -->
+                    <?php
+        $sn++;
+    }
+} else {
+    echo $fetchDataInstagram;
+}
+?>
                 </div>
-                <!-- .row end -->
+
             </div>
             <!-- .container end -->
         </section>
