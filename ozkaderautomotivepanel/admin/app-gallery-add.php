@@ -1,13 +1,14 @@
-<?php include '../php/adminpanel.php';
+<?php
+include '../php/adminpanel.php';
 ?>
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Ust Kategori | Özkader Otomotiv | Yönetim Paneli </title>
+    <title>Galeri Fotoğrafı Ekle | Özkader Otomotiv | Yönetim Paneli</title>
     <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
     <link href="../layouts/modern-light-menu/css/light/loader.css" rel="stylesheet" type="text/css" />
     <link href="../layouts/modern-light-menu/css/dark/loader.css" rel="stylesheet" type="text/css" />
@@ -19,22 +20,29 @@
     <link href="../layouts/modern-light-menu/css/dark/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link rel="stylesheet" href="../src/plugins/src/filepond/filepond.min.css">
+    <link rel="stylesheet" href="../src/plugins/src/filepond/FilePondPluginImagePreview.min.css">
+    <link rel="stylesheet" type="text/css" href="../src/plugins/src/tagify/tagify.css">
+
+    <link rel="stylesheet" type="text/css" href="../src/assets/css/light/forms/switches.css">
+    <link rel="stylesheet" type="text/css" href="../src/plugins/css/light/editors/quill/quill.snow.css">
+    <link rel="stylesheet" type="text/css" href="../src/plugins/css/light/tagify/custom-tagify.css">
+    <link href="../src/plugins/css/light/filepond/custom-filepond.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" type="text/css" href="../src/assets/css/dark/forms/switches.css">
+    <link rel="stylesheet" type="text/css" href="../src/plugins/css/dark/editors/quill/quill.snow.css">
+    <link rel="stylesheet" type="text/css" href="../src/plugins/css/dark/tagify/custom-tagify.css">
+    <link href="../src/plugins/css/dark/filepond/custom-filepond.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
     <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link rel="stylesheet" type="text/css" href="../src/plugins/src/table/datatable/datatables.css">
-
-    <link rel="stylesheet" type="text/css" href="../src/plugins/css/light/table/datatable/dt-global_style.css">
-    <link rel="stylesheet" type="text/css" href="../src/plugins/css/dark/table/datatable/dt-global_style.css">
+    <link rel="stylesheet" href="../src/assets/css/light/apps/ecommerce-create.css">
+    <link rel="stylesheet" href="../src/assets/css/dark/apps/ecommerce-create.css">
     <!--  END CUSTOM STYLE FILE  -->
-
-    <style>
-    #ecommerce-list img {
-        border-radius: 18px;
-    }
-    </style>
-
 </head>
 
-<body class="" data-bs-spy="scroll" data-bs-bs-target="#navSection" data-bs-offset="140">
+<body class="">
 
     <!-- BEGIN LOADER -->
     <div id="load_screen">
@@ -49,7 +57,6 @@
     <?php 
     include_once('../website_parts/navbar.php');
     ?>
-
 
     <!--  BEGIN MAIN CONTAINER  -->
     <div class="main-container " id="container">
@@ -308,105 +315,42 @@
                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Uygulamalar</a></li>
-                                <li class="breadcrumb-item"><a href="#">Ust Kategori</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Ust Kategori Listesi</li>
+                                <li class="breadcrumb-item"><a href="#">Galeri</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Galeri Fotoğrafı Ekle</li>
                             </ol>
                         </nav>
                     </div>
                     <!-- /BREADCRUMB -->
 
-                    <div class="row layout-top-spacing">
+                    <div class="row mb-4 layout-spacing layout-top-spacing">
 
-                        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-                            <div class="widget-content widget-content-area br-8">
-                                <table id="ecommerce-list" class="table dt-table-hover" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th class="checkbox-column"></th>
-                                            <th>Alt Kategory Adi</th>
-                                            <th>Ust Kategory Adi</th>
-                                            <th>Durumu</th>
-                                            <th class="no-content text-center">Aksiyon</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        if (is_array($fetchDataLowerCategory)) {
-                                            $sn = 1;
-                                            foreach ($fetchDataLowerCategory as $data) {
-                                                $lower_category_name_url = $data['lower_category_name'];
-                                                $lower_category_id_url = $data['lower_category_id'];
 
-                                                $upper_category_name_id = $data['upper_category_id'];
-                                                $fetchDataUpperCategoryName = fetch_data_upper_category_name($db, $tableNameUpperCategory, $columnsUpperCategory, $upper_category_name_id);
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <form action="app-social-media-add.php" method="POST" enctype="multipart/form-data">
+                                <div class="widget-content widget-content-area ecommerce-create-section">
+                        
+                                    <div class="row mb-4">
+                                        <div class="col-sm-9">
+                                            <input type="text" name="gallery_name" class="form-control" id="gallery_name"
+                                                placeholder="Fotoğraf ismi ">
+                                        </div>
 
-                                                $seo_name = cleanTurkishCharacters($lower_category_name_url);
+                                    <div class="row mb-4">
+                                        <div class="col-sm-12">
+                                            <br>
+                                            <label for="brand_logo">Galeri Fotosu</label>
+                                            <input type="file" name="gallery_foto" class="form-control" id="brand_logo">
+                                        </div>
+                                  
+                                    </div>
 
-                                                // SEO uyumlu URL'yi oluştur
-                                                $url = "/$seo_name" . "/$lower_category_id_url";
-                                        ?>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>
-                                                <div class="d-flex justify-content-left align-items-center">
-                                                    <div class="d-flex flex-column">
-                                                        <span
-                                                            class="text-truncate fw-bold"><?php echo $data['lower_category_name'] ?></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td>
-                                                <div class="d-flex justify-content-left align-items-center">
-                                                    <div class="d-flex flex-column">
-                                                        <span
-                                                            class="text-truncate fw-bold"><?php echo $fetchDataUpperCategoryName['upper_category_name'] ?></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <?php
-                                                    if ($data['lower_category_publicy'] == 1) {
-                                                        echo '<td><span class="badge badge-success">Aktif</span></td>';
-                                                    } elseif ($data['lower_category_publicy'] == 0) {
-                                                        echo '<td><span class="badge badge-danger">Pasif</span></td>';
-                                                    }
-                                                    ?>
-
-                                            <td class="text-center">
-                                                <div class="dropdown">
-                                                    <a class="dropdown-toggle" href="#" role="button"
-                                                        id="dropdownMenuLink1" data-bs-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="true">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            class="feather feather-more-horizontal">
-                                                            <circle cx="12" cy="12" r="1"></circle>
-                                                            <circle cx="19" cy="12" r="1"></circle>
-                                                            <circle cx="5" cy="12" r="1"></circle>
-                                                        </svg>
-                                                    </a>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                        <a class="dropdown-item"
-                                                            href="app-lower-category-edit.php?<?php echo $url ?>">Düzenle</a>
-                                                        <a class="dropdown-item"
-                                                            href="app-lower-category-list.php?deleteLowerCategory=<?php echo $data['lower_category_id']; ?>">Sil</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                                $sn++;
-                                            }
-                                        } else {
-                                            echo $fetchDataLowerCategory;
-                                        } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-primary w-100" type="submit" name="gallery-add">Galeri Fotoğrafı Ekle</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+
 
                     </div>
 
@@ -438,56 +382,29 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <script src="../src/plugins/src/global/vendors.min.js"></script>
     <script src="../src/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../src/plugins/src/mousetrap/mousetrap.min.js"></script>
     <script src="../src/plugins/src/waves/waves.min.js"></script>
     <script src="../layouts/modern-light-menu/app.js"></script>
-    <script src="../src/assets/js/custom.js"></script>
+    <script src="../src/plugins/src/highlight/highlight.pack.js"></script>
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="../src/plugins/src/table/datatable/datatables.js"></script>
-    <script>
-    ecommerceList = $('#ecommerce-list').DataTable({
-        headerCallback: function(e, a, t, n, s) {
-            e.getElementsByTagName("th")[0].innerHTML = `
-                <div class="form-check form-check-primary d-block new-control">
-                    <input class="form-check-input chk-parent" type="checkbox" id="form-check-default">
-                </div>`
-        },
-        columnDefs: [{
-            targets: 0,
-            width: "30px",
-            className: "",
-            orderable: !1,
-            render: function(e, a, t, n) {
-                return `
-                    <div class="form-check form-check-primary d-block new-control">
-                        <input class="form-check-input child-chk" type="checkbox" id="form-check-default">
-                    </div>`
-            }
-        }],
-        "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
-            "<'table-responsive'tr>" +
-            "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
-        "oLanguage": {
-            "oPaginate": {
-                "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
-                "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
-            },
-            "sInfo": "Showing page _PAGE_ of _PAGES_",
-            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-            "sSearchPlaceholder": "Search...",
-            "sLengthMenu": "Results :  _MENU_",
-        },
-        "stripeClasses": [],
-        "lengthMenu": [7, 10, 20, 50],
-        "pageLength": 10
-    });
-    multiCheck(ecommerceList);
-    </script>
+    <script src="../src/plugins/src/editors/quill/quill.js"></script>
+    <script src="../src/plugins/src/filepond/filepond.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginFileValidateType.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageExifOrientation.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImagePreview.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageCrop.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageResize.min.js"></script>
+    <script src="../src/plugins/src/filepond/FilePondPluginImageTransform.min.js"></script>
+    <script src="../src/plugins/src/filepond/filepondPluginFileValidateSize.min.js"></script>
+
+    <script src="../src/plugins/src/tagify/tagify.min.js"></script>
+
+    <script src="../src/assets/js/apps/ecommerce-create.js"></script>
+
     <!-- END PAGE LEVEL SCRIPTS -->
 </body>
 

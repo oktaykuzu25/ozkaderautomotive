@@ -47,8 +47,21 @@ function cleanPhoneNumber($phoneNumber)
 $tableNameBrand = "brands";
 $columnsBrand = ['brand_id', 'brand_name', 'brand_code', 'brand_logo', 'brand_publicy'];
 
+
+$tableNameInstagram = "socialmedia";
+$columnsInstagram = ['instagram_id', 'instagram_name', 'instagram_url', 'instagram_foto','instagram_publicy'];
+
+$tableNameGallery = " gallery";
+$columnsGallery = [' gallery_id', ' gallery_name', ' gallery_foto'];
+
+
 $tableNameUpperCategory = "upper_category";
 $columnsUpperCategory = ['upper_category_id', 'upper_category_name', 'upper_category_photo', 'upper_category_publicy'];
+
+
+$tableNameContact = "contact";
+$columnsContact = ['contact_id', 'contact_phone_number', 'contact_email', 'contact_instagram', 'contact_city','contact_district', 'contact_address', 'contact_address_url', 'contact_address_url_iframe'];
+
 
 $tableNameLowerCategory = "lower_category";
 $columnsLowerCategory = ['lower_category_id', 'lower_category_name', 'lower_category_publicy', 'upper_category_id'];
@@ -475,5 +488,110 @@ function fetch_data_product_detail($db, $tableName, $columns, $id)
 
 
 
+/* Maine insta fotoları çekme */
 
 
+
+$fetchDataInstagram = fetch_data_instagram($db, $tableNameInstagram, $columnsInstagram);
+function fetch_data_instagram($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " ORDER BY instagram_id";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Ust Kategori Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+/* Maine Galeri  fotoları çekme */
+
+$fetchDataGallery = fetch_data_gallery($db, $tableNameGallery, $columnsGallery);
+function fetch_data_gallery($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " ORDER BY gallery_id";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Ust Kategori Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+/* Maine  İletişim Bilgileri  çekme */
+
+
+$fetchDataContact = fetch_data_contact($db, $tableNameContact, $columnsContact);
+function fetch_data_contact($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " ORDER BY contact_id";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Ust Kategori Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}

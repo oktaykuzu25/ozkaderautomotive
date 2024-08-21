@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Ust Kategori | Özkader Otomotiv | Yönetim Paneli </title>
+    <title>Galeri Fotoğraf Listesi | Özkader Otomotiv | Yönetim Paneli </title>
     <link rel="icon" type="image/x-icon" href="../src/assets/img/favicon.ico" />
     <link href="../layouts/modern-light-menu/css/light/loader.css" rel="stylesheet" type="text/css" />
     <link href="../layouts/modern-light-menu/css/dark/loader.css" rel="stylesheet" type="text/css" />
@@ -294,6 +294,7 @@
 </nav>
 
 </div>
+
         <!--  END SIDEBAR  -->
 
         <!--  BEGIN CONTENT AREA  -->
@@ -308,8 +309,8 @@
                         <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Uygulamalar</a></li>
-                                <li class="breadcrumb-item"><a href="#">Ust Kategori</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Ust Kategori Listesi</li>
+                                <li class="breadcrumb-item"><a href="#">Galeri</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Galeri Fotoğraf Listesi</li>
                             </ol>
                         </nav>
                     </div>
@@ -323,55 +324,43 @@
                                     <thead>
                                         <tr>
                                             <th class="checkbox-column"></th>
-                                            <th>Alt Kategory Adi</th>
-                                            <th>Ust Kategory Adi</th>
-                                            <th>Durumu</th>
+                                            <th>Galeri </th>
+                                         
+                                            <th>Galeri Fotoğraf Adı</th>
+                                          
                                             <th class="no-content text-center">Aksiyon</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if (is_array($fetchDataLowerCategory)) {
+                                        if (is_array($fetchDataGallery)) {
                                             $sn = 1;
-                                            foreach ($fetchDataLowerCategory as $data) {
-                                                $lower_category_name_url = $data['lower_category_name'];
-                                                $lower_category_id_url = $data['lower_category_id'];
+                                            foreach ($fetchDataGallery as $data) {
+                                                $gallery_name_url = $data['gallery_name'];
+                                                $gallery_id_url = $data['gallery_id'];
 
-                                                $upper_category_name_id = $data['upper_category_id'];
-                                                $fetchDataUpperCategoryName = fetch_data_upper_category_name($db, $tableNameUpperCategory, $columnsUpperCategory, $upper_category_name_id);
-
-                                                $seo_name = cleanTurkishCharacters($lower_category_name_url);
+                                                $seo_name = cleanTurkishCharacters($gallery_name_url);
 
                                                 // SEO uyumlu URL'yi oluştur
-                                                $url = "/$seo_name" . "/$lower_category_id_url";
+                                                $url = "/$seo_name" . "/$gallery_id_url";
                                         ?>
                                         <tr>
-                                            <td>1</td>
+                                          <td>1</td>
                                             <td>
                                                 <div class="d-flex justify-content-left align-items-center">
+                                                    <div class="avatar  me-3">
+                                                    <img src="../gallery_photos/<?php echo $data['gallery_foto']; ?>" alt="Avatar" width="64" height="64">
+
+                                                    </div>
                                                     <div class="d-flex flex-column">
                                                         <span
-                                                            class="text-truncate fw-bold"><?php echo $data['lower_category_name'] ?></span>
+                                                            class="text-truncate fw-bold"><?php echo $data['gallery_name'] ?></span>
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td><?php echo $data['gallery_name'] ?></td>
 
-                                            <td>
-                                                <div class="d-flex justify-content-left align-items-center">
-                                                    <div class="d-flex flex-column">
-                                                        <span
-                                                            class="text-truncate fw-bold"><?php echo $fetchDataUpperCategoryName['upper_category_name'] ?></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <?php
-                                                    if ($data['lower_category_publicy'] == 1) {
-                                                        echo '<td><span class="badge badge-success">Aktif</span></td>';
-                                                    } elseif ($data['lower_category_publicy'] == 0) {
-                                                        echo '<td><span class="badge badge-danger">Pasif</span></td>';
-                                                    }
-                                                    ?>
+                                         
 
                                             <td class="text-center">
                                                 <div class="dropdown">
@@ -389,10 +378,9 @@
                                                         </svg>
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+                                                     
                                                         <a class="dropdown-item"
-                                                            href="app-lower-category-edit.php?<?php echo $url ?>">Düzenle</a>
-                                                        <a class="dropdown-item"
-                                                            href="app-lower-category-list.php?deleteLowerCategory=<?php echo $data['lower_category_id']; ?>">Sil</a>
+                                                            href="app-gallery-list.php?deleteGallery=<?php echo $data['gallery_id']; ?>">Sil</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -401,7 +389,7 @@
                                                 $sn++;
                                             }
                                         } else {
-                                            echo $fetchDataLowerCategory;
+                                            echo $fetchDataGallery;
                                         } ?>
                                     </tbody>
                                 </table>

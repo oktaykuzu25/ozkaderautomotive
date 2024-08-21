@@ -79,47 +79,49 @@ include_once "ozkaderautomotivepanel/php/main.php";
         <section id="blog" class="blog blog-grid-2 pt-0">
             <div class="container">
                 <div class="row">
+                <?php
+if (is_array($fetchDataGallery)) {
+    $sn = 1;
+    foreach ($fetchDataGallery as $data) {
+       
+            $gallery_name_url = $data['gallery_name'];
+            $gallery_id_url = $data['gallery_id'];
+
+            $seo_name = cleanTurkishCharacters($gallery_name_url);
+
+            // SEO uyumlu URL'yi oluştur
+            $url = "/$seo_name" . "/$gallery_id_url";
+        
+?>
                     <!-- Blog Entry #1 -->
                     <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
                         <div class="entry--img">
-                            <img src="assets/images/gallery/gallery-1.webp" alt="entry image" />
+                            <img src="./ozkaderautomotivepanel/gallery_photos/<?php echo $data['gallery_foto'] ?>" alt="<?php echo $data['gallery_name'] ?>" />
                         </div>
                     </div>
+
+                    <?php
+        $sn++;
+    }
+} else {
+    echo $fetchDataGallery;
+}
+?>         
                     <!-- .blog-entry end -->
                     <!-- Blog Entry #1 -->
-                    <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
-                        <div class="entry--img">
-                            <img src="assets/images/gallery/gallery-2.webp" alt="entry image" />
-                        </div>
-                    </div>
+                
                     <!-- .blog-entry end -->
                     <!-- Blog Entry #1 -->
-                    <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
-                        <div class="entry--img">
-                            <img src="assets/images/gallery/gallery-3.webp" alt="entry image" />
-                        </div>
-                    </div>
+                 
                     <!-- .blog-entry end -->
                     <!-- Blog Entry #1 -->
-                    <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
-                        <div class="entry--img">
-                            <img src="assets/images/gallery/gallery-4.webp" alt="entry image" />
-                        </div>
-                    </div>
+                  
                     <!-- .blog-entry end -->
                     <!-- Blog Entry #1 -->
-                    <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
-                        <div class="entry--img">
-                            <img src="assets/images/gallery/gallery-5.webp" alt="entry image" />
-                        </div>
-                    </div>
+                 
                     <!-- .blog-entry end -->
                     <!-- Blog Entry #1 -->
-                    <div class="col-sm-6 col-md-6 col-lg-4 blog-entry filter-chair">
-                        <div class="entry--img">
-                            <img src="assets/images/gallery/gallery-6.webp" alt="entry image" />
-                        </div>
-                    </div>
+                
                     <!-- .blog-entry end -->
                 </div>
             </div>

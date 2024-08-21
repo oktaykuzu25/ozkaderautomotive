@@ -18,12 +18,12 @@
                 <div class="col-sm-12 col-md-6 col-lg-5ths text-center-xs widget--contact-info">
                     <div class="widget--content">
                         <ul class="list-unstyled">
-                            <li><a href="https://maps.app.goo.gl/EAknrr9NrdAvmCU36">Selçuklu Cd. No:147,</a>
+                            <li><a href="https://maps.app.goo.gl/EAknrr9NrdAvmCU36"><?php echo $fetchDataContact[0]['contact_address']; ?></a>
                             </li>
-                            <li><a href="https://maps.app.goo.gl/EAknrr9NrdAvmCU36">42120 Selçuklu/Konya</a>
+                     
                             </li>
-                            <li><a href="mailto:ozkaderoto42@hotmail.com">ozkaderoto42@hotmail.com</a></li>
-                            <li><a href="tel:05387027010">0538 702 7010</a></li>
+                            <li><a href="mailto:ozkaderoto42@hotmail.com"> <?php echo $fetchDataContact[0]['contact_email']; ?> </a> </li>
+                            <li><a href="tel:05387027010"><?php echo $fetchDataContact[0]['contact_phone_number']; ?></a></li>
                         </ul>
                     </div>
                 </div>
@@ -55,10 +55,10 @@
                     <div class="widget--content">
                         <div class="social--icons">
                             <span>Bize Ulaşın!</span>
-                            <a class="phone" href="tel:05387027010">
+                            <a class="phone" href="tel:<?php echo $fetchDataContact[0]['contact_phone_number']; ?>">
                                 <i class="fa fa-phone"></i>
                             </a>
-                            <a class="envelope" href="mailto:ozkaderoto42@hotmail.com">
+                            <a class="envelope" href="<?php echo $fetchDataContact[0]['contact_email']; ?>">
                                 <i class="fa fa-envelope"></i>
                             </a>
                             <a class="whatsapp" href="https://wa.me/05387027010" rel="nofollow" target="_blank">
