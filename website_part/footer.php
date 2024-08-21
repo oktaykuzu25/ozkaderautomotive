@@ -44,11 +44,33 @@
 
                 <div class="col-sm-12 col-md-6 col-lg-5ths text-center-xs widget--links">
                     <div class="widget--content">
-                        <p>Son Eklenen Ürünler</p>
                         <ul class="list-unstyled">
-                            <li><a href="#">Marş Dinamoları Komple</a></li>
-                            <li><a href="#">Marş Kollektörleri</a></li>
-                            <li><a href="#">Marş Yastıkları</a></li>
+                            <?php
+                            if (is_array($fetchDataProductLimitTwo)) {
+                                foreach ($fetchDataProductLimitTwo as $data) {
+                                    $upper_category_id_for_product = $data['upper_category_id'];
+                                    $lower_category_id_for_product = $data['lower_category_id'];
+                                    $product_name_for_url = $data['product_name'];
+                                    $product_id_for_url = $data['product_id'];
+                                    $fetchDataUpperCategoryForProduct = fetch_data_upper_category_for_product($db, $tableNameUpperCategory, $columnsUpperCategory, $upper_category_id_for_product);
+                                    $fetchDataLowerCategoryForProduct = fetch_data_lower_category_for_product($db, $tableNameLowerCategory, $columnsLowerCategory, $lower_category_id_for_product);
+                                    $upper_category_name = $fetchDataUpperCategoryForProduct['upper_category_name'];
+                                    $lower_category_name = $fetchDataLowerCategoryForProduct['lower_category_name'];
+
+                                    $upper_category_name = cleanTurkishCharacters($upper_category_name);
+                                    $lower_category_name = cleanTurkishCharacters($lower_category_name);
+                                    $product_name_for_url = cleanTurkishCharacters($product_name_for_url);
+
+                                    $url = "/$upper_category_name" . "/$lower_category_name" . "/$product_name_for_url" . "/$product_id_for_url";
+                            ?>
+                                    <li><a href="<?php echo $url ?>"><?php echo $data['product_name'] ?></a></li>
+                            <?php
+                                }
+                            } else {
+                                echo $fetchDataProductLimitTwo;
+                            }
+                            ?>
+
                         </ul>
                     </div>
                 </div>

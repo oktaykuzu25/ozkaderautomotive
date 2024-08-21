@@ -518,7 +518,6 @@ function fetch_data_featured_product_index($db, $tableName, $columns)
     return $msg;
 }
 
-
 $fetchDataSliderProductsForIndex = fetch_data_slider_product_index($db, $tableNameProduct, $columnsProduct);
 function fetch_data_slider_product_index($db, $tableName, $columns)
 {
@@ -552,6 +551,38 @@ function fetch_data_slider_product_index($db, $tableName, $columns)
     return $msg;
 }
 
+$fetchDataProductLimitTwo = fetch_data_product_limit_two($db, $tableNameProduct, $columnsProduct);
+function fetch_data_product_limit_two($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " ORDER BY product_id LIMIT 2";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Urun Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
 
 /* Maine insta fotoları çekme */
 $fetchDataInstagram = fetch_data_instagram($db, $tableNameInstagram, $columnsInstagram);

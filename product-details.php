@@ -142,19 +142,25 @@ $fetchDataProductFeatured = fetch_data_product_with_categories($db, $tableNamePr
                                 <li>Ürün Kodu:<span><?php echo $fetchDataProductDetails['product_code'] ?></span></li>
                             </ul>
                             <div class="product--meta-action clearfix mb-0">
-                                <a href="tel:05387027010" class="btn btn--primary btn--rounded btn--block mb-40">Bize
+                                <a href="tel:<?php echo cleanPhoneNumber($fetchDataContact[0]['contact_phone_number']); ?>"
+                                    class="btn btn--primary btn--rounded btn--block mb-40">Bize
                                     Ulaşın!</a>
                                 <div class="inline-block product--share">
-                                    <a class="phone" href="tel:05387027010">
+                                    <a class="phone"
+                                        href="tel:<?php echo cleanPhoneNumber($fetchDataContact[0]['contact_phone_number']); ?>">
                                         <i class="fa fa-phone"></i>
                                     </a>
-                                    <a class="envelope" href="mailto:ozkaderoto42@hotmail.com">
+                                    <a class="envelope"
+                                        href="mailto:<?php echo $fetchDataContact[0]['contact_email']; ?>">
                                         <i class="fa fa-envelope"></i>
                                     </a>
-                                    <a class="whatsapp" href="https://wa.me/05387027010" rel="nofollow" target="_blank">
+                                    <a class="whatsapp"
+                                        href="https://wa.me/<?php echo cleanPhoneNumber($fetchDataContact[0]['contact_phone_number']); ?>"
+                                        rel="nofollow" target="_blank">
                                         <i class="fa fa-whatsapp"></i>
                                     </a>
-                                    <a class="instagram" href="https://www.instagram.com/ozkaderotomotiv42_/">
+                                    <a class="instagram"
+                                        href="<?php echo $fetchDataContact[0]['contact_instagram']; ?>">
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </div>
