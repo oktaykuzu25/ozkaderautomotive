@@ -5,7 +5,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-5ths widget--logo text-center-xs">
                     <div class="widget--content">
                         <div class="widget--logo-img">
-                            <img src="assets/images/logo/logo-dark.png" alt="logo">
+                            <img src="assets/images/logo/logo-dark.png" style="width: 106px; height:auto" alt="logo">
                         </div>
                     </div>
                     <div class="footer--copyright">
@@ -19,7 +19,7 @@
                     <div class="widget--content">
                         <ul class="list-unstyled">
                             <li><a
-                                    href="<?php echo $fetchDataContact[0]['contact_address_url']; ?>"><?php echo $fetchDataContact[0]['contact_address']; ?></a>
+                                    href="<?php echo $fetchDataContact[0]['contact_address_url']; ?>"><?php echo $fetchDataContact[0]['contact_address'] . ' ' . $fetchDataContact[0]['contact_district'] . '/' . $fetchDataContact[0]['contact_city']  ?></a>
                             </li>
                             </li>
                             <li><a href="mailto:<?php echo $fetchDataContact[0]['contact_email']; ?>">
@@ -63,7 +63,7 @@
 
                                     $url = "/$upper_category_name" . "/$lower_category_name" . "/$product_name_for_url" . "/$product_id_for_url";
                             ?>
-                                    <li><a href="<?php echo $url ?>"><?php echo $data['product_name'] ?></a></li>
+                            <li><a href="<?php echo $url ?>"><?php echo $data['product_name'] ?></a></li>
                             <?php
                                 }
                             } else {

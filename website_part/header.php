@@ -1,9 +1,9 @@
 <header id="navbar-spy" class="header header-1 header-8 header-light">
     <nav id="primary-menu" class="navbar navbar-expand-lg navbar-light logo-centered">
         <div class="container">
-            <a class="navbar-brand" href="index-2.html">
-                <img class="logo logo-light" src="assets/images/logo/logo-dark.png" alt="logo">
-                <img class="logo logo-dark" src="assets/images/logo/logo-dark.png" alt="logo">
+            <a class="navbar-brand" href="index.php">
+                <img class="logo logo-light" src="assets/images/logo/logo-dark.png" style="width: 106px; height:auto" alt="logo">
+                <img class="logo logo-dark" src="assets/images/logo/logo-dark.png" style="width: 106px; height:auto" alt="logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
                 aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
