@@ -225,7 +225,7 @@ $fetchDataProductFeatured = fetch_data_product_with_categories($db, $tableNamePr
                                     </div>
                                     <!-- .product-title end -->
                                     <div class="product--price">
-                                        <span>$ 42.00</span>
+                                        <span><?php echo $data['product_code'] ?></span>
                                     </div>
                                     <!-- .product-price end -->
                                     <div class="product--hover">

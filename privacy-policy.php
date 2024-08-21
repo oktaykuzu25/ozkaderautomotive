@@ -165,13 +165,15 @@ include_once "ozkaderautomotivepanel/php/main.php";
                         <p>Gizlilik Politikamızla ilgili sorularınız veya endişeleriniz varsa, lütfen bizimle iletişime
                             geçin:</p>
                         <ul>
-                            <li><b>E-posta: </b><a href="mailto:ozkaderoto42@hotmail.com">ozkaderoto42@hotmail.com</a>
+                            <li><b>E-posta: </b><a
+                                    href="mailto:<?php echo $fetchDataContact[0]['contact_email']; ?>"><?php echo $fetchDataContact[0]['contact_email']; ?></a>
                             </li>
-                            <li><b>Telefon: </b><a href="tel:05387027010">0538 702 7010</a></li>
+                            <li><b>Telefon: </b><a
+                                    href="tel:<?php echo cleanPhoneNumber($fetchDataContact[0]['contact_phone_number']); ?>"><?php echo $fetchDataContact[0]['contact_phone_number']; ?></a>
+                            </li>
                             <li><b>Adres: </b><a
-                                    href="https://www.google.com/maps/place/Horozluhan,+Sel%C3%A7uklu+Cd.+No:147,+42120+Sel%C3%A7uklu%2FKonya/@37.940947,32.5201271,17z/data=!3m1!4b1!4m6!3m5!1s0x14d08e3a641ed2df:0x576857acf802d675!8m2!3d37.940947!4d32.522702!16s%2Fg%2F11c5npn00n?coh=219816&entry=tts&g_ep=EgoyMDI0MDgxNC4xKgBIAVAD">Selçuklu
-                                    Cd. No:147,
-                                    42120 Selçuklu/Konya</a></li>
+                                    href="<?php echo $fetchDataContact[0]['contact_address_url']; ?>"><?php echo $fetchDataContact[0]['contact_address'] . ' ' . $fetchDataContact[0]['contact_district'] . '/' . $fetchDataContact[0]['contact_city']  ?></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
