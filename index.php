@@ -15,7 +15,6 @@ include_once "ozkaderautomotivepanel/php/main.php";
     <meta name="description" content="Multi-purpose Business html5 template">
     <link href="assets/images/favicon/favicon.png" rel="icon">
 
-
     <!-- Fonts
     ============================================= -->
     <link
