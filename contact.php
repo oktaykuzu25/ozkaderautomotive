@@ -91,7 +91,10 @@ include_once "ozkaderautomotivepanel/php/main.php";
                             <div class="contact--content">
                                 <h3>Bizi Arayin!</h3>
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="tel:05387027010">Telefon Numara: <?php echo $fetchDataContact[0]['contact_phone_number']; ?></a></li>
+                                    <li>Telefon
+                                        Numara:<a
+                                            href="tel:<?php echo cleanPhoneNumber($fetchDataContact[0]['contact_phone_number']); ?>">
+                                            <?php echo $fetchDataContact[0]['contact_phone_number']; ?></a></li>
                                 </ul>
                             </div>
                             <!-- .contact-content end -->
@@ -105,8 +108,10 @@ include_once "ozkaderautomotivepanel/php/main.php";
                             <div class="contact--content">
                                 <h3>Ziyaret Edin!</h3>
                                 <ul class="list-unstyled mb-0">
-                                    <li><?php echo $fetchDataContact[0]['contact_address']; ?></li>
-                                
+                                    <li><a
+                                            href="<?php echo $fetchDataContact[0]['contact_address_url'] ?>"><?php echo $fetchDataContact[0]['contact_address'] . ' ' . $fetchDataContact[0]['contact_district'] . '/' . $fetchDataContact[0]['contact_city']  ?></a>
+                                    </li>
+
                                 </ul>
                             </div>
                             <!-- .contact-content end -->
@@ -120,7 +125,9 @@ include_once "ozkaderautomotivepanel/php/main.php";
                             <div class="contact--content">
                                 <h3>Email</h3>
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="mailto:ozkaderoto42@hotmail.com"><?php echo $fetchDataContact[0]['contact_email']; ?><</a></li>
+                                    <li><a href="mailto:<?php echo $fetchDataContact[0]['contact_email']; ?>"><?php echo $fetchDataContact[0]['contact_email']; ?>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- .contact-content end -->
@@ -141,9 +148,8 @@ include_once "ozkaderautomotivepanel/php/main.php";
             <div class="container-fluid pr-0 pl-0">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12 pr-0 pl-0">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3146.5497849757994!2d32.520127075097626!3d37.94094697194394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d08e3a64604945%3A0xb7d1d7155d948a!2s%C3%96ZKADER%20OTOMOT%C4%B0V%20aksesuar%20ve%20yedek%20par%C3%A7a!5e0!3m2!1str!2str!4v1724071637656!5m2!1str!2str"
-                            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                        <iframe src="<?php echo $fetchDataContact[0]['contact_address_url_iframe']; ?>" width="100%" height="400"
+                            style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>

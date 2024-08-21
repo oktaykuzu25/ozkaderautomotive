@@ -72,12 +72,12 @@ include '../php/adminpanel.php';
                 <div class="navbar-nav theme-brand flex-row  text-center">
                     <div class="nav-logo">
                         <div class="nav-item theme-logo">
-                            <a href="./index.html">
+                            <a href="./index.php">
                                 <img src="../src/assets/img/logo.svg" class="navbar-logo" alt="logo">
                             </a>
                         </div>
                         <div class="nav-item theme-text">
-                            <a href="./index.html" class="nav-link"> CORK </a>
+                            <a href="./index.php" class="nav-link"> CORK </a>
                         </div>
                     </div>
                     <div class="nav-item sidebar-toggle">
@@ -132,7 +132,7 @@ include '../php/adminpanel.php';
                                 <a href="./index.php"> Anasayfa </a>
                             </li>
                             <li>
-                                <a href="../../index.html"> Site </a>
+                                <a href="../../index.php"> Site </a>
                             </li>
                         </ul>
                     </li>

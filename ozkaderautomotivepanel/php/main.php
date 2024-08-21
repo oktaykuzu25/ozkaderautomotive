@@ -81,7 +81,7 @@ function fetch_data_brand($db, $tableName, $columns)
     } else {
         $columnName = implode(", ", $columns);
         $query = "SELECT " . $columnName . " FROM $tableName";
-        $query .= " ORDER BY brand_id";
+        $query .= " WHERE brand_publicy = 1 ORDER BY brand_id";
         $result = $db->query($query);
 
         if ($result) {
@@ -134,7 +134,6 @@ function fetch_data_upper_category_limit_three($db, $tableName, $columns)
 
     return $msg;
 }
-
 
 $fetchDataUpperCategoryLimitFive = fetch_data_upper_category_limit_five($db, $tableNameUpperCategory, $columnsUpperCategory);
 function fetch_data_upper_category_limit_five($db, $tableName, $columns)
@@ -285,6 +284,7 @@ function fetch_data_lower_category($db, $tableName, $columns, $categoryId)
 
     return $msg;
 }
+
 
 
 
@@ -485,13 +485,75 @@ function fetch_data_product_detail($db, $tableName, $columns, $id)
 }
 
 
+$fetchDataFeaturedProductsForIndex = fetch_data_featured_product_index($db, $tableNameProduct, $columnsProduct);
+function fetch_data_featured_product_index($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE product_publicy= 1 AND product_featured_status= 1 ORDER BY product_id";
+        $result = $db->query($query);
 
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Urun Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
+
+
+$fetchDataSliderProductsForIndex = fetch_data_slider_product_index($db, $tableNameProduct, $columnsProduct);
+function fetch_data_slider_product_index($db, $tableName, $columns)
+{
+    if (empty($db)) {
+        $msg = "Database connection error";
+    } elseif (empty($columns) || !is_array($columns)) {
+        $msg = "Column names must be defined in the array";
+    } elseif (empty($tableName)) {
+        $msg = "Table name is empty";
+    } else {
+        $columnName = implode(", ", $columns);
+        $query = "SELECT " . $columnName . " FROM $tableName";
+        $query .= " WHERE product_publicy= 1 AND product_slider_status= 1 ORDER BY product_id";
+        $result = $db->query($query);
+
+        if ($result) {
+            if ($result->num_rows > 0) {
+                $row = array();
+                while ($data = $result->fetch_assoc()) {
+                    $row[] = $data;
+                }
+                $msg = $row;
+            } else {
+                $msg = "Urun Bulunamadi!";
+            }
+        } else {
+            $msg = "Query error: " . $db->error;
+        }
+    }
+
+    return $msg;
+}
 
 
 /* Maine insta fotoları çekme */
-
-
-
 $fetchDataInstagram = fetch_data_instagram($db, $tableNameInstagram, $columnsInstagram);
 function fetch_data_instagram($db, $tableName, $columns)
 {
@@ -526,7 +588,6 @@ function fetch_data_instagram($db, $tableName, $columns)
 }
 
 /* Maine Galeri  fotoları çekme */
-
 $fetchDataGallery = fetch_data_gallery($db, $tableNameGallery, $columnsGallery);
 function fetch_data_gallery($db, $tableName, $columns)
 {
@@ -561,8 +622,6 @@ function fetch_data_gallery($db, $tableName, $columns)
 }
 
 /* Maine  İletişim Bilgileri  çekme */
-
-
 $fetchDataContact = fetch_data_contact($db, $tableNameContact, $columnsContact);
 function fetch_data_contact($db, $tableName, $columns)
 {

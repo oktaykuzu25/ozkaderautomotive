@@ -18,12 +18,15 @@
                 <div class="col-sm-12 col-md-6 col-lg-5ths text-center-xs widget--contact-info">
                     <div class="widget--content">
                         <ul class="list-unstyled">
-                            <li><a href="https://maps.app.goo.gl/EAknrr9NrdAvmCU36"><?php echo $fetchDataContact[0]['contact_address']; ?></a>
+                            <li><a
+                                    href="<?php echo $fetchDataContact[0]['contact_address_url']; ?>"><?php echo $fetchDataContact[0]['contact_address']; ?></a>
                             </li>
-                     
                             </li>
-                            <li><a href="mailto:ozkaderoto42@hotmail.com"> <?php echo $fetchDataContact[0]['contact_email']; ?> </a> </li>
-                            <li><a href="tel:05387027010"><?php echo $fetchDataContact[0]['contact_phone_number']; ?></a></li>
+                            <li><a href="mailto:<?php echo $fetchDataContact[0]['contact_email']; ?>">
+                                    <?php echo $fetchDataContact[0]['contact_email']; ?> </a> </li>
+                            <li><a
+                                    href="tel:<?php echo cleanPhoneNumber($fetchDataContact[0]['contact_phone_number']); ?>"><?php echo $fetchDataContact[0]['contact_phone_number']; ?></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -55,16 +58,19 @@
                     <div class="widget--content">
                         <div class="social--icons">
                             <span>Bize Ulaşın!</span>
-                            <a class="phone" href="tel:<?php echo $fetchDataContact[0]['contact_phone_number']; ?>">
+                            <a class="phone"
+                                href="tel:<?php echo cleanPhoneNumber($fetchDataContact[0]['contact_phone_number']); ?>">
                                 <i class="fa fa-phone"></i>
                             </a>
                             <a class="envelope" href="<?php echo $fetchDataContact[0]['contact_email']; ?>">
                                 <i class="fa fa-envelope"></i>
                             </a>
-                            <a class="whatsapp" href="https://wa.me/05387027010" rel="nofollow" target="_blank">
+                            <a class="whatsapp"
+                                href="https://wa.me/<?php echo cleanPhoneNumber($fetchDataContact[0]['contact_phone_number']); ?>"
+                                rel="nofollow" target="_blank">
                                 <i class="fa fa-whatsapp"></i>
                             </a>
-                            <a class="instagram" href="https://www.instagram.com/ozkaderotomotiv42_/">
+                            <a class="instagram" href="<?php echo $fetchDataContact[0]['contact_instagram']; ?>">
                                 <i class="fa fa-instagram"></i>
                             </a>
                         </div>
